@@ -7,14 +7,12 @@ final class SpeakerTabBar: UITabBarController {
 
     // MARK: - UI
 
-    private var customTabBarView = CustomTabBar(frame: .zero)
-
     private var buttonsArray = [UIImageView]()
 
     private let topView: UIView = {
         let view = UIView()
         view.backgroundColor = .tabBarBlack
-        view.layer.cornerRadius = 40
+        view.layer.cornerRadius = isSmallDevice ? 20 : 40
         view.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         view.layer.masksToBounds = true
         return view
@@ -35,7 +33,7 @@ final class SpeakerTabBar: UITabBarController {
 
     func hideTabBar(_ isHidden: Bool) {
         tabBar.isHidden = isHidden
-        customTabBarView.isHidden = isHidden
+        topView.isHidden = isHidden
     }
 }
 
@@ -50,11 +48,11 @@ private extension SpeakerTabBar {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = .clear
+            appearance.shadowImage = nil
+            appearance.shadowColor = nil
+            appearance.backgroundEffect = nil
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
-
-            self.tabBar.shadowImage = UIImage()
-            self.tabBar.backgroundImage = UIImage()
         }
     }
 
@@ -105,7 +103,7 @@ private extension SpeakerTabBar {
         topView.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(80)
+            $0.height.equalTo(isSmallDevice ? 50 : 80)
         })
 
         topView.layer.masksToBounds = false

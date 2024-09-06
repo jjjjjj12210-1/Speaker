@@ -9,6 +9,8 @@ import UIKit
 
 protocol BluetoothMenuPresenterInterface {
     func viewDidLoad(withView view: BluetoothMenuPresenterOutputInterface)
+    func selectBack()
+    func selectDevice(isConnect: Bool)
 }
 
 final class BluetoothMenuPresenter: NSObject {
@@ -24,6 +26,14 @@ final class BluetoothMenuPresenter: NSObject {
 // MARK: - BluetoothMenuPresenterInterface
 
 extension BluetoothMenuPresenter: BluetoothMenuPresenterInterface {
+    func selectDevice(isConnect: Bool) {
+        router.showBluetoothConnect(isConnect: isConnect)
+    }
+    
+    func selectBack() {
+        router.dismiss()
+    }
+    
     func viewDidLoad(withView view: BluetoothMenuPresenterOutputInterface) {
         self.view = view
     }

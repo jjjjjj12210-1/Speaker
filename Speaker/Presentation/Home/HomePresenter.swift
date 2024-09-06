@@ -9,6 +9,12 @@ import UIKit
 
 protocol HomePresenterInterface {
     func viewDidLoad(withView view: HomePresenterOutputInterface)
+    func selectWifi()
+    func selectBluetooth()
+
+    func selectVolume()
+    func selectBass()
+    func selectTreble()
 }
 
 final class HomePresenter: NSObject {
@@ -24,6 +30,26 @@ final class HomePresenter: NSObject {
 // MARK: - HomePresenterInterface
 
 extension HomePresenter: HomePresenterInterface {
+    func selectVolume() {
+        router.showVolume()
+    }
+    
+    func selectBass() {
+        router.showBass()
+    }
+    
+    func selectTreble() {
+        router.showTreble()
+    }
+    
+    func selectBluetooth() {
+        router.showBluetooth()
+    }
+    
+    func selectWifi() {
+        router.showWiFi()
+    }
+    
     func viewDidLoad(withView view: HomePresenterOutputInterface) {
         self.view = view
     }

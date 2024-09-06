@@ -8,7 +8,8 @@
 import UIKit
 
 protocol BluetoothMenuRouterInterface: AnyObject {
-
+    func dismiss()
+    func showBluetoothConnect(isConnect: Bool)
 }
 
 class BluetoothMenuRouter: NSObject {
@@ -18,5 +19,14 @@ class BluetoothMenuRouter: NSObject {
 // MARK: - BluetoothMenuRouterInterface
 
 extension BluetoothMenuRouter: BluetoothMenuRouterInterface {
-
+    func showBluetoothConnect(isConnect: Bool) {
+        guard let baseViewController = controller else { return }
+        let controller = BluetoothConnectViewController(isConnected: isConnect)
+        baseViewController.navigationController?.present(controller, animated: true)
+    }
+    
+    func dismiss() {
+        guard let baseViewController = controller else { return }
+        baseViewController.navigationController?.popViewController(animated: false)
+    }
 }

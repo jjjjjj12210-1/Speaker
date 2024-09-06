@@ -1,6 +1,6 @@
 import UIKit
 
-class LTCollectionCell: UICollectionViewCell {
+class SpeakerCollectionCell: UICollectionViewCell {
 
     static var id: String {
         return String(describing: self)

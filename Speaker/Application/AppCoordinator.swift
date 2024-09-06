@@ -6,10 +6,29 @@ final class AppCoordinator {
 
     func start() {
         welcomeScene()
+//        showMain()
+    }
+
+    func showPayWAll() {
+        payWallScene()
+    }
+
+    func showMain() {
+        mainScene()
     }
 
     private func welcomeScene() {
-        let module = ViewController()
+        let module = WelcomeViewController()
+        showController(module)
+    }
+
+    private func payWallScene() {
+        let module = PayWallInit.createViewController()
+        showController(module)
+    }
+
+    private func mainScene() {
+        let module = configureTabBarController()
         showController(module)
     }
 
@@ -21,5 +40,30 @@ final class AppCoordinator {
 
         window.rootViewController = controller
         window.makeKeyAndVisible()
+    }
+}
+
+extension AppCoordinator {
+    private func configureTabBarController() -> UITabBarController {
+        let tabBarController = SpeakerTabBar()
+        tabBarController.viewControllers = [createVC(HomeInit.createViewController(),
+                                                     icon: nil,
+                                                     selctedImage: nil),
+                                            createVC(LibraryInit.createViewController(),
+                                                     icon: nil,
+                                                     selctedImage: nil),
+                                            createVC(StreamInit.createViewController(),
+                                                     icon: nil,
+                                                     selctedImage: nil),
+                                            createVC(SettingInit.createViewController(),
+                                                     icon: nil,
+                                                     selctedImage: nil)
+        ]
+        return tabBarController
+    }
+
+    func createVC(_ vc: UIViewController, icon: UIImage?, selctedImage: UIImage?) -> UIViewController {
+        let navigationController = SpeakerNavBar(rootViewController: vc)
+        return navigationController
     }
 }

@@ -28,7 +28,7 @@ final class BluetoothConnectCell: SpeakerTableCell {
 
     override func setup() {
         selectionStyle = UITableViewCell.SelectionStyle.none
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .baseBlack
 
         configureConstraints()
     }

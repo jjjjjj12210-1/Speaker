@@ -9,6 +9,8 @@ import UIKit
 
 protocol LibraryPresenterInterface {
     func viewDidLoad(withView view: LibraryPresenterOutputInterface)
+    func selectAddInfo()
+    func selectSearch()
 }
 
 final class LibraryPresenter: NSObject {
@@ -24,6 +26,14 @@ final class LibraryPresenter: NSObject {
 // MARK: - LibraryPresenterInterface
 
 extension LibraryPresenter: LibraryPresenterInterface {
+    func selectSearch() {
+        router.showSearch()
+    }
+    
+    func selectAddInfo() {
+        router.showAddInfo()
+    }
+    
     func viewDidLoad(withView view: LibraryPresenterOutputInterface) {
         self.view = view
     }

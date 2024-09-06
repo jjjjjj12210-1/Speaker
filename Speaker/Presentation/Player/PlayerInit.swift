@@ -11,8 +11,7 @@ final class PlayerInit {
     static func createViewController() -> UIViewController {
         let router = PlayerRouter()
         let presenter = PlayerPresenter(router: router)
-        let viewController = PlayerViewController(presenter: presenter,
-                                                                     router: router)
+        let viewController = PlayerViewController(presenter: presenter, router: router)
 
         router.controller = viewController
 

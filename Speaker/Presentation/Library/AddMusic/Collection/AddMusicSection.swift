@@ -1,21 +1,17 @@
 import Foundation
 
-class AddMusicSection: Section<StreamCellModel> {}
+class AddMusicSection: Section<AddMusicModel> {}
 
 extension AddMusicSection {
 
     static func allSections() -> [AddMusicSection] {
         return [ .init(title: "",
-                       items: [StreamCellModel(title: "Audiomack", image: .streamAuto),
-                               StreamCellModel(title: "Mixcloud", image: .streamMix),
-                               StreamCellModel(title: "Soundcloud", image: .streamSoundcloud),
-                               StreamCellModel(title: "Spotify", image: .streamSpotify),
-                               StreamCellModel(title: "Youtube", image: .streamYoutube),
-                               StreamCellModel(title: "Amazon", image: .streamAmazon),
-                               StreamCellModel(title: "Pandora", image: .streamPandora),
-                               StreamCellModel(title: "SiriusXM", image: .streamSirius),
-                               StreamCellModel(title: "Browser", image: .streamBroweser),
-                               ])
+                       items: [AddMusicModel(title: "iPhone/iPad", subTitle: "Music files \ntransfering"),
+                               AddMusicModel(title: "Files", subTitle: "Add music from \nfile manager"),
+                               AddMusicModel(title: "Apple Music", subTitle: "Import music from \nApple Music"),
+                               AddMusicModel(title: "Dropbox", subTitle: "Instruction to \ndownloading"),
+                               AddMusicModel(title: "Google Drive", subTitle: "Instruction to \ndownloading"),
+                               AddMusicModel(title: "OneBox", subTitle: "Instruction to \ndownloading")])
         ]
     }
 }

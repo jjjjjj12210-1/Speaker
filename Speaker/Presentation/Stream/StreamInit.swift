@@ -11,8 +11,7 @@ final class StreamInit {
     static func createViewController() -> UIViewController {
         let router = StreamRouter()
         let presenter = StreamPresenter(router: router)
-        let viewController = StreamViewController(presenter: presenter,
-                                                                     router: router)
+        let viewController = StreamViewController(presenter: presenter, router: router)
 
         router.controller = viewController
 

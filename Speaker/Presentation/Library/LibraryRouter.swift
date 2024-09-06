@@ -8,7 +8,8 @@
 import UIKit
 
 protocol LibraryRouterInterface: AnyObject {
-
+    func showAddInfo()
+    func showSearch()
 }
 
 class LibraryRouter: NSObject {
@@ -18,5 +19,16 @@ class LibraryRouter: NSObject {
 // MARK: - LibraryRouterInterface
 
 extension LibraryRouter: LibraryRouterInterface {
-
+    func showSearch() {
+        guard let baseViewController = controller else { return }
+        let controller = SearchViewController()
+        controller.modalPresentationStyle = .overFullScreen
+        baseViewController.navigationController?.present(controller, animated: false)
+    }
+    
+    func showAddInfo() {
+        guard let baseViewController = controller else { return }
+        let controller = AddMusicViewController()
+        baseViewController.navigationController?.pushViewController(controller, animated: false)
+    }
 }

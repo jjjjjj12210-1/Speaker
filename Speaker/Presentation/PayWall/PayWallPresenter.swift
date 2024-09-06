@@ -9,6 +9,8 @@ import UIKit
 
 protocol PayWallPresenterInterface {
     func viewDidLoad(withView view: PayWallPresenterOutputInterface)
+    func selectPP()
+    func selectTerm()
 }
 
 final class PayWallPresenter: NSObject {
@@ -26,5 +28,20 @@ final class PayWallPresenter: NSObject {
 extension PayWallPresenter: PayWallPresenterInterface {
     func viewDidLoad(withView view: PayWallPresenterOutputInterface) {
         self.view = view
+    }
+
+    //TODO: - Links
+    func selectPP() {
+//        guard let url = AppData.policyURL else {
+//          return
+//        }
+//        UIApplication.shared.open(url)
+    }
+
+    func selectTerm() {
+//        guard let url = AppData.termsURL else {
+//          return
+//        }
+//        UIApplication.shared.open(url)
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PlayerRouterInterface: AnyObject {
-
+    func dismiss()
 }
 
 class PlayerRouter: NSObject {
@@ -18,5 +18,8 @@ class PlayerRouter: NSObject {
 // MARK: - PlayerRouterInterface
 
 extension PlayerRouter: PlayerRouterInterface {
-
+    func dismiss() {
+        guard let baseViewController = controller else { return }
+        baseViewController.dismiss(animated: true)
+    }
 }

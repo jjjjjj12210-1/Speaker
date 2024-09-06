@@ -7,23 +7,169 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466462C7E55A90093786B /* PayWallRouter.swift */; };
+		9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466472C7E55A90093786B /* PayWallViewController.swift */; };
+		9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466482C7E55A90093786B /* PayWallPresenter.swift */; };
+		9244664D2C7E55A90093786B /* PayWallInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466492C7E55A90093786B /* PayWallInit.swift */; };
+		924466542C7FA9110093786B /* SpeakerTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466522C7FA9110093786B /* SpeakerTabBar.swift */; };
+		9244665B2C7FB0D60093786B /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466572C7FB0D60093786B /* HomeRouter.swift */; };
+		9244665C2C7FB0D60093786B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466582C7FB0D60093786B /* HomeViewController.swift */; };
+		9244665D2C7FB0D60093786B /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466592C7FB0D60093786B /* HomePresenter.swift */; };
+		9244665E2C7FB0D60093786B /* HomeInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244665A2C7FB0D60093786B /* HomeInit.swift */; };
+		924466642C7FB1120093786B /* LibraryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466602C7FB1120093786B /* LibraryRouter.swift */; };
+		924466652C7FB1120093786B /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466612C7FB1120093786B /* LibraryViewController.swift */; };
+		924466662C7FB1120093786B /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466622C7FB1120093786B /* LibraryPresenter.swift */; };
+		924466672C7FB1120093786B /* LibraryInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466632C7FB1120093786B /* LibraryInit.swift */; };
+		9244666D2C7FB1300093786B /* StreamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466692C7FB1300093786B /* StreamRouter.swift */; };
+		9244666E2C7FB1300093786B /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244666A2C7FB1300093786B /* StreamViewController.swift */; };
+		9244666F2C7FB1300093786B /* StreamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244666B2C7FB1300093786B /* StreamPresenter.swift */; };
+		924466702C7FB1300093786B /* StreamInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244666C2C7FB1300093786B /* StreamInit.swift */; };
+		924466762C7FB1580093786B /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466722C7FB1580093786B /* SettingRouter.swift */; };
+		924466772C7FB1580093786B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466732C7FB1580093786B /* SettingViewController.swift */; };
+		924466782C7FB1580093786B /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466742C7FB1580093786B /* SettingPresenter.swift */; };
+		924466792C7FB1580093786B /* SettingInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466752C7FB1580093786B /* SettingInit.swift */; };
+		9244667B2C7FB20B0093786B /* SpeakerNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244667A2C7FB20B0093786B /* SpeakerNavBar.swift */; };
+		924466C52C80EC8D0093786B /* SpeakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466C42C80EC8D0093786B /* SpeakerViewController.swift */; };
+		924466C82C810FF20093786B /* HomeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466C72C810FF20093786B /* HomeButtonView.swift */; };
+		924466CA2C81161E0093786B /* HomeConnectionHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466C92C81161E0093786B /* HomeConnectionHelpView.swift */; };
+		924466CC2C8117E90093786B /* HomePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466CB2C8117E90093786B /* HomePlayerView.swift */; };
+		928705542C8A350000AEA3CD /* PlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705502C8A350000AEA3CD /* PlayerRouter.swift */; };
+		928705552C8A350000AEA3CD /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705512C8A350000AEA3CD /* PlayerViewController.swift */; };
+		928705562C8A350000AEA3CD /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705522C8A350000AEA3CD /* PlayerPresenter.swift */; };
+		928705572C8A350000AEA3CD /* PlayerInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705532C8A350000AEA3CD /* PlayerInit.swift */; };
+		929376712C83970D00E595EF /* WiFiConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376702C83970D00E595EF /* WiFiConnectViewController.swift */; };
+		929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376752C839A9F00E595EF /* BluetoothConnectViewController.swift */; };
+		929376782C839AC000E595EF /* BluetoothConnectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376772C839AC000E595EF /* BluetoothConnectCell.swift */; };
+		9293767A2C839AE700E595EF /* SpeakerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376792C839AE700E595EF /* SpeakerTableCell.swift */; };
+		929376802C839D3F00E595EF /* BluetoothMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293767C2C839D3F00E595EF /* BluetoothMenuRouter.swift */; };
+		929376812C839D3F00E595EF /* BluetoothMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293767D2C839D3F00E595EF /* BluetoothMenuViewController.swift */; };
+		929376822C839D3F00E595EF /* BluetoothMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293767E2C839D3F00E595EF /* BluetoothMenuPresenter.swift */; };
+		929376832C839D3F00E595EF /* BluetoothMenuInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293767F2C839D3F00E595EF /* BluetoothMenuInit.swift */; };
+		929376852C83AE0800E595EF /* SpeakerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376842C83AE0800E595EF /* SpeakerButton.swift */; };
+		929376882C83B14D00E595EF /* BluetoothListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376872C83B14D00E595EF /* BluetoothListCell.swift */; };
+		9293768B2C8461AF00E595EF /* DeviceConnectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293768A2C8461AF00E595EF /* DeviceConnectedViewController.swift */; };
+		9293768E2C84662500E595EF /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293768D2C84662500E595EF /* SliderViewController.swift */; };
+		929376932C84927500E595EF /* SpeakerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376902C84927500E595EF /* SpeakerCollectionCell.swift */; };
+		929376942C84927500E595EF /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376912C84927500E595EF /* Section.swift */; };
+		929376962C8492AC00E595EF /* StreamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376952C8492AC00E595EF /* StreamCell.swift */; };
+		929376982C84932600E595EF /* StreamCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376972C84932600E595EF /* StreamCellModel.swift */; };
+		9293769A2C84940F00E595EF /* StreamSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376992C84940F00E595EF /* StreamSection.swift */; };
+		9293769D2C84DE7000E595EF /* SettingTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293769C2C84DE7000E595EF /* SettingTopCell.swift */; };
+		929376A42C86290100E595EF /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376A32C86290100E595EF /* NotificationCell.swift */; };
+		929376A62C862B7300E595EF /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376A52C862B7300E595EF /* SettingCell.swift */; };
+		929376A82C862E8100E595EF /* VersionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376A72C862E8100E595EF /* VersionCell.swift */; };
+		929376AB2C86389300E595EF /* MailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376AA2C86389300E595EF /* MailService.swift */; };
+		929376AD2C863B0300E595EF /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376AC2C863B0300E595EF /* AppData.swift */; };
+		929376AF2C863DEB00E595EF /* EmptyLibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376AE2C863DEB00E595EF /* EmptyLibView.swift */; };
+		929376B32C86419F00E595EF /* LibraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376B22C86419F00E595EF /* LibraryCell.swift */; };
+		929376B82C877F5300E595EF /* AddMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376B72C877F5300E595EF /* AddMusicViewController.swift */; };
+		929376BA2C877FFA00E595EF /* AddMusicSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376B92C877FFA00E595EF /* AddMusicSection.swift */; };
+		929376BD2C87802500E595EF /* AddMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376BC2C87802500E595EF /* AddMusicCell.swift */; };
+		929376BF2C8783FC00E595EF /* AddMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376BE2C8783FC00E595EF /* AddMusicModel.swift */; };
+		929376C22C87892600E595EF /* TextInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376C12C87892600E595EF /* TextInfoViewController.swift */; };
+		929376DA2C889C0600E595EF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376D92C889C0600E595EF /* SearchViewController.swift */; };
 		92F934E22C7CE82900DFE5BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E12C7CE82900DFE5BF /* AppDelegate.swift */; };
-		92F934E62C7CE82900DFE5BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E52C7CE82900DFE5BF /* ViewController.swift */; };
+		92F934E62C7CE82900DFE5BF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */; };
 		92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */; };
 		92F934EE2C7CE82A00DFE5BF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 92F934ED2C7CE82A00DFE5BF /* Base */; };
 		92F934F72C7CEA2700DFE5BF /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934F62C7CEA2700DFE5BF /* AppCoordinator.swift */; };
+		92F934FE2C7CF47200DFE5BF /* animation_speaker_control.json in Resources */ = {isa = PBXBuildFile; fileRef = 92F934FD2C7CF47200DFE5BF /* animation_speaker_control.json */; };
+		92F935152C7CF69400DFE5BF /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F935052C7CF69400DFE5BF /* Poppins-Black.ttf */; };
+		92F935162C7CF69400DFE5BF /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F935062C7CF69400DFE5BF /* Poppins-Bold.ttf */; };
+		92F935172C7CF69400DFE5BF /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F935072C7CF69400DFE5BF /* Poppins-ExtraBold.ttf */; };
+		92F935182C7CF69400DFE5BF /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F935082C7CF69400DFE5BF /* Poppins-ExtraLight.ttf */; };
+		92F935192C7CF69400DFE5BF /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F935092C7CF69400DFE5BF /* Poppins-Light.ttf */; };
+		92F9351A2C7CF69400DFE5BF /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F9350A2C7CF69400DFE5BF /* Poppins-Medium.ttf */; };
+		92F9351B2C7CF69400DFE5BF /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F9350B2C7CF69400DFE5BF /* Poppins-Regular.ttf */; };
+		92F9351C2C7CF69400DFE5BF /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F9350C2C7CF69400DFE5BF /* Poppins-SemiBold.ttf */; };
+		92F9351D2C7CF69400DFE5BF /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92F9350D2C7CF69400DFE5BF /* Poppins-Thin.ttf */; };
+		92F935202C7CF79200DFE5BF /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F9351F2C7CF79200DFE5BF /* UIFont.swift */; };
+		92F935232C7CFA6500DFE5BF /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935222C7CFA6500DFE5BF /* Support.swift */; };
 		D4382BEF99367B52319F3DF0 /* Pods_Speaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB81FA8883A1B0E68DB50FA /* Pods_Speaker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2DB81FA8883A1B0E68DB50FA /* Pods_Speaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		924466462C7E55A90093786B /* PayWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallRouter.swift; sourceTree = "<group>"; };
+		924466472C7E55A90093786B /* PayWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallViewController.swift; sourceTree = "<group>"; };
+		924466482C7E55A90093786B /* PayWallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallPresenter.swift; sourceTree = "<group>"; };
+		924466492C7E55A90093786B /* PayWallInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallInit.swift; sourceTree = "<group>"; };
+		924466522C7FA9110093786B /* SpeakerTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTabBar.swift; sourceTree = "<group>"; };
+		924466572C7FB0D60093786B /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		924466582C7FB0D60093786B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		924466592C7FB0D60093786B /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		9244665A2C7FB0D60093786B /* HomeInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInit.swift; sourceTree = "<group>"; };
+		924466602C7FB1120093786B /* LibraryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryRouter.swift; sourceTree = "<group>"; };
+		924466612C7FB1120093786B /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		924466622C7FB1120093786B /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
+		924466632C7FB1120093786B /* LibraryInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryInit.swift; sourceTree = "<group>"; };
+		924466692C7FB1300093786B /* StreamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamRouter.swift; sourceTree = "<group>"; };
+		9244666A2C7FB1300093786B /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
+		9244666B2C7FB1300093786B /* StreamPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamPresenter.swift; sourceTree = "<group>"; };
+		9244666C2C7FB1300093786B /* StreamInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamInit.swift; sourceTree = "<group>"; };
+		924466722C7FB1580093786B /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
+		924466732C7FB1580093786B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		924466742C7FB1580093786B /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
+		924466752C7FB1580093786B /* SettingInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInit.swift; sourceTree = "<group>"; };
+		9244667A2C7FB20B0093786B /* SpeakerNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerNavBar.swift; sourceTree = "<group>"; };
+		924466C42C80EC8D0093786B /* SpeakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerViewController.swift; sourceTree = "<group>"; };
+		924466C72C810FF20093786B /* HomeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonView.swift; sourceTree = "<group>"; };
+		924466C92C81161E0093786B /* HomeConnectionHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConnectionHelpView.swift; sourceTree = "<group>"; };
+		924466CB2C8117E90093786B /* HomePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlayerView.swift; sourceTree = "<group>"; };
+		928705502C8A350000AEA3CD /* PlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerRouter.swift; sourceTree = "<group>"; };
+		928705512C8A350000AEA3CD /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		928705522C8A350000AEA3CD /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
+		928705532C8A350000AEA3CD /* PlayerInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInit.swift; sourceTree = "<group>"; };
+		929376702C83970D00E595EF /* WiFiConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiConnectViewController.swift; sourceTree = "<group>"; };
+		929376752C839A9F00E595EF /* BluetoothConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectViewController.swift; sourceTree = "<group>"; };
+		929376772C839AC000E595EF /* BluetoothConnectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectCell.swift; sourceTree = "<group>"; };
+		929376792C839AE700E595EF /* SpeakerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerTableCell.swift; sourceTree = "<group>"; };
+		9293767C2C839D3F00E595EF /* BluetoothMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMenuRouter.swift; sourceTree = "<group>"; };
+		9293767D2C839D3F00E595EF /* BluetoothMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMenuViewController.swift; sourceTree = "<group>"; };
+		9293767E2C839D3F00E595EF /* BluetoothMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMenuPresenter.swift; sourceTree = "<group>"; };
+		9293767F2C839D3F00E595EF /* BluetoothMenuInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothMenuInit.swift; sourceTree = "<group>"; };
+		929376842C83AE0800E595EF /* SpeakerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerButton.swift; sourceTree = "<group>"; };
+		929376872C83B14D00E595EF /* BluetoothListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothListCell.swift; sourceTree = "<group>"; };
+		9293768A2C8461AF00E595EF /* DeviceConnectedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConnectedViewController.swift; sourceTree = "<group>"; };
+		9293768D2C84662500E595EF /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
+		929376902C84927500E595EF /* SpeakerCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerCollectionCell.swift; sourceTree = "<group>"; };
+		929376912C84927500E595EF /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		929376952C8492AC00E595EF /* StreamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamCell.swift; sourceTree = "<group>"; };
+		929376972C84932600E595EF /* StreamCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamCellModel.swift; sourceTree = "<group>"; };
+		929376992C84940F00E595EF /* StreamSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSection.swift; sourceTree = "<group>"; };
+		9293769C2C84DE7000E595EF /* SettingTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopCell.swift; sourceTree = "<group>"; };
+		929376A32C86290100E595EF /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		929376A52C862B7300E595EF /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		929376A72C862E8100E595EF /* VersionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCell.swift; sourceTree = "<group>"; };
+		929376AA2C86389300E595EF /* MailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailService.swift; sourceTree = "<group>"; };
+		929376AC2C863B0300E595EF /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		929376AE2C863DEB00E595EF /* EmptyLibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLibView.swift; sourceTree = "<group>"; };
+		929376B22C86419F00E595EF /* LibraryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCell.swift; sourceTree = "<group>"; };
+		929376B72C877F5300E595EF /* AddMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicViewController.swift; sourceTree = "<group>"; };
+		929376B92C877FFA00E595EF /* AddMusicSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicSection.swift; sourceTree = "<group>"; };
+		929376BC2C87802500E595EF /* AddMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicCell.swift; sourceTree = "<group>"; };
+		929376BE2C8783FC00E595EF /* AddMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicModel.swift; sourceTree = "<group>"; };
+		929376C12C87892600E595EF /* TextInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInfoViewController.swift; sourceTree = "<group>"; };
+		929376D92C889C0600E595EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		92F934DE2C7CE82900DFE5BF /* Speaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F934E12C7CE82900DFE5BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		92F934E52C7CE82900DFE5BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92F934ED2C7CE82A00DFE5BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92F934EF2C7CE82A00DFE5BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92F934F62C7CEA2700DFE5BF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		92F934FD2C7CF47200DFE5BF /* animation_speaker_control.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation_speaker_control.json; sourceTree = "<group>"; };
+		92F935052C7CF69400DFE5BF /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		92F935062C7CF69400DFE5BF /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		92F935072C7CF69400DFE5BF /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		92F935082C7CF69400DFE5BF /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		92F935092C7CF69400DFE5BF /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		92F9350A2C7CF69400DFE5BF /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		92F9350B2C7CF69400DFE5BF /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		92F9350C2C7CF69400DFE5BF /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		92F9350D2C7CF69400DFE5BF /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		92F9351F2C7CF79200DFE5BF /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		92F935222C7CFA6500DFE5BF /* Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		A62E69C9C78948CB821A2464 /* Pods-Speaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speaker.debug.xcconfig"; path = "Target Support Files/Pods-Speaker/Pods-Speaker.debug.xcconfig"; sourceTree = "<group>"; };
 		F7D310BBC323471E99BAF891 /* Pods-Speaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Speaker.release.xcconfig"; path = "Target Support Files/Pods-Speaker/Pods-Speaker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,7 +192,6 @@
 				A62E69C9C78948CB821A2464 /* Pods-Speaker.debug.xcconfig */,
 				F7D310BBC323471E99BAF891 /* Pods-Speaker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -56,6 +201,258 @@
 				2DB81FA8883A1B0E68DB50FA /* Pods_Speaker.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		924466452C7E558F0093786B /* PayWall */ = {
+			isa = PBXGroup;
+			children = (
+				924466462C7E55A90093786B /* PayWallRouter.swift */,
+				924466472C7E55A90093786B /* PayWallViewController.swift */,
+				924466482C7E55A90093786B /* PayWallPresenter.swift */,
+				924466492C7E55A90093786B /* PayWallInit.swift */,
+			);
+			path = PayWall;
+			sourceTree = "<group>";
+		};
+		924466502C7F834D0093786B /* AppData */ = {
+			isa = PBXGroup;
+			children = (
+				929376AC2C863B0300E595EF /* AppData.swift */,
+			);
+			path = AppData;
+			sourceTree = "<group>";
+		};
+		924466512C7FA7A90093786B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				929376922C84927500E595EF /* Collection */,
+				924466522C7FA9110093786B /* SpeakerTabBar.swift */,
+				9244667A2C7FB20B0093786B /* SpeakerNavBar.swift */,
+				924466C42C80EC8D0093786B /* SpeakerViewController.swift */,
+				929376792C839AE700E595EF /* SpeakerTableCell.swift */,
+				929376842C83AE0800E595EF /* SpeakerButton.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		924466562C7FB0C60093786B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9293768C2C84657100E595EF /* SliderController */,
+				929376892C84615600E595EF /* DeviceConnected */,
+				929376722C839A7000E595EF /* BluetoothMenu */,
+				9293766F2C8396F600E595EF /* WiFiConnect */,
+				924466C62C810FDC0093786B /* Views */,
+				924466572C7FB0D60093786B /* HomeRouter.swift */,
+				924466582C7FB0D60093786B /* HomeViewController.swift */,
+				924466592C7FB0D60093786B /* HomePresenter.swift */,
+				9244665A2C7FB0D60093786B /* HomeInit.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		9244665F2C7FB0EB0093786B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				929376D82C889BF500E595EF /* Search */,
+				929376C02C87890300E595EF /* TextInfo */,
+				929376B62C877F3900E595EF /* AddMusic */,
+				929376B12C86419300E595EF /* Cell */,
+				929376B02C863DEF00E595EF /* View */,
+				924466602C7FB1120093786B /* LibraryRouter.swift */,
+				924466612C7FB1120093786B /* LibraryViewController.swift */,
+				924466622C7FB1120093786B /* LibraryPresenter.swift */,
+				924466632C7FB1120093786B /* LibraryInit.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		924466682C7FB1240093786B /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				9293768F2C84894C00E595EF /* Collection */,
+				924466692C7FB1300093786B /* StreamRouter.swift */,
+				9244666A2C7FB1300093786B /* StreamViewController.swift */,
+				9244666B2C7FB1300093786B /* StreamPresenter.swift */,
+				9244666C2C7FB1300093786B /* StreamInit.swift */,
+			);
+			path = Stream;
+			sourceTree = "<group>";
+		};
+		924466712C7FB1480093786B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				9293769B2C84DE6200E595EF /* Cells */,
+				924466722C7FB1580093786B /* SettingRouter.swift */,
+				924466732C7FB1580093786B /* SettingViewController.swift */,
+				924466742C7FB1580093786B /* SettingPresenter.swift */,
+				924466752C7FB1580093786B /* SettingInit.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		924466C62C810FDC0093786B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				924466C72C810FF20093786B /* HomeButtonView.swift */,
+				924466C92C81161E0093786B /* HomeConnectionHelpView.swift */,
+				924466CB2C8117E90093786B /* HomePlayerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9287054F2C8A34E700AEA3CD /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				928705502C8A350000AEA3CD /* PlayerRouter.swift */,
+				928705512C8A350000AEA3CD /* PlayerViewController.swift */,
+				928705522C8A350000AEA3CD /* PlayerPresenter.swift */,
+				928705532C8A350000AEA3CD /* PlayerInit.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		9293766F2C8396F600E595EF /* WiFiConnect */ = {
+			isa = PBXGroup;
+			children = (
+				929376702C83970D00E595EF /* WiFiConnectViewController.swift */,
+			);
+			path = WiFiConnect;
+			sourceTree = "<group>";
+		};
+		929376722C839A7000E595EF /* BluetoothMenu */ = {
+			isa = PBXGroup;
+			children = (
+				929376862C83B13500E595EF /* Cell */,
+				9293767B2C839D0700E595EF /* BluetoothConnect */,
+				9293767C2C839D3F00E595EF /* BluetoothMenuRouter.swift */,
+				9293767D2C839D3F00E595EF /* BluetoothMenuViewController.swift */,
+				9293767E2C839D3F00E595EF /* BluetoothMenuPresenter.swift */,
+				9293767F2C839D3F00E595EF /* BluetoothMenuInit.swift */,
+			);
+			path = BluetoothMenu;
+			sourceTree = "<group>";
+		};
+		9293767B2C839D0700E595EF /* BluetoothConnect */ = {
+			isa = PBXGroup;
+			children = (
+				929376752C839A9F00E595EF /* BluetoothConnectViewController.swift */,
+				929376772C839AC000E595EF /* BluetoothConnectCell.swift */,
+			);
+			path = BluetoothConnect;
+			sourceTree = "<group>";
+		};
+		929376862C83B13500E595EF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				929376872C83B14D00E595EF /* BluetoothListCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		929376892C84615600E595EF /* DeviceConnected */ = {
+			isa = PBXGroup;
+			children = (
+				9293768A2C8461AF00E595EF /* DeviceConnectedViewController.swift */,
+			);
+			path = DeviceConnected;
+			sourceTree = "<group>";
+		};
+		9293768C2C84657100E595EF /* SliderController */ = {
+			isa = PBXGroup;
+			children = (
+				9293768D2C84662500E595EF /* SliderViewController.swift */,
+			);
+			path = SliderController;
+			sourceTree = "<group>";
+		};
+		9293768F2C84894C00E595EF /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				929376952C8492AC00E595EF /* StreamCell.swift */,
+				929376972C84932600E595EF /* StreamCellModel.swift */,
+				929376992C84940F00E595EF /* StreamSection.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		929376922C84927500E595EF /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				929376902C84927500E595EF /* SpeakerCollectionCell.swift */,
+				929376912C84927500E595EF /* Section.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		9293769B2C84DE6200E595EF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9293769C2C84DE7000E595EF /* SettingTopCell.swift */,
+				929376A32C86290100E595EF /* NotificationCell.swift */,
+				929376A52C862B7300E595EF /* SettingCell.swift */,
+				929376A72C862E8100E595EF /* VersionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		929376A92C86381A00E595EF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				929376AA2C86389300E595EF /* MailService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		929376B02C863DEF00E595EF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				929376AE2C863DEB00E595EF /* EmptyLibView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		929376B12C86419300E595EF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				929376B22C86419F00E595EF /* LibraryCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		929376B62C877F3900E595EF /* AddMusic */ = {
+			isa = PBXGroup;
+			children = (
+				929376BB2C87801600E595EF /* Collection */,
+				929376B72C877F5300E595EF /* AddMusicViewController.swift */,
+			);
+			path = AddMusic;
+			sourceTree = "<group>";
+		};
+		929376BB2C87801600E595EF /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				929376B92C877FFA00E595EF /* AddMusicSection.swift */,
+				929376BC2C87802500E595EF /* AddMusicCell.swift */,
+				929376BE2C8783FC00E595EF /* AddMusicModel.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		929376C02C87890300E595EF /* TextInfo */ = {
+			isa = PBXGroup;
+			children = (
+				929376C12C87892600E595EF /* TextInfoViewController.swift */,
+			);
+			path = TextInfo;
+			sourceTree = "<group>";
+		};
+		929376D82C889BF500E595EF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				929376D92C889C0600E595EF /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		92F934D52C7CE82900DFE5BF = {
@@ -79,9 +476,11 @@
 		92F934E02C7CE82900DFE5BF /* Speaker */ = {
 			isa = PBXGroup;
 			children = (
-				92F934F52C7CEA1B00DFE5BF /* Application */,
-				92F934E52C7CE82900DFE5BF /* ViewController.swift */,
 				92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */,
+				92F934F52C7CEA1B00DFE5BF /* Application */,
+				92F9351E2C7CF77F00DFE5BF /* Extension */,
+				92F934F82C7CF1E400DFE5BF /* Presentation */,
+				92F934FB2C7CF44F00DFE5BF /* Resources */,
 				92F934EC2C7CE82A00DFE5BF /* LaunchScreen.storyboard */,
 				92F934EF2C7CE82A00DFE5BF /* Info.plist */,
 			);
@@ -95,6 +494,89 @@
 				92F934F62C7CEA2700DFE5BF /* AppCoordinator.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		92F934F82C7CF1E400DFE5BF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				9287054F2C8A34E700AEA3CD /* Player */,
+				924466712C7FB1480093786B /* Setting */,
+				924466682C7FB1240093786B /* Stream */,
+				9244665F2C7FB0EB0093786B /* Library */,
+				924466562C7FB0C60093786B /* Home */,
+				924466512C7FA7A90093786B /* Base */,
+				924466452C7E558F0093786B /* PayWall */,
+				92F934FA2C7CF3BB00DFE5BF /* Welcome */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		92F934FA2C7CF3BB00DFE5BF /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		92F934FB2C7CF44F00DFE5BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				929376A92C86381A00E595EF /* Service */,
+				924466502C7F834D0093786B /* AppData */,
+				92F935212C7CFA5900DFE5BF /* Support */,
+				92F9350F2C7CF69400DFE5BF /* Fonts */,
+				92F934FC2C7CF45D00DFE5BF /* Animation */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		92F934FC2C7CF45D00DFE5BF /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				92F934FD2C7CF47200DFE5BF /* animation_speaker_control.json */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		92F9350E2C7CF69400DFE5BF /* Poppins */ = {
+			isa = PBXGroup;
+			children = (
+				92F935052C7CF69400DFE5BF /* Poppins-Black.ttf */,
+				92F935062C7CF69400DFE5BF /* Poppins-Bold.ttf */,
+				92F935072C7CF69400DFE5BF /* Poppins-ExtraBold.ttf */,
+				92F935082C7CF69400DFE5BF /* Poppins-ExtraLight.ttf */,
+				92F935092C7CF69400DFE5BF /* Poppins-Light.ttf */,
+				92F9350A2C7CF69400DFE5BF /* Poppins-Medium.ttf */,
+				92F9350B2C7CF69400DFE5BF /* Poppins-Regular.ttf */,
+				92F9350C2C7CF69400DFE5BF /* Poppins-SemiBold.ttf */,
+				92F9350D2C7CF69400DFE5BF /* Poppins-Thin.ttf */,
+			);
+			path = Poppins;
+			sourceTree = "<group>";
+		};
+		92F9350F2C7CF69400DFE5BF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				92F9350E2C7CF69400DFE5BF /* Poppins */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		92F9351E2C7CF77F00DFE5BF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				92F9351F2C7CF79200DFE5BF /* UIFont.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		92F935212C7CFA5900DFE5BF /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				92F935222C7CFA6500DFE5BF /* Support.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,8 +639,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F935182C7CF69400DFE5BF /* Poppins-ExtraLight.ttf in Resources */,
+				92F9351A2C7CF69400DFE5BF /* Poppins-Medium.ttf in Resources */,
+				92F935192C7CF69400DFE5BF /* Poppins-Light.ttf in Resources */,
+				92F9351D2C7CF69400DFE5BF /* Poppins-Thin.ttf in Resources */,
 				92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */,
+				92F9351C2C7CF69400DFE5BF /* Poppins-SemiBold.ttf in Resources */,
 				92F934EE2C7CE82A00DFE5BF /* Base in Resources */,
+				92F9351B2C7CF69400DFE5BF /* Poppins-Regular.ttf in Resources */,
+				92F935152C7CF69400DFE5BF /* Poppins-Black.ttf in Resources */,
+				92F935172C7CF69400DFE5BF /* Poppins-ExtraBold.ttf in Resources */,
+				92F935162C7CF69400DFE5BF /* Poppins-Bold.ttf in Resources */,
+				92F934FE2C7CF47200DFE5BF /* animation_speaker_control.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,8 +703,71 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929376942C84927500E595EF /* Section.swift in Sources */,
+				929376B32C86419F00E595EF /* LibraryCell.swift in Sources */,
+				924466CC2C8117E90093786B /* HomePlayerView.swift in Sources */,
+				924466CA2C81161E0093786B /* HomeConnectionHelpView.swift in Sources */,
+				9293768E2C84662500E595EF /* SliderViewController.swift in Sources */,
+				92F935202C7CF79200DFE5BF /* UIFont.swift in Sources */,
+				929376962C8492AC00E595EF /* StreamCell.swift in Sources */,
+				929376982C84932600E595EF /* StreamCellModel.swift in Sources */,
+				9244666D2C7FB1300093786B /* StreamRouter.swift in Sources */,
+				9244666E2C7FB1300093786B /* StreamViewController.swift in Sources */,
+				9244666F2C7FB1300093786B /* StreamPresenter.swift in Sources */,
+				924466702C7FB1300093786B /* StreamInit.swift in Sources */,
+				924466762C7FB1580093786B /* SettingRouter.swift in Sources */,
+				929376BF2C8783FC00E595EF /* AddMusicModel.swift in Sources */,
+				929376932C84927500E595EF /* SpeakerCollectionCell.swift in Sources */,
+				924466C52C80EC8D0093786B /* SpeakerViewController.swift in Sources */,
+				924466C82C810FF20093786B /* HomeButtonView.swift in Sources */,
+				9293769A2C84940F00E595EF /* StreamSection.swift in Sources */,
+				9293767A2C839AE700E595EF /* SpeakerTableCell.swift in Sources */,
+				929376A62C862B7300E595EF /* SettingCell.swift in Sources */,
+				924466772C7FB1580093786B /* SettingViewController.swift in Sources */,
+				924466782C7FB1580093786B /* SettingPresenter.swift in Sources */,
+				924466792C7FB1580093786B /* SettingInit.swift in Sources */,
+				924466642C7FB1120093786B /* LibraryRouter.swift in Sources */,
+				924466652C7FB1120093786B /* LibraryViewController.swift in Sources */,
+				924466662C7FB1120093786B /* LibraryPresenter.swift in Sources */,
+				929376802C839D3F00E595EF /* BluetoothMenuRouter.swift in Sources */,
+				929376812C839D3F00E595EF /* BluetoothMenuViewController.swift in Sources */,
+				929376822C839D3F00E595EF /* BluetoothMenuPresenter.swift in Sources */,
+				929376832C839D3F00E595EF /* BluetoothMenuInit.swift in Sources */,
+				924466672C7FB1120093786B /* LibraryInit.swift in Sources */,
+				9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */,
+				929376712C83970D00E595EF /* WiFiConnectViewController.swift in Sources */,
+				924466542C7FA9110093786B /* SpeakerTabBar.swift in Sources */,
+				929376BA2C877FFA00E595EF /* AddMusicSection.swift in Sources */,
+				929376C22C87892600E595EF /* TextInfoViewController.swift in Sources */,
+				9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */,
+				929376BD2C87802500E595EF /* AddMusicCell.swift in Sources */,
+				929376DA2C889C0600E595EF /* SearchViewController.swift in Sources */,
+				9244665B2C7FB0D60093786B /* HomeRouter.swift in Sources */,
+				928705542C8A350000AEA3CD /* PlayerRouter.swift in Sources */,
+				928705552C8A350000AEA3CD /* PlayerViewController.swift in Sources */,
+				928705562C8A350000AEA3CD /* PlayerPresenter.swift in Sources */,
+				928705572C8A350000AEA3CD /* PlayerInit.swift in Sources */,
+				9293769D2C84DE7000E595EF /* SettingTopCell.swift in Sources */,
+				929376AD2C863B0300E595EF /* AppData.swift in Sources */,
+				9244665C2C7FB0D60093786B /* HomeViewController.swift in Sources */,
+				929376AB2C86389300E595EF /* MailService.swift in Sources */,
+				929376B82C877F5300E595EF /* AddMusicViewController.swift in Sources */,
+				929376782C839AC000E595EF /* BluetoothConnectCell.swift in Sources */,
+				929376882C83B14D00E595EF /* BluetoothListCell.swift in Sources */,
+				9244667B2C7FB20B0093786B /* SpeakerNavBar.swift in Sources */,
+				9244665D2C7FB0D60093786B /* HomePresenter.swift in Sources */,
+				9244665E2C7FB0D60093786B /* HomeInit.swift in Sources */,
+				9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */,
+				929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */,
+				9244664D2C7E55A90093786B /* PayWallInit.swift in Sources */,
+				929376AF2C863DEB00E595EF /* EmptyLibView.swift in Sources */,
+				9293768B2C8461AF00E595EF /* DeviceConnectedViewController.swift in Sources */,
+				92F935232C7CFA6500DFE5BF /* Support.swift in Sources */,
 				92F934F72C7CEA2700DFE5BF /* AppCoordinator.swift in Sources */,
-				92F934E62C7CE82900DFE5BF /* ViewController.swift in Sources */,
+				929376852C83AE0800E595EF /* SpeakerButton.swift in Sources */,
+				92F934E62C7CE82900DFE5BF /* WelcomeViewController.swift in Sources */,
+				929376A42C86290100E595EF /* NotificationCell.swift in Sources */,
+				929376A82C862E8100E595EF /* VersionCell.swift in Sources */,
 				92F934E22C7CE82900DFE5BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +823,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -331,7 +886,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -11,8 +11,7 @@ final class PayWallInit {
     static func createViewController() -> UIViewController {
         let router = PayWallRouter()
         let presenter = PayWallPresenter(router: router)
-        let viewController = PayWallViewController(presenter: presenter,
-                                                                     router: router)
+        let viewController = PayWallViewController(presenter: presenter, router: router)
 
         router.controller = viewController
 
