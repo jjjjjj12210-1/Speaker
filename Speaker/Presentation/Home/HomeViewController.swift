@@ -1,11 +1,6 @@
-//
-//  HomeViewController.swift
-//  Speaker
-//
-//  Created by Денис Ледовский on 28.08.2024.
-//
-
 import UIKit
+import MediaPlayer
+import AVKit
 
 protocol HomePresenterOutputInterface: AnyObject {
 
@@ -82,6 +77,14 @@ final class HomeViewController: SpeakerViewController {
         return button
     }()
 
+    private lazy var routePickerView: AVRoutePickerView = {
+        let routePickerView = AVRoutePickerView()
+        routePickerView.tintColor = .clear
+        routePickerView.delegate = self
+        routePickerView.activeTintColor = .clear
+        return routePickerView
+    }()
+
     private lazy var stackButtonsView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [bluetoothButton, wifiButton, airPlayButton])
         stack.axis = .horizontal
@@ -125,6 +128,9 @@ final class HomeViewController: SpeakerViewController {
         super.viewDidLoad()
         customInit()
         presenter?.viewDidLoad(withView: self)
+        
+        guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
+        AudioManager.shared.loadStartTrack(url)
     }
 }
 
@@ -142,7 +148,35 @@ private extension HomeViewController {
         if isConnetceted {
             presenter?.selectVolume()
         } else {
+//            scanBLEDevices()
             presenter?.selectBluetooth()
+
+//            let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
+//            mediaPicker.showsCloudItems = true
+//            mediaPicker.showsItemsWithProtectedAssets = true
+//            mediaPicker.delegate = self
+//            mediaPicker.allowsPickingMultipleItems = false
+//            self.present(mediaPicker, animated: true, completion: nil)
+
+//            MPMediaLibrary.requestAuthorization({(newPermissionStatus: MPMediaLibraryAuthorizationStatus) in
+//                // This code will be called after the user allows or denies your app permission.
+//                switch (newPermissionStatus) {
+//                    case MPMediaLibraryAuthorizationStatus.authorized:
+//                         print("permission status is authorized")
+//                    let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
+//                    mediaPicker.showsCloudItems = false
+//                    mediaPicker.showsItemsWithProtectedAssets = false
+//                    mediaPicker.delegate = self
+//                    mediaPicker.allowsPickingMultipleItems = false
+//                    self.present(mediaPicker, animated: true, completion: nil)
+//                    case MPMediaLibraryAuthorizationStatus.notDetermined:
+//                         print("permission status is not determined")
+//                    case MPMediaLibraryAuthorizationStatus.denied:
+//                         print("permission status is denied")
+//                    case MPMediaLibraryAuthorizationStatus.restricted:
+//                         print("permission status is restricted")
+//                }
+//            })
         }
     }
 
@@ -157,13 +191,12 @@ private extension HomeViewController {
     @objc func tapAirPlay() {
         if isConnetceted {
             presenter?.selectTreble()
-        } else {
-
         }
     }
 
     @objc func tapGuide() {
         isConnetceted = true
+        routePickerView.removeFromSuperview()
         mainImage.image = isConnetceted ? .homeSoundOn : .homeSoundOff
         onStatusImage.image = isConnetceted ? .homeConnect : .homeDisconect
         onStatusLabel.text = isConnetceted ? connectText : disconectText
@@ -188,10 +221,12 @@ private extension HomeViewController {
         view.addSubview(stackButtonsView)
         view.addSubview(connectionGuideButton)
 
+        //TODO: - Сделать констрейты по новой
         connectionGuideButton.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview().inset(leftRightInset)
-            $0.bottom.equalTo(homePlayerView.snp.top).offset(-16)
+//            $0.bottom.equalTo(homePlayerView.snp.top).offset(-16)
             $0.height.equalTo(72)
+            $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 146 : 176)
         })
 
         let widthButton = (deviceWidth - (leftRightInset * 2) - 30)/3
@@ -236,6 +271,13 @@ private extension HomeViewController {
                 $0.height.equalTo(height)
             })
         }
+
+        if !isConnetceted {
+            self.view.addSubview(routePickerView)
+            routePickerView.snp.makeConstraints({
+                $0.edges.equalTo(airPlayButton.snp.edges)
+            })
+        }
     }
 }
 
@@ -244,5 +286,25 @@ private extension HomeViewController {
 private extension HomeViewController {
     func setNavBar() {
         navigationItem.title = "Connect Device"
+    }
+}
+
+extension HomeViewController: AVRoutePickerViewDelegate {
+
+    func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVRoutePickerView) {
+        print("end")
+    }
+
+    func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVRoutePickerView) {
+        print("start")
+    }
+}
+
+extension HomeViewController: MPMediaPickerControllerDelegate {
+
+    func mediaPicker(_ mediaPicker: MPMediaPickerController,
+                     didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        print(mediaItemCollection.mediaTypes)
+        print(mediaItemCollection)
     }
 }

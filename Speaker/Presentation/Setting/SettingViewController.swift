@@ -141,7 +141,7 @@ private extension SettingViewController {
         label.text = "Settings"
         label.font = .poppins(.bold, size: 25)
         label.textColor = .white
-        let leftBar = UIBarButtonItem.init(customView: label)
-        self.navigationItem.leftBarButtonItem = leftBar
+        
+        navigationItem.titleView = label
     }
 }

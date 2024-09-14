@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		920A9A872C93688400C5CB83 /* asti.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 920A9A862C93688400C5CB83 /* asti.mp3 */; };
+		920D21232C8F7B2C00CF1B4E /* music_game.wav in Resources */ = {isa = PBXBuildFile; fileRef = 920D21222C8F7B2C00CF1B4E /* music_game.wav */; };
+		920D21252C8F7B3400CF1B4E /* fon_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 920D21242C8F7B3400CF1B4E /* fon_sound.mp3 */; };
+		920D21272C8F7E6500CF1B4E /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D21262C8F7E6500CF1B4E /* AudioManager.swift */; };
 		9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466462C7E55A90093786B /* PayWallRouter.swift */; };
 		9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466472C7E55A90093786B /* PayWallViewController.swift */; };
 		9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466482C7E55A90093786B /* PayWallPresenter.swift */; };
@@ -90,6 +94,10 @@
 
 /* Begin PBXFileReference section */
 		2DB81FA8883A1B0E68DB50FA /* Pods_Speaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		920A9A862C93688400C5CB83 /* asti.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = asti.mp3; sourceTree = "<group>"; };
+		920D21222C8F7B2C00CF1B4E /* music_game.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music_game.wav; sourceTree = "<group>"; };
+		920D21242C8F7B3400CF1B4E /* fon_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fon_sound.mp3; sourceTree = "<group>"; };
+		920D21262C8F7E6500CF1B4E /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		924466462C7E55A90093786B /* PayWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallRouter.swift; sourceTree = "<group>"; };
 		924466472C7E55A90093786B /* PayWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallViewController.swift; sourceTree = "<group>"; };
 		924466482C7E55A90093786B /* PayWallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallPresenter.swift; sourceTree = "<group>"; };
@@ -201,6 +209,16 @@
 				2DB81FA8883A1B0E68DB50FA /* Pods_Speaker.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		920D21212C8F7B1D00CF1B4E /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				920A9A862C93688400C5CB83 /* asti.mp3 */,
+				920D21242C8F7B3400CF1B4E /* fon_sound.mp3 */,
+				920D21222C8F7B2C00CF1B4E /* music_game.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		924466452C7E558F0093786B /* PayWall */ = {
@@ -455,6 +473,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		92C3D24E2C8F791600C24C3B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				920D21262C8F7E6500CF1B4E /* AudioManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		92F934D52C7CE82900DFE5BF = {
 			isa = PBXGroup;
 			children = (
@@ -476,10 +502,12 @@
 		92F934E02C7CE82900DFE5BF /* Speaker */ = {
 			isa = PBXGroup;
 			children = (
+				920D21212C8F7B1D00CF1B4E /* Sounds */,
 				92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */,
 				92F934F52C7CEA1B00DFE5BF /* Application */,
 				92F9351E2C7CF77F00DFE5BF /* Extension */,
 				92F934F82C7CF1E400DFE5BF /* Presentation */,
+				92C3D24E2C8F791600C24C3B /* Managers */,
 				92F934FB2C7CF44F00DFE5BF /* Resources */,
 				92F934EC2C7CE82A00DFE5BF /* LaunchScreen.storyboard */,
 				92F934EF2C7CE82A00DFE5BF /* Info.plist */,
@@ -641,6 +669,8 @@
 			files = (
 				92F935182C7CF69400DFE5BF /* Poppins-ExtraLight.ttf in Resources */,
 				92F9351A2C7CF69400DFE5BF /* Poppins-Medium.ttf in Resources */,
+				920D21252C8F7B3400CF1B4E /* fon_sound.mp3 in Resources */,
+				920D21232C8F7B2C00CF1B4E /* music_game.wav in Resources */,
 				92F935192C7CF69400DFE5BF /* Poppins-Light.ttf in Resources */,
 				92F9351D2C7CF69400DFE5BF /* Poppins-Thin.ttf in Resources */,
 				92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */,
@@ -648,6 +678,7 @@
 				92F934EE2C7CE82A00DFE5BF /* Base in Resources */,
 				92F9351B2C7CF69400DFE5BF /* Poppins-Regular.ttf in Resources */,
 				92F935152C7CF69400DFE5BF /* Poppins-Black.ttf in Resources */,
+				920A9A872C93688400C5CB83 /* asti.mp3 in Resources */,
 				92F935172C7CF69400DFE5BF /* Poppins-ExtraBold.ttf in Resources */,
 				92F935162C7CF69400DFE5BF /* Poppins-Bold.ttf in Resources */,
 				92F934FE2C7CF47200DFE5BF /* animation_speaker_control.json in Resources */,
@@ -760,6 +791,7 @@
 				9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */,
 				929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */,
 				9244664D2C7E55A90093786B /* PayWallInit.swift in Sources */,
+				920D21272C8F7E6500CF1B4E /* AudioManager.swift in Sources */,
 				929376AF2C863DEB00E595EF /* EmptyLibView.swift in Sources */,
 				9293768B2C8461AF00E595EF /* DeviceConnectedViewController.swift in Sources */,
 				92F935232C7CFA6500DFE5BF /* Support.swift in Sources */,
@@ -917,11 +949,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Speaker/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = Neeed;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"Need bloooooo\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -951,11 +985,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Speaker/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = Neeed;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"Need bloooooo\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

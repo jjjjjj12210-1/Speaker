@@ -1,11 +1,7 @@
-//
-//  BluetoothMenuViewController.swift
-//  Speaker
-//
-//  Created by Денис Ледовский on 31.08.2024.
-//
-
 import UIKit
+import CoreBluetooth
+import ExternalAccessory
+import AVFoundation
 
 protocol BluetoothMenuPresenterOutputInterface: AnyObject {
 
@@ -18,6 +14,19 @@ final class BluetoothMenuViewController: SpeakerViewController {
 
     private var deviceArray = [BluetoothListModel(title: "Xiaomi Mi Dual Mode Wireless", isConnect: false),
                                BluetoothListModel(title: "Xiaomi Mi Dual Mode Wireless", isConnect: true)]
+
+
+    var peripherals: [CBPeripheral] = []
+    var bluetoothManager: CBCentralManager? = nil
+
+    var mainPeripheral: CBPeripheral? = nil
+    var mainCharacteristic: CBCharacteristic? = nil
+
+    let options: [String: Any] = [CBCentralManagerScanOptionAllowDuplicatesKey:
+                                  NSNumber(value: false)]
+
+//    let BLEService = "DFB0"
+//    let BLECharacteristic = "DFB1"
 
     // MARK: - UI
     private lazy var mainImage: UIImageView = {
@@ -81,6 +90,15 @@ final class BluetoothMenuViewController: SpeakerViewController {
         super.viewDidLoad()
         customInit()
         presenter?.viewDidLoad(withView: self)
+
+//        listAvailableAudioDevices()
+
+//        bluetoothManager = CBCentralManager(delegate: self, queue: nil)
+//        bluetoothManager?.delegate = self
+
+//        EAAccessoryManager.shared().showBluetoothAccessoryPicker(withNameFilter: nil, completion: nil)
+
+//        scanBLEDevices()
     }
 }
 
@@ -173,4 +191,112 @@ private extension BluetoothMenuViewController {
     @objc func tapBack() {
         presenter?.selectBack()
     }
+
+//    func listAvailableAudioDevices() {
+//        let audioDevices = AVCaptureDevice.DiscoverySession(
+//            deviceTypes: [.builtInMicrophone,
+//                          .external],
+//            mediaType: .audio,
+//            position: .unspecified
+//        ).devices
+//
+//        for device in audioDevices {
+//            print("Device name: \(device.localizedName)")
+//        }
+//    }
+}
+
+extension BluetoothMenuViewController: CBCentralManagerDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+//        print(central.state)
+//        print(central.isScanning)
+        switch central.state {
+          case .unknown:
+            print("central.state is .unknown")
+          case .resetting:
+            print("central.state is .resetting")
+          case .unsupported:
+            print("central.state is .unsupported")
+          case .unauthorized:
+            print("central.state is .unauthorized")
+          case .poweredOff:
+            print("central.state is .poweredOff")
+          case .poweredOn:
+            print("central.state is .poweredOn")
+            bluetoothManager?.scanForPeripherals(withServices: nil, options: options)
+        @unknown default:
+            print("default central.state is .unknown")
+        }
+
+    }
+
+//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+//        if(!peripherals.contains(peripheral)) {
+//            peripherals.append(peripheral)
+//        }
+//        print(peripheral)
+//    }
+
+//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber){
+//
+//        let peripheralLocalName_advertisement = ((advertisementData as NSDictionary).value(forKey: "kCBAdvDataLocalName")) as? String
+//
+//        if (((advertisementData as NSDictionary).value(forKey: "kCBAdvDataLocalName")) != nil) {
+//             print(peripheralLocalName_advertisement)//peripheral name from advertismentData
+//             print(peripheral.name)//peripheral name from peripheralData
+////             peripherals.append(peripheral)
+////             arrayPeripheral.append(advertisementData)
+//        }
+//    }
+
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String: Any], rssi RSSI: NSNumber) {
+      print(peripheral)
+    }
+
+
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+
+        //pass reference to connected peripheral to parent view
+        mainPeripheral = peripheral
+        peripheral.delegate = self
+        peripheral.discoverServices(nil)
+
+        //set the manager's delegate view to parent so it can call relevant disconnect methods
+        bluetoothManager?.delegate = self
+
+
+        print("Connected to " +  (peripheral.name ?? ""))
+    }
+
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print(error!)
+    }
+}
+
+
+private extension BluetoothMenuViewController {
+
+    // MARK: BLE Scanning
+    func scanBLEDevices() {
+        //manager?.scanForPeripherals(withServices: [CBUUID.init(string: parentView!.BLEService)], options: nil)
+
+        //if you pass nil in the first parameter, then scanForPeriperals will look for any devices.
+        bluetoothManager?.scanForPeripherals(withServices: nil, options: nil)
+//        bluetoothManager?.retrieveConnectedPeripherals(withServices: <#T##[CBUUID]#>)
+//        bluetoothManager?.retrievePeripherals(withIdentifiers: <#T##[UUID]#>)
+
+        //stop scanning after 3 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
+            self.stopScanForBLEDevices()
+        }
+    }
+
+    func stopScanForBLEDevices() {
+        bluetoothManager?.stopScan()
+    }
+}
+
+extension BluetoothMenuViewController: CBPeripheralDelegate {
+
 }

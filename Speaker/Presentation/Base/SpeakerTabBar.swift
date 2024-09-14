@@ -4,6 +4,7 @@ final class SpeakerTabBar: UITabBarController {
 
     // MARK: - Properties
 
+    var currentController: UIViewController?
 
     // MARK: - UI
 
@@ -18,11 +19,24 @@ final class SpeakerTabBar: UITabBarController {
         return view
     }()
 
+    lazy var homePlayerView: HomePlayerView = {
+        let button = HomePlayerView()
+        return button
+    }()
+
+    private lazy var playerButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(openPlayer), for: .touchUpInside)
+        return button
+    }()
+
     // MARK: - Lifecicle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarUI()
+        addPlayer()
         addCustomTabBarView()
         setButtonsButton()
     }
@@ -35,9 +49,23 @@ final class SpeakerTabBar: UITabBarController {
         tabBar.isHidden = isHidden
         topView.isHidden = isHidden
     }
+
+    func hidePlayer(_ isHide: Bool) {
+        homePlayerView.isHidden = isHide
+        playerButton.isHidden = isHide
+    }
+
+    func updatePlayStatus() {
+        homePlayerView.updatePlay()
+    }
 }
 
 private extension SpeakerTabBar {
+
+    @objc func openPlayer() {
+        let controller = PlayerInit.createViewController()
+        currentController?.navigationController?.present(controller, animated: true)
+    }
 
     func setupTabBarUI() {
         tabBar.unselectedItemTintColor = .tabBarUnselect
@@ -110,6 +138,28 @@ private extension SpeakerTabBar {
         topView.layer.shadowColor = UIColor.white.withAlphaComponent(0.4).cgColor
         topView.layer.shadowOpacity = 0.3
         topView.layer.shadowRadius = 10
+    }
+
+    func addPlayer() {
+        view.addSubview(homePlayerView)
+        view.addSubview(playerButton)
+
+        homePlayerView.snp.makeConstraints({
+            $0.leading.trailing.equalToSuperview()
+//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(50)
+            $0.bottom.equalToSuperview().inset(isSmallDevice ? 10 : 40)
+            $0.height.equalTo(120)
+        })
+
+        playerButton.snp.makeConstraints({
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(120)
+//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(50)
+            $0.bottom.equalToSuperview().inset(isSmallDevice ? 10 : 40)
+            $0.height.equalTo(120)
+        })
+
+        self.view.bringSubviewToFront(self.tabBar)
     }
 }
 

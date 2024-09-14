@@ -11,9 +11,9 @@ final class WelcomeViewController: SpeakerViewController {
     private let titles = [WelcomeStruct(title: "Connect \nand control",
                                         desc: "Easily sync speakers and take \ncharge of audio environment."),
                           WelcomeStruct(title: "Streaming \nwithout interference",
-                                        desc: "Start the fun with music from \nyour favorite websites"),
+                                        desc: "Connect the speaker in \nany convenient way."),
                           WelcomeStruct(title: "Any online \nplatforms",
-                                        desc: "Start the fun with music from \nyour favorite websites"),
+                                        desc: "Start the fun with music from \nyour favorite websites."),
                           WelcomeStruct(title: "Customize \nyour listening",
                                         desc: "Adjust volume, bass, treble, \nand more to suit preferences."),
     ]
@@ -30,13 +30,13 @@ final class WelcomeViewController: SpeakerViewController {
         return imageView
     }()
 
-    private let bottomImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = .welcomeBottom2
-        imageView.alpha = 0
-        imageView.contentMode = .scaleToFill
-        return imageView
-    }()
+//    private let bottomImage: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.image = .welcomeBottom2
+//        imageView.alpha = 0
+//        imageView.contentMode = .scaleToFill
+//        return imageView
+//    }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -74,7 +74,7 @@ final class WelcomeViewController: SpeakerViewController {
             string: "Continue",
             attributes: [
                 NSAttributedString.Key.foregroundColor : UIColor.white,
-                NSAttributedString.Key.font : UIFont.poppins(.bold, size: 22)
+                NSAttributedString.Key.font : UIFont.poppins(.bold, size: 20)
             ]
         )
         button.setAttributedTitle(normalAttributedString, for: .normal)
@@ -138,7 +138,7 @@ private extension WelcomeViewController {
         })
 
         view.addSubview(topImage)
-        view.addSubview(bottomImage)
+//        view.addSubview(bottomImage)
         view.addSubview(titleLabel)
         view.addSubview(descLabel)
         view.addSubview(startAnimation)
@@ -153,11 +153,11 @@ private extension WelcomeViewController {
             $0.height.equalTo(height)
         })
 
-        bottomImage.snp.makeConstraints({
-            $0.bottom.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(300)
-        })
+//        bottomImage.snp.makeConstraints({
+//            $0.bottom.equalToSuperview()
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(300)
+//        })
 
         titleLabel.snp.makeConstraints({
             $0.bottom.equalToSuperview().inset(isSmallDevice ? 140 : 178)

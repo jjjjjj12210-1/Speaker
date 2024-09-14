@@ -31,8 +31,8 @@ final class SliderViewController: SpeakerViewController {
         return label
     }()
 
-    private lazy var plusButton: UIButton = {
-        let button = UIButton()
+    private lazy var plusButton: SpeakerButton = {
+        let button = SpeakerButton()
         button.backgroundColor = .clear
         button.setImage(.sliderPlus, for: .normal)
         button.setImage(.sliderPlus, for: .highlighted)
@@ -44,8 +44,8 @@ final class SliderViewController: SpeakerViewController {
         return button
     }()
 
-    private lazy var minusButton: UIButton = {
-        let button = UIButton()
+    private lazy var minusButton: SpeakerButton = {
+        let button = SpeakerButton()
         button.backgroundColor = .clear
         button.setImage(.sliderMinus, for: .normal)
         button.setImage(.sliderMinus, for: .highlighted)
@@ -55,9 +55,9 @@ final class SliderViewController: SpeakerViewController {
 
     private lazy var sliderView: UISlider = {
         let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 100
-        slider.value = 50
+//        slider.minimumValue = 0
+//        slider.maximumValue = 100
+//        slider.value = 50
         slider.setThumbImage(.sliderThumb, for: .normal)
         slider.minimumTrackTintColor = .white
         slider.maximumTrackTintColor = .sliderGray
@@ -69,6 +69,7 @@ final class SliderViewController: SpeakerViewController {
     init(mode: SliderMode) {
         currentMode = mode
         super.init(nibName: nil, bundle: nil)
+        customInit()
     }
 
     required init?(coder: NSCoder) {
@@ -113,11 +114,30 @@ final class SliderViewController: SpeakerViewController {
         sliderView.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview().inset(46)
             $0.centerY.equalTo(plusButton.snp.centerY)
+            $0.height.equalTo(40)
         })
     }
 }
 
 private extension SliderViewController {
+
+    func customInit() {
+        let manager = AudioManager.shared
+        switch currentMode {
+        case .volume:
+            sliderView.minimumValue = 0
+            sliderView.maximumValue = 1
+            sliderView.value = manager.getVolumeGain()
+        case .bass:
+            sliderView.minimumValue = -24
+            sliderView.maximumValue = 24
+            sliderView.value = manager.getBassGain()
+        case .treble:
+            sliderView.minimumValue = -24
+            sliderView.maximumValue = 24
+            sliderView.value = manager.getTrebleGain()
+        }
+    }
 
     func setTap() {
         let tap = UITapGestureRecognizer()
@@ -131,14 +151,43 @@ private extension SliderViewController {
 
     @objc func valueChange(sender: UISlider?) {
         print(sender?.value)
+        guard let value = sender?.value else {return}
+        switch currentMode {
+        case .volume:
+            AudioManager.shared.setVolume(value)
+        case .bass:
+            AudioManager.shared.setBassLevel(value)
+        case .treble:
+            AudioManager.shared.setTrebleLevel(value)
+        }
     }
 
     @objc func tapPlus() {
-        sliderView.value += 1
+        switch currentMode {
+        case .volume:
+            sliderView.value += 0.01
+            AudioManager.shared.setVolume(sliderView.value)
+        case .bass:
+            sliderView.value += 1
+            AudioManager.shared.setBassLevel(sliderView.value)
+        case .treble:
+            sliderView.value += 1
+            AudioManager.shared.setTrebleLevel(sliderView.value)
+        }
     }
 
     @objc func tapMinus() {
-        sliderView.value -= 1
+        switch currentMode {
+        case .volume:
+            sliderView.value -= 0.01
+            AudioManager.shared.setVolume(sliderView.value)
+        case .bass:
+            sliderView.value -= 1
+            AudioManager.shared.setBassLevel(sliderView.value)
+        case .treble:
+            sliderView.value -= 1
+            AudioManager.shared.setTrebleLevel(sliderView.value)
+        }
     }
 
     //TODO: - сделать через таймер изменение значения при long tap

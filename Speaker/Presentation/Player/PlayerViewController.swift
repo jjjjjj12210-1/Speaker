@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol PlayerPresenterOutputInterface: AnyObject {
 
@@ -15,6 +16,15 @@ final class PlayerViewController: SpeakerViewController {
 
     private var presenter: PlayerPresenterInterface?
     private var router: PlayerRouterInterface?
+
+    private var audioManager = AudioManager.shared
+
+    //TODO: - перенести isLoad
+    private var isLoadTrack = false
+    private var isPlayNow = false
+    private var isDragSlider = false
+    private var isRepeat = false
+    private var isMix = false
 
     // MARK: - UI
     
@@ -47,18 +57,26 @@ final class PlayerViewController: SpeakerViewController {
     private let songImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .clear
-        imageView.image = .playerLogo
+        imageView.image = .playerNoImg
         imageView.contentMode = .scaleToFill
-
         imageView.layer.cornerRadius = 111
         imageView.layer.masksToBounds = true
-        imageView.layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
-        imageView.layer.shadowRadius = 40
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 20)
-
-        imageView.layer.shadowOpacity = 1
-        imageView.layer.masksToBounds = false
         return imageView
+    }()
+
+    private let shadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
+
+        view.layer.cornerRadius = 111
+        view.layer.masksToBounds = true
+        view.layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
+        view.layer.shadowRadius = 40
+        view.layer.shadowOffset = CGSize(width: 0, height: 20)
+
+        view.layer.shadowOpacity = 1
+        view.layer.masksToBounds = false
+        return view
     }()
 
     private lazy var singerLabel: UILabel = {
@@ -66,7 +84,7 @@ final class PlayerViewController: SpeakerViewController {
         label.textAlignment = .center
         label.textColor = .white
         label.font = .poppins(.bold, size: 35)
-        label.text = "Arcade"
+//        label.text = "Arcade"
         label.numberOfLines = 1
         return label
     }()
@@ -76,7 +94,7 @@ final class PlayerViewController: SpeakerViewController {
         label.textAlignment = .center
         label.textColor = .white.withAlphaComponent(0.5)
         label.font = .poppins(.bold, size: 22)
-        label.text = "Duncan Laurence"
+//        label.text = "Duncan Laurence"
         label.numberOfLines = 1
         return label
     }()
@@ -84,8 +102,8 @@ final class PlayerViewController: SpeakerViewController {
     private lazy var sliderView: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0
-        slider.maximumValue = 100
-        slider.value = 20
+//        slider.maximumValue = 100
+//        slider.value = 20
         slider.setThumbImage(.sliderThumb, for: .normal)
         slider.minimumTrackTintColor = .playerGrayLight
         slider.maximumTrackTintColor = .playerGrayDark.withAlphaComponent(0.35)
@@ -98,8 +116,9 @@ final class PlayerViewController: SpeakerViewController {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .white
-        label.font = .poppins(.bold, size: 15)
-        label.text = "1:08"
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .bold)
+//        label.font = .poppins(.bold, size: 15)
+//        label.text = "1:08"
         label.numberOfLines = 1
         return label
     }()
@@ -108,8 +127,9 @@ final class PlayerViewController: SpeakerViewController {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = .white
-        label.font = .poppins(.bold, size: 15)
-        label.text = "3:04"
+        label.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .bold)
+//        label.font = .poppins(.bold, size: 15)
+//        label.text = "3:04"
         label.numberOfLines = 1
         return label
     }()
@@ -117,8 +137,8 @@ final class PlayerViewController: SpeakerViewController {
     private lazy var playPauseButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setImage(.playerPause, for: .normal)
-        button.setImage(.playerPause, for: .highlighted)
+        button.setImage(.playerPlay, for: .normal)
+        button.setImage(.playerPlay, for: .highlighted)
 
         button.layer.cornerRadius = 30
         button.layer.masksToBounds = true
@@ -128,22 +148,28 @@ final class PlayerViewController: SpeakerViewController {
 
         button.layer.shadowOpacity = 1
         button.layer.masksToBounds = false
+
+        button.addTarget(self, action: #selector(tapPlayStop), for: .touchUpInside)
         return button
     }()
 
     private lazy var repeatButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.tintColor = .white.withAlphaComponent(0.5)
         button.setImage(.playerRepeat, for: .normal)
         button.setImage(.playerRepeat, for: .highlighted)
+        button.addTarget(self, action: #selector(tapRepeat), for: .touchUpInside)
         return button
     }()
 
     private lazy var randomButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
+        button.tintColor = .white.withAlphaComponent(0.5)
         button.setImage(.playerMix, for: .normal)
         button.setImage(.playerMix, for: .highlighted)
+        button.addTarget(self, action: #selector(tapMix), for: .touchUpInside)
         return button
     }()
 
@@ -159,11 +185,29 @@ final class PlayerViewController: SpeakerViewController {
     }
 
     // MARK: - Lifecicle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presentingViewController?.viewWillDisappear(true)
+        isPlayNow = audioManager.isPlayNow
+        isLoadTrack = audioManager.isLoadTrack
+        isMix = audioManager.isMixMode
+        isRepeat = audioManager.isRepeateMode
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         customInit()
         presenter?.viewDidLoad(withView: self)
         hidePlayer(true)
+        audioManager.audioDelegate = self
+        
+        setAudioInfo()
+        setTrackInfo()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presentingViewController?.viewWillAppear(true)
     }
 }
 
@@ -177,32 +221,180 @@ extension PlayerViewController: PlayerPresenterOutputInterface {
 
 private extension PlayerViewController {
 
+    private func setAudioInfo() {
+        randomButton.tintColor = isMix ? .white : .white.withAlphaComponent(0.5)
+        repeatButton.tintColor = isRepeat ? .white : .white.withAlphaComponent(0.5)
+
+        if audioManager.isLoadTrack {
+            startTimeLabel.text = formattedTime(audioManager.currentTime)
+            endTimeLabel.text = formattedTime(audioManager.remainingTime)
+            sliderView.maximumValue = Float(audioManager.fullDuration)
+            sliderView.value = Float(audioManager.currentTime)
+            sliderView.isUserInteractionEnabled = true
+
+            if audioManager.isPlayNow {
+                playPauseButton.setImage(.playerPause, for: .normal)
+                playPauseButton.setImage(.playerPause, for: .highlighted)
+            } else {
+                playPauseButton.setImage(.playerPlay, for: .normal)
+                playPauseButton.setImage(.playerPlay, for: .highlighted)
+            }
+        } else {
+            if audioManager.currentTime == 0 && audioManager.remainingTime == 0 {
+                startTimeLabel.text = "00:00"
+                endTimeLabel.text = "00:00"
+                sliderView.value = 0
+                sliderView.isUserInteractionEnabled = false
+            } else {
+                startTimeLabel.text = formattedTime(audioManager.currentTime)
+                endTimeLabel.text = formattedTime(audioManager.remainingTime)
+                sliderView.value = Float(audioManager.currentTime)
+                sliderView.isUserInteractionEnabled = true
+            }
+        }
+    }
+
+    @objc func tapMix() {
+        isMix.toggle()
+        audioManager.isMixMode = isMix
+        randomButton.tintColor = isMix ? .white : .white.withAlphaComponent(0.5)
+    }
+
+    @objc func tapRepeat() {
+        isRepeat.toggle()
+        audioManager.isRepeateMode = isRepeat
+        repeatButton.tintColor = isRepeat ? .white : .white.withAlphaComponent(0.5)
+    }
+
+    @objc func tapPlayStop() {
+        isPlayNow.toggle()
+        switch isPlayNow {
+        case true:
+            playPauseButton.setImage(.playerPause, for: .normal)
+            playPauseButton.setImage(.playerPause, for: .highlighted)
+            if isLoadTrack {
+                audioManager.play()
+            } else {
+                guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
+                audioManager.playAudioFile(url)
+                isLoadTrack = true
+                setTrackInfo()
+            }
+        case false:
+            playPauseButton.setImage(.playerPlay, for: .normal)
+            playPauseButton.setImage(.playerPlay, for: .highlighted)
+            audioManager.pause()
+        }
+    }
+
+    func setTrackInfo() {
+        Task {
+            do {
+                let audioFile = audioManager.audioFile
+                if  let audioURL = audioFile?.url {
+                    let metadata = try await fetchAudioMetadata(from: audioURL)
+                    singerLabel.text = (metadata.artist ?? "Unknown")
+                    songLabel.text = (metadata.title ?? "Unknown")
+                    print("Title: \(metadata.title ?? "Unknown")")
+                    print("Artist: \(metadata.artist ?? "Unknown")")
+                    if let artworkImage = metadata.artwork {
+                        songImage.image = artworkImage
+                    } else {
+                        songImage.image = .playerNoImg
+                    }
+                }
+            } catch {
+                print("Ошибка при получении метаданных: \(error)")
+            }
+        }
+    }
+
+
     @objc func tapClose() {
         presenter?.selectClose()
     }
 
+    //MARK: - Slider
     @objc func onSliderValChanged(slider: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
             switch touchEvent.phase {
-            case .began:
-                print("start")
-                // handle drag began
-            case .moved:
-                print(slider.value)
-                // handle drag moved
+            case .began: isDragSlider = true
+            case .moved: return
             case .ended:
-                print("end")
-                // handle drag ended
+                print(slider.value)
+                isDragSlider = false
+                audioManager.playAudio(from: TimeInterval(slider.value))
+                startTimeLabel.text = formattedTime(Float64(slider.value))
+                let endTime = slider.maximumValue - slider.value
+                endTimeLabel.text = formattedTime(Float64(endTime))
             default:
                 break
             }
         }
     }
 
-//    @objc func valueChange(sender: UISlider?) {
-//        print(sender?.value)
-//    }
+    func formattedTime(_ time: Float64) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+}
 
+// MARK: - MetaData
+extension PlayerViewController {
+
+    func fetchAudioMetadata(from url: URL) async throws -> (title: String?, artist: String?, artwork: UIImage?) {
+        let asset = AVAsset(url: url)
+        let metadataItems: [AVMetadataItem] = try await asset.load(.metadata)
+
+        var title: String?
+        var artist: String?
+        var artwork: UIImage?
+
+        for item in metadataItems {
+            if let key = item.commonKey?.rawValue {
+                switch key {
+                case AVMetadataKey.commonKeyTitle.rawValue:
+                    title = try await item.load(.stringValue)
+                case AVMetadataKey.commonKeyArtist.rawValue:
+                    artist = try await item.load(.stringValue)
+                case AVMetadataKey.commonKeyArtwork.rawValue:
+                    if let data = try await item.load(.dataValue) {
+                        if let image = UIImage(data: data) {
+                            artwork = image
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        return (title, artist, artwork)
+    }
+}
+
+// MARK: - AudioProtocol
+extension PlayerViewController: AudioProtocol {
+    func setNextTrackInfo() {
+//        sliderView.value = 0
+        setTrackInfo()
+    }
+    
+    func setStartTime(fullTime: Double) {
+        sliderView.value = 0
+        sliderView.maximumValue = Float(fullTime)
+        startTimeLabel.text = "00:00"
+        endTimeLabel.text = formattedTime(fullTime)
+        sliderView.isUserInteractionEnabled = true
+    }
+    
+    func updateTimes(currentTime: Double, remainingTime: Double) {
+        startTimeLabel.text = formattedTime(audioManager.currentTime)
+        endTimeLabel.text = formattedTime(audioManager.remainingTime)
+        if !isDragSlider {
+            sliderView.value = Float(currentTime)
+        }
+    }
 }
 
 // MARK: - UISetup
@@ -213,6 +405,7 @@ private extension PlayerViewController {
         view.addSubview(topView)
         view.addSubview(closeButton)
         view.addSubview(titleLabel)
+        view.addSubview(shadowView)
         view.addSubview(songImage)
         view.addSubview(singerLabel)
         view.addSubview(songLabel)
@@ -239,6 +432,12 @@ private extension PlayerViewController {
         titleLabel.snp.makeConstraints({
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(90)
+        })
+
+        shadowView.snp.makeConstraints({
+            $0.size.equalTo(222)
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(148)
         })
 
         songImage.snp.makeConstraints({

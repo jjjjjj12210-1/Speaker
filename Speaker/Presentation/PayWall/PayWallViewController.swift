@@ -22,6 +22,17 @@ final class PayWallViewController: SpeakerViewController {
 
     // MARK: - UI
 
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.setImage(UIImage(systemName: "xmark"), for: .highlighted)
+        button.tintColor = .white
+        button.alpha = 0.8
+        button.addTarget(self, action: #selector(tapClose), for: .touchUpInside)
+        return button
+    }()
+
     private let topImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .payWallTop
@@ -78,7 +89,7 @@ final class PayWallViewController: SpeakerViewController {
             string: "Continue",
             attributes: [
                 NSAttributedString.Key.foregroundColor : UIColor.white,
-                NSAttributedString.Key.font : UIFont.poppins(.bold, size: 22)
+                NSAttributedString.Key.font : UIFont.poppins(.bold, size: 20)
             ]
         )
         button.setAttributedTitle(normalAttributedString, for: .normal)
@@ -168,9 +179,9 @@ extension PayWallViewController: PayWallPresenterOutputInterface {
 
 // MARK: - Private
 private extension PayWallViewController {
+    //TODO: - Buy
     @objc func tapContinue() {
-        let appCoordinator = AppCoordinator()
-        appCoordinator.showMain()
+
     }
 
     @objc func tapPP() {
@@ -185,6 +196,11 @@ private extension PayWallViewController {
     @objc func tapTerm() {
         presenter?.selectTerm()
     }
+
+    @objc func tapClose() {
+        let appCoordinator = AppCoordinator()
+        appCoordinator.showMain()
+    }
 }
 
 // MARK: - UISetup
@@ -193,6 +209,7 @@ private extension PayWallViewController {
     func customInit() {
         view.backgroundColor = .baseBlack
 
+        view.addSubview(closeButton)
         view.addSubview(topImage)
         view.addSubview(titleLabel)
         view.addSubview(daysLabel)
@@ -203,6 +220,12 @@ private extension PayWallViewController {
         view.addSubview(termButton)
 
         view.addSubview(continueButton)
+
+        closeButton.snp.makeConstraints({
+            $0.size.equalTo(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.trailing.equalToSuperview().inset(10)
+        })
 
         let height = deviceWidth * 1.19786096
         topImage.snp.updateConstraints({

@@ -8,8 +8,8 @@ class SpeakerButton: UIButton {
         let newArea = CGRect(
             x: self.bounds.origin.x,
             y: self.bounds.origin.y,
-            width: self.bounds.size.width + 20.0,
-            height: self.bounds.size.height + 20.0
+            width: self.bounds.size.width + 10.0,
+            height: self.bounds.size.height + 10.0
         )
         return newArea.contains(point)
     }

@@ -90,13 +90,15 @@ private extension LibraryViewController {
         emptyView.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.bottom.equalTo(homePlayerView.snp.top)
+//            $0.bottom.equalTo(homePlayerView.snp.top)
+            $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 146 : 176)
         })
 
         mainTable.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.bottom.equalTo(homePlayerView.snp.top)
+//            $0.bottom.equalTo(homePlayerView.snp.top)
+            $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 146 : 176)
         })
     }
 }

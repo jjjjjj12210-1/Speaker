@@ -5,8 +5,8 @@ final class AppCoordinator {
     private var window: UIWindow?
 
     func start() {
-        welcomeScene()
-//        showMain()
+//        welcomeScene()
+        showMain()
     }
 
     func showPayWAll() {
