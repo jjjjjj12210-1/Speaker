@@ -5,6 +5,7 @@ final class SpeakerTabBar: UITabBarController {
     // MARK: - Properties
 
     var currentController: UIViewController?
+    private let audioManager = AudioManager.shared
 
     // MARK: - UI
 
@@ -39,6 +40,7 @@ final class SpeakerTabBar: UITabBarController {
         addPlayer()
         addCustomTabBarView()
         setButtonsButton()
+        audioManager.audioDelegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +59,7 @@ final class SpeakerTabBar: UITabBarController {
 
     func updatePlayStatus() {
         homePlayerView.updatePlay()
+        homePlayerView.setTrackInfo()
     }
 }
 
@@ -178,3 +181,20 @@ extension SpeakerTabBar: UITabBarControllerDelegate {
         }
     }
 }
+
+// MARK: - AudioProtocol
+
+extension SpeakerTabBar: AudioProtocol {
+    func updateTimes(currentTime: Double, remainingTime: Double) {
+
+    }
+    
+    func setStartTime(fullTime: Double) {
+
+    }
+    
+    func setNextTrackInfo() {
+        homePlayerView.setTrackInfo()
+    }
+}
+

@@ -63,7 +63,7 @@ final class HomePlayerView: UIView {
         super.init(frame: frame)
         backgroundColor = .white
         configureConstraints()
-        customInit()
+        setTrackInfo()
     }
 
     required init?(coder: NSCoder) {
@@ -82,12 +82,8 @@ final class HomePlayerView: UIView {
             playPauseButton.layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
         }
     }
-}
 
-//MARK: - Private
-private extension HomePlayerView {
-
-    func customInit() {
+    func setTrackInfo() {
         Task {
             do {
                 let audioFile = AudioManager.shared.audioFile
@@ -108,6 +104,10 @@ private extension HomePlayerView {
             }
         }
     }
+}
+
+//MARK: - Private
+private extension HomePlayerView {
 
     func fetchAudioMetadata(from url: URL) async throws -> (title: String?, artist: String?, artwork: UIImage?) {
         let asset = AVAsset(url: url)
