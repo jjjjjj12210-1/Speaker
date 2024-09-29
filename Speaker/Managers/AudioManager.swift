@@ -321,14 +321,20 @@ private extension AudioManager {
             guard let url = track?.audioFile?.url else {return}
             playAudioFile(url)
         } else {
+            currentIndex += 1
+            if currentIndex >= allTracks.count {
+                currentIndex = 0
+            }
+
             if isMixMode {
                 currentIndex = allIndexis[currentIndex]
-            } else {
-                currentIndex += 1
-                if currentIndex >= allTracks.count {
-                    currentIndex = 0
-                }
             }
+//            else {
+//                currentIndex += 1
+//                if currentIndex >= allTracks.count {
+//                    currentIndex = 0
+//                }
+//            }
             guard let url = allTracks[currentIndex].filePath else { return }
             track = allTracks[currentIndex]
             audioDelegate?.setNextTrackInfo()
