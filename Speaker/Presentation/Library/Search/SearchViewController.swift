@@ -1,6 +1,12 @@
 import UIKit
 
+protocol SearchDelegate: AnyObject {
+    func search(_ query: String)
+}
+
 final class SearchViewController: SpeakerViewController {
+
+    weak var delegate: SearchDelegate?
 
     private let backView: UIView = {
         let view = UIView()
@@ -16,8 +22,8 @@ final class SearchViewController: SpeakerViewController {
         return view
     }()
 
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
+    private lazy var backButton: SpeakerButton = {
+        let button = SpeakerButton()
         let normalAttributedString = NSAttributedString(
             string: "BACK",
             attributes: [
@@ -32,8 +38,8 @@ final class SearchViewController: SpeakerViewController {
         return button
     }()
 
-    private lazy var searchButton: UIButton = {
-        let button = UIButton()
+    private lazy var searchButton: SpeakerButton = {
+        let button = SpeakerButton()
         let normalAttributedString = NSAttributedString(
             string: "SEARCH",
             attributes: [
@@ -44,6 +50,7 @@ final class SearchViewController: SpeakerViewController {
         button.setAttributedTitle(normalAttributedString, for: .normal)
         button.setAttributedTitle(normalAttributedString, for: .highlighted)
         button.backgroundColor = .clear
+        button.addTarget(self, action: #selector(tapSearch), for: .touchUpInside)
         return button
     }()
 
@@ -71,11 +78,13 @@ final class SearchViewController: SpeakerViewController {
         return textField
     }()
 
-    private lazy var clearButton: UIButton = {
-        let button = UIButton()
+    private lazy var clearButton: SpeakerButton = {
+        let button = SpeakerButton()
         button.backgroundColor = .clear
         button.setImage(.searchClose, for: .normal)
         button.setImage(.searchClose, for: .highlighted)
+        button.addTarget(self, action: #selector(tapClear), for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
 
@@ -140,8 +149,28 @@ final class SearchViewController: SpeakerViewController {
 
 private extension SearchViewController {
 
-    @objc func textChange() {
+    @objc func tapSearch() {
+        guard let text = textField.text else {
+            self.dismiss(animated: false)
+            return
+        }
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty != true {
+            delegate?.search(textField.text ?? "")
+        }
+        self.dismiss(animated: false)
+    }
 
+    @objc func textChange() {
+        if (textField.text?.count ?? 0) > 0 {
+            clearButton.isHidden = false
+        } else {
+            clearButton.isHidden = true
+        }
+    }
+
+    @objc func tapClear() {
+        textField.text = ""
+        clearButton.isHidden = true
     }
 
     @objc func tapBack() {

@@ -188,10 +188,6 @@ final class PlayerViewController: SpeakerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presentingViewController?.viewWillDisappear(true)
-        isPlayNow = audioManager.isPlayNow
-        isLoadTrack = audioManager.isLoadTrack
-        isMix = audioManager.isMixMode
-        isRepeat = audioManager.isRepeateMode
     }
 
     override func viewDidLoad() {
@@ -222,6 +218,11 @@ extension PlayerViewController: PlayerPresenterOutputInterface {
 private extension PlayerViewController {
 
     private func setAudioInfo() {
+        isPlayNow = audioManager.isPlayNow
+        isLoadTrack = audioManager.isLoadTrack
+        isMix = audioManager.isMixMode
+        isRepeat = audioManager.isRepeateMode
+        
         randomButton.tintColor = isMix ? .white : .white.withAlphaComponent(0.5)
         repeatButton.tintColor = isRepeat ? .white : .white.withAlphaComponent(0.5)
 
@@ -274,12 +275,14 @@ private extension PlayerViewController {
             playPauseButton.setImage(.playerPause, for: .highlighted)
             if isLoadTrack {
                 audioManager.play()
-            } else {
-                guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
-                audioManager.playAudioFile(url)
-                isLoadTrack = true
-                setTrackInfo()
             }
+            //TODO: - Проверить. Это вроде лишнее с тестов
+//            else {
+//                guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
+//                audioManager.playAudioFile(url)
+//                isLoadTrack = true
+//                setTrackInfo()
+//            }
         case false:
             playPauseButton.setImage(.playerPlay, for: .normal)
             playPauseButton.setImage(.playerPlay, for: .highlighted)
@@ -288,24 +291,31 @@ private extension PlayerViewController {
     }
 
     func setTrackInfo() {
-        Task {
-            do {
-                let audioFile = audioManager.audioFile
-                if  let audioURL = audioFile?.url {
-                    let metadata = try await fetchAudioMetadata(from: audioURL)
-                    singerLabel.text = (metadata.artist ?? "Unknown")
-                    songLabel.text = (metadata.title ?? "Unknown")
-                    print("Title: \(metadata.title ?? "Unknown")")
-                    print("Artist: \(metadata.artist ?? "Unknown")")
-                    if let artworkImage = metadata.artwork {
-                        songImage.image = artworkImage
-                    } else {
-                        songImage.image = .playerNoImg
+        if AudioManager.shared.track?.isFile == true {
+            Task {
+                do {
+                    let audioFile = audioManager.track?.audioFile
+                    if  let audioURL = audioFile?.url {
+
+                        let metadata = try await fetchAudioMetadata(from: audioURL)
+                        singerLabel.text = (metadata.artist ?? "Unknown")
+                        songLabel.text = (metadata.title ?? "Unknown")
+                        print("Title: \(metadata.title ?? "Unknown")")
+                        print("Artist: \(metadata.artist ?? "Unknown")")
+                        if let artworkImage = metadata.artwork {
+                            songImage.image = artworkImage
+                        } else {
+                            songImage.image = .playerNoImg
+                        }
                     }
+                } catch {
+                    print("Ошибка при получении метаданных: \(error)")
                 }
-            } catch {
-                print("Ошибка при получении метаданных: \(error)")
             }
+        } else if AudioManager.shared.track?.isFile == false {
+            singerLabel.text = AudioManager.shared.track?.artist
+            songLabel.text = AudioManager.shared.track?.titleTrack
+            songImage.image = AudioManager.shared.track?.logo
         }
     }
 
@@ -342,6 +352,30 @@ private extension PlayerViewController {
 
 // MARK: - MetaData
 extension PlayerViewController {
+
+    func getTrackInfo(from asset: AVAsset) -> (trackName: String?, artistName: String?) {
+        var trackName: String?
+        var artistName: String?
+
+        // Извлекаем метаданные из AVAsset
+        let metadata = asset.metadata
+
+        for item in metadata {
+            if let key = item.commonKey?.rawValue {
+                switch key {
+                case AVMetadataKey.commonKeyTitle.rawValue:
+                    trackName = item.stringValue
+                case AVMetadataKey.commonKeyArtist.rawValue:
+                    artistName = item.stringValue
+                default:
+                    continue
+                }
+            }
+        }
+
+        return (trackName, artistName)
+    }
+
 
     func fetchAudioMetadata(from url: URL) async throws -> (title: String?, artist: String?, artwork: UIImage?) {
         let asset = AVAsset(url: url)

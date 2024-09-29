@@ -40,7 +40,7 @@ final class SpeakerTabBar: UITabBarController {
         addPlayer()
         addCustomTabBarView()
         setButtonsButton()
-        audioManager.audioDelegate = self
+        audioManager.homePlayerDelegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -184,16 +184,12 @@ extension SpeakerTabBar: UITabBarControllerDelegate {
 
 // MARK: - AudioProtocol
 
-extension SpeakerTabBar: AudioProtocol {
-    func updateTimes(currentTime: Double, remainingTime: Double) {
-
+extension SpeakerTabBar: BottomPlayerProtocol {
+    func setPlayNoPlay(_ isPlay: Bool) {
+        homePlayerView.updatePlay()
     }
     
-    func setStartTime(fullTime: Double) {
-
-    }
-    
-    func setNextTrackInfo() {
+    func setNextAudioInfo() {
         homePlayerView.setTrackInfo()
     }
 }

@@ -129,8 +129,8 @@ final class HomeViewController: SpeakerViewController {
         customInit()
         presenter?.viewDidLoad(withView: self)
         
-        guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
-        AudioManager.shared.loadStartTrack(url)
+//        guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
+//        AudioManager.shared.loadStartTrack(url)
     }
 }
 
@@ -148,35 +148,39 @@ private extension HomeViewController {
         if isConnetceted {
             presenter?.selectVolume()
         } else {
-//            scanBLEDevices()
-            presenter?.selectBluetooth()
+            //            scanBLEDevices()
+            //            presenter?.selectBluetooth()
+            DispatchQueue.main.async {
+                let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
+                mediaPicker.showsCloudItems = true
+                mediaPicker.showsItemsWithProtectedAssets = true
+                mediaPicker.delegate = self
+                mediaPicker.allowsPickingMultipleItems = false
+//                mediaPicker.popoverPresentationController?.sourceView = self.bluetoothButton
+               self.present(mediaPicker, animated: true, completion: nil)
 
-//            let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
-//            mediaPicker.showsCloudItems = true
-//            mediaPicker.showsItemsWithProtectedAssets = true
-//            mediaPicker.delegate = self
-//            mediaPicker.allowsPickingMultipleItems = false
-//            self.present(mediaPicker, animated: true, completion: nil)
-
-//            MPMediaLibrary.requestAuthorization({(newPermissionStatus: MPMediaLibraryAuthorizationStatus) in
-//                // This code will be called after the user allows or denies your app permission.
-//                switch (newPermissionStatus) {
+//                MPMediaLibrary.requestAuthorization({(newPermissionStatus: MPMediaLibraryAuthorizationStatus) in
+//                    // This code will be called after the user allows or denies your app permission.
+//                    switch (newPermissionStatus) {
 //                    case MPMediaLibraryAuthorizationStatus.authorized:
-//                         print("permission status is authorized")
-//                    let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
-//                    mediaPicker.showsCloudItems = false
-//                    mediaPicker.showsItemsWithProtectedAssets = false
-//                    mediaPicker.delegate = self
-//                    mediaPicker.allowsPickingMultipleItems = false
-//                    self.present(mediaPicker, animated: true, completion: nil)
+//                        print("permission status is authorized")
+//                        let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
+//                        mediaPicker.showsCloudItems = false
+//                        mediaPicker.showsItemsWithProtectedAssets = false
+//                        mediaPicker.delegate = self
+//                        mediaPicker.allowsPickingMultipleItems = false
+//                        
+//                        self.present(mediaPicker, animated: true, completion: nil)
 //                    case MPMediaLibraryAuthorizationStatus.notDetermined:
-//                         print("permission status is not determined")
+//                        print("permission status is not determined")
 //                    case MPMediaLibraryAuthorizationStatus.denied:
-//                         print("permission status is denied")
+//                        print("permission status is denied")
 //                    case MPMediaLibraryAuthorizationStatus.restricted:
-//                         print("permission status is restricted")
-//                }
-//            })
+//                        print("permission status is restricted")
+//                    @unknown default: print("123")
+//                    }
+//                })
+            }
         }
     }
 

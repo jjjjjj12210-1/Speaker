@@ -23,6 +23,7 @@ extension LibraryRouter: LibraryRouterInterface {
         guard let baseViewController = controller else { return }
         let controller = SearchViewController()
         controller.modalPresentationStyle = .overFullScreen
+        controller.delegate = baseViewController as? any SearchDelegate
         baseViewController.navigationController?.present(controller, animated: false)
     }
     

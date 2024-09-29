@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		920A9A872C93688400C5CB83 /* asti.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 920A9A862C93688400C5CB83 /* asti.mp3 */; };
-		920D21232C8F7B2C00CF1B4E /* music_game.wav in Resources */ = {isa = PBXBuildFile; fileRef = 920D21222C8F7B2C00CF1B4E /* music_game.wav */; };
-		920D21252C8F7B3400CF1B4E /* fon_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 920D21242C8F7B3400CF1B4E /* fon_sound.mp3 */; };
 		920D21272C8F7E6500CF1B4E /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D21262C8F7E6500CF1B4E /* AudioManager.swift */; };
+		921F3B012CA0123800F99470 /* SpeakerCD.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 921F3AFF2CA0123800F99470 /* SpeakerCD.xcdatamodeld */; };
+		921F3B082CA01A2400F99470 /* AudioMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B072CA01A2400F99470 /* AudioMO+CoreDataProperties.swift */; };
+		921F3B092CA01A2400F99470 /* AudioMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B062CA01A2400F99470 /* AudioMO+CoreDataClass.swift */; };
+		921F3B0B2CA01D2600F99470 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B0A2CA01D2600F99470 /* Store.swift */; };
+		921F3B0D2CA01D3200F99470 /* AudioMODataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B0C2CA01D3200F99470 /* AudioMODataSource.swift */; };
+		921F3B0F2CA01D3800F99470 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B0E2CA01D3800F99470 /* NSManagedObject+Extension.swift */; };
 		9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466462C7E55A90093786B /* PayWallRouter.swift */; };
 		9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466472C7E55A90093786B /* PayWallViewController.swift */; };
 		9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466482C7E55A90093786B /* PayWallPresenter.swift */; };
@@ -94,10 +97,13 @@
 
 /* Begin PBXFileReference section */
 		2DB81FA8883A1B0E68DB50FA /* Pods_Speaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Speaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		920A9A862C93688400C5CB83 /* asti.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = asti.mp3; sourceTree = "<group>"; };
-		920D21222C8F7B2C00CF1B4E /* music_game.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = music_game.wav; sourceTree = "<group>"; };
-		920D21242C8F7B3400CF1B4E /* fon_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fon_sound.mp3; sourceTree = "<group>"; };
 		920D21262C8F7E6500CF1B4E /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		921F3B002CA0123800F99470 /* SpeakerCD.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpeakerCD.xcdatamodel; sourceTree = "<group>"; };
+		921F3B062CA01A2400F99470 /* AudioMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		921F3B072CA01A2400F99470 /* AudioMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		921F3B0A2CA01D2600F99470 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		921F3B0C2CA01D3200F99470 /* AudioMODataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMODataSource.swift; sourceTree = "<group>"; };
+		921F3B0E2CA01D3800F99470 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
 		924466462C7E55A90093786B /* PayWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallRouter.swift; sourceTree = "<group>"; };
 		924466472C7E55A90093786B /* PayWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallViewController.swift; sourceTree = "<group>"; };
 		924466482C7E55A90093786B /* PayWallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallPresenter.swift; sourceTree = "<group>"; };
@@ -211,14 +217,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		920D21212C8F7B1D00CF1B4E /* Sounds */ = {
+		921F3AFE2CA0120300F99470 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				920A9A862C93688400C5CB83 /* asti.mp3 */,
-				920D21242C8F7B3400CF1B4E /* fon_sound.mp3 */,
-				920D21222C8F7B2C00CF1B4E /* music_game.wav */,
+				921F3B0A2CA01D2600F99470 /* Store.swift */,
+				921F3B0E2CA01D3800F99470 /* NSManagedObject+Extension.swift */,
+				921F3B0C2CA01D3200F99470 /* AudioMODataSource.swift */,
+				921F3B062CA01A2400F99470 /* AudioMO+CoreDataClass.swift */,
+				921F3B072CA01A2400F99470 /* AudioMO+CoreDataProperties.swift */,
+				921F3AFF2CA0123800F99470 /* SpeakerCD.xcdatamodeld */,
 			);
-			path = Sounds;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		924466452C7E558F0093786B /* PayWall */ = {
@@ -502,7 +511,7 @@
 		92F934E02C7CE82900DFE5BF /* Speaker */ = {
 			isa = PBXGroup;
 			children = (
-				920D21212C8F7B1D00CF1B4E /* Sounds */,
+				921F3AFE2CA0120300F99470 /* CoreData */,
 				92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */,
 				92F934F52C7CEA1B00DFE5BF /* Application */,
 				92F9351E2C7CF77F00DFE5BF /* Extension */,
@@ -669,8 +678,6 @@
 			files = (
 				92F935182C7CF69400DFE5BF /* Poppins-ExtraLight.ttf in Resources */,
 				92F9351A2C7CF69400DFE5BF /* Poppins-Medium.ttf in Resources */,
-				920D21252C8F7B3400CF1B4E /* fon_sound.mp3 in Resources */,
-				920D21232C8F7B2C00CF1B4E /* music_game.wav in Resources */,
 				92F935192C7CF69400DFE5BF /* Poppins-Light.ttf in Resources */,
 				92F9351D2C7CF69400DFE5BF /* Poppins-Thin.ttf in Resources */,
 				92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */,
@@ -678,7 +685,6 @@
 				92F934EE2C7CE82A00DFE5BF /* Base in Resources */,
 				92F9351B2C7CF69400DFE5BF /* Poppins-Regular.ttf in Resources */,
 				92F935152C7CF69400DFE5BF /* Poppins-Black.ttf in Resources */,
-				920A9A872C93688400C5CB83 /* asti.mp3 in Resources */,
 				92F935172C7CF69400DFE5BF /* Poppins-ExtraBold.ttf in Resources */,
 				92F935162C7CF69400DFE5BF /* Poppins-Bold.ttf in Resources */,
 				92F934FE2C7CF47200DFE5BF /* animation_speaker_control.json in Resources */,
@@ -761,15 +767,19 @@
 				924466652C7FB1120093786B /* LibraryViewController.swift in Sources */,
 				924466662C7FB1120093786B /* LibraryPresenter.swift in Sources */,
 				929376802C839D3F00E595EF /* BluetoothMenuRouter.swift in Sources */,
+				921F3B0D2CA01D3200F99470 /* AudioMODataSource.swift in Sources */,
 				929376812C839D3F00E595EF /* BluetoothMenuViewController.swift in Sources */,
 				929376822C839D3F00E595EF /* BluetoothMenuPresenter.swift in Sources */,
 				929376832C839D3F00E595EF /* BluetoothMenuInit.swift in Sources */,
+				921F3B0B2CA01D2600F99470 /* Store.swift in Sources */,
 				924466672C7FB1120093786B /* LibraryInit.swift in Sources */,
+				921F3B0F2CA01D3800F99470 /* NSManagedObject+Extension.swift in Sources */,
 				9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */,
 				929376712C83970D00E595EF /* WiFiConnectViewController.swift in Sources */,
 				924466542C7FA9110093786B /* SpeakerTabBar.swift in Sources */,
 				929376BA2C877FFA00E595EF /* AddMusicSection.swift in Sources */,
 				929376C22C87892600E595EF /* TextInfoViewController.swift in Sources */,
+				921F3B012CA0123800F99470 /* SpeakerCD.xcdatamodeld in Sources */,
 				9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */,
 				929376BD2C87802500E595EF /* AddMusicCell.swift in Sources */,
 				929376DA2C889C0600E595EF /* SearchViewController.swift in Sources */,
@@ -788,6 +798,8 @@
 				9244667B2C7FB20B0093786B /* SpeakerNavBar.swift in Sources */,
 				9244665D2C7FB0D60093786B /* HomePresenter.swift in Sources */,
 				9244665E2C7FB0D60093786B /* HomeInit.swift in Sources */,
+				921F3B082CA01A2400F99470 /* AudioMO+CoreDataProperties.swift in Sources */,
+				921F3B092CA01A2400F99470 /* AudioMO+CoreDataClass.swift in Sources */,
 				9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */,
 				929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */,
 				9244664D2C7E55A90093786B /* PayWallInit.swift in Sources */,
@@ -949,7 +961,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Speaker/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = Neeed;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"Need bloooooo\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -985,7 +997,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Speaker/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = Neeed;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"Need bloooooo\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1031,6 +1043,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		921F3AFF2CA0123800F99470 /* SpeakerCD.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				921F3B002CA0123800F99470 /* SpeakerCD.xcdatamodel */,
+			);
+			currentVersion = 921F3B002CA0123800F99470 /* SpeakerCD.xcdatamodel */;
+			path = SpeakerCD.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 92F934D62C7CE82900DFE5BF /* Project object */;
 }

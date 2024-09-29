@@ -84,24 +84,31 @@ final class HomePlayerView: UIView {
     }
 
     func setTrackInfo() {
-        Task {
-            do {
-                let audioFile = AudioManager.shared.audioFile
-                if  let audioURL = audioFile?.url {
-                    let metadata = try await fetchAudioMetadata(from: audioURL)
-                    bottomLabel.text = (metadata.artist ?? "Unknown")
-                    titleLabel.text = (metadata.title ?? "Unknown")
-                    print("Title: \(metadata.title ?? "Unknown")")
-                    print("Artist: \(metadata.artist ?? "Unknown")")
-                    if let artworkImage = metadata.artwork {
-                        icon.image = artworkImage
-                    } else {
-                        icon.image = .playerNoImg
+        updatePlay()
+        if AudioManager.shared.track?.isFile == true {
+            Task {
+                do {
+                    let audioFile = AudioManager.shared.track?.audioFile
+                    if  let audioURL = audioFile?.url {
+                        let metadata = try await fetchAudioMetadata(from: audioURL)
+                        bottomLabel.text = (metadata.artist ?? "Unknown")
+                        titleLabel.text = (metadata.title ?? "Unknown")
+                        print("Title: \(metadata.title ?? "Unknown")")
+                        print("Artist: \(metadata.artist ?? "Unknown")")
+                        if let artworkImage = metadata.artwork {
+                            icon.image = artworkImage
+                        } else {
+                            icon.image = .playerNoImg
+                        }
                     }
+                } catch {
+                    print("Ошибка при получении метаданных: \(error)")
                 }
-            } catch {
-                print("Ошибка при получении метаданных: \(error)")
             }
+        } else {
+            bottomLabel.text = AudioManager.shared.track?.artist
+            titleLabel.text = AudioManager.shared.track?.titleTrack
+            icon.image = AudioManager.shared.track?.logo
         }
     }
 }

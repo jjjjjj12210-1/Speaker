@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 
 struct LibraryCellModel {
     let title: String
@@ -6,6 +7,9 @@ struct LibraryCellModel {
 }
 
 final class LibraryCell: SpeakerTableCell {
+
+    var didTapPlayPause: (()->())?
+    var didTapSettings: (()->())?
 
     private let backView: UIView = {
         let view = UIView()
@@ -28,6 +32,8 @@ final class LibraryCell: SpeakerTableCell {
 
         button.layer.shadowOpacity = 1
         button.layer.masksToBounds = false
+
+        button.addTarget(self, action: #selector(tapPausePlay), for: .touchUpInside)
         return button
     }()
 
@@ -37,7 +43,7 @@ final class LibraryCell: SpeakerTableCell {
         label.numberOfLines = 1
         label.textAlignment = .natural
         label.textColor = .white
-        label.text = "Different world ..."
+//        label.text = "Different world ..."
         return label
     }()
 
@@ -47,7 +53,7 @@ final class LibraryCell: SpeakerTableCell {
         label.numberOfLines = 1
         label.textAlignment = .natural
         label.textColor = .textGrayLight
-        label.text = "Alan Walker, K-391 & Sofia"
+//        label.text = "Alan Walker, K-391 & Sofia"
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -58,7 +64,7 @@ final class LibraryCell: SpeakerTableCell {
         label.numberOfLines = 1
         label.textAlignment = .right
         label.textColor = .white
-        label.text = "4:22"
+//        label.text = "4:22"
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -68,6 +74,7 @@ final class LibraryCell: SpeakerTableCell {
         button.backgroundColor = .clear
         button.setImage(.libEdit, for: .normal)
         button.setImage(.libEdit, for: .highlighted)
+        button.addTarget(self, action: #selector(tapSetting), for: .touchUpInside)
         return button
     }()
 
@@ -77,13 +84,53 @@ final class LibraryCell: SpeakerTableCell {
         configureConstraints()
     }
 
-//    func configure(_ data: SettingModel) {
-//        self.title.text = data.title
-//        self.icon.image = data.icon
-//    }
+    func configure(_ data: AudioTrack) {
+        if data.isFile == true {
+            Task {
+                do {
+                    if  let audioURL = data.audioFile?.url {
+                        let metadata = try await fetchAudioMetadata(from: audioURL)
+                        bottomLabel.text = (metadata.artist ?? "Unknown")
+                        titleLabel.text = (metadata.title ?? "Unknown")
+                        let duration = AudioManager.shared.getAudioDuration(audioFile: data.audioFile)
+                        timeLabel.text = formattedTime(duration)
+                    }
+                } catch {
+                    print("Ошибка при получении метаданных: \(error)")
+                }
+            }
+        } else {
+            bottomLabel.text = data.artist
+            titleLabel.text = data.titleTrack
+            let duration = AudioManager.shared.getAudioDuration(audioFile: data.audioFile)
+            timeLabel.text = formattedTime(duration)
+        }
+    }
+
+    func isPlay(_ isPlay: Bool) {
+        if isPlay {
+            playPauseButton.setImage(.homePause, for: .normal)
+            playPauseButton.setImage(.homePause, for: .highlighted)
+
+            playPauseButton.layer.shadowColor = UIColor.buttonGold.withAlphaComponent(0.2).cgColor
+        } else {
+            playPauseButton.setImage(.homePlay, for: .normal)
+            playPauseButton.setImage(.homePlay, for: .highlighted)
+
+            playPauseButton.layer.shadowColor = UIColor.white.withAlphaComponent(0.2).cgColor
+        }
+    }
 }
 
-extension LibraryCell {
+private extension LibraryCell {
+
+    @objc func tapPausePlay() {
+        didTapPlayPause?()
+    }
+
+    @objc func tapSetting() {
+        didTapSettings?()
+    }
 
     private func configureConstraints() {
 
@@ -130,5 +177,40 @@ extension LibraryCell {
             $0.width.equalTo(19)
             $0.height.equalTo(5)
         })
+    }
+
+    func fetchAudioMetadata(from url: URL) async throws -> (title: String?, artist: String?, artwork: UIImage?) {
+        let asset = AVAsset(url: url)
+        let metadataItems: [AVMetadataItem] = try await asset.load(.metadata)
+
+        var title: String?
+        var artist: String?
+        var artwork: UIImage?
+
+        for item in metadataItems {
+            if let key = item.commonKey?.rawValue {
+                switch key {
+                case AVMetadataKey.commonKeyTitle.rawValue:
+                    title = try await item.load(.stringValue)
+                case AVMetadataKey.commonKeyArtist.rawValue:
+                    artist = try await item.load(.stringValue)
+                case AVMetadataKey.commonKeyArtwork.rawValue:
+                    if let data = try await item.load(.dataValue) {
+                        if let image = UIImage(data: data) {
+                            artwork = image
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+        }
+        return (title, artist, artwork)
+    }
+
+    func formattedTime(_ time: Float64) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
