@@ -41,9 +41,9 @@ final class HomeConnectionHelpView: UIView {
     }()
 
     func configure(_ isConnected: Bool, nameDevice: String = "") {
-        icon.image = isConnected ? .homeDiscIcon : .homeConnectionGuide
-        titleLabel.text = isConnected ? "Disconnect the device" : "Connection help"
-        bottomLabel.text = isConnected ? nameDevice : "Step-to-step instruction"
+        icon.image = isConnected ? .homeDiscIcon : .homeCantConnect
+        titleLabel.text = isConnected ? "Disconnect the device" : "Can’t connect?"
+        bottomLabel.text = isConnected ? nameDevice : "Help center and guide"
 
         if isConnected {
             icon.snp.updateConstraints({

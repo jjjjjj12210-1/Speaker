@@ -1,6 +1,7 @@
 import UIKit
 import AVFAudio
 import SnapKit
+import ApphudSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,25 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         appCoordinator.start()
-        setAudioSession()
-//        Store.deleteAllCoreData()
+        AudioSessionManager.shared.start()
         AudioManager.shared.loadAllTrack()
-//        AudioManager.shared.setAllTracks()
-        return true
-    }
-}
-
-extension AppDelegate {
-    func setAudioSession() {
-        do {
-            // Настройка AVAudioSession для фонового воспроизведения
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
-//                                                                                                 .allowAirPlay,
-//                                                                                                 .allowBluetooth,
-//                                                                                                 .allowBluetoothA2DP])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Ошибка настройки AVAudioSession: \(error.localizedDescription)")
+        Task {
+            Apphud.start(apiKey: AppData.appHubKey)
+            AppHubManager.shared.getProducts()
         }
+        return true
     }
 }

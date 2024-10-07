@@ -38,7 +38,6 @@ final class DeviceConnectedViewController: SpeakerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidePlayer(true)
         
         let tap = UITapGestureRecognizer()
         tap.cancelsTouchesInView = false

@@ -4,6 +4,8 @@ final class AppData {
 
     static let policyURL = URL(string: "")
     static let termsURL = URL(string: "")
+
+    static let appHubKey = "app_jg2fJMXzarnhm3m2vVhne9etWXEy3E"
 }
 
 enum Text {

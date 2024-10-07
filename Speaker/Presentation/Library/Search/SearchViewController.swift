@@ -90,7 +90,6 @@ final class SearchViewController: SpeakerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidePlayer(true)
         view.backgroundColor = .black.withAlphaComponent(0.85)
 
         view.addSubview(backView)
@@ -157,7 +156,9 @@ private extension SearchViewController {
         if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty != true {
             delegate?.search(textField.text ?? "")
         }
-        self.dismiss(animated: false)
+        DispatchQueue.main.async {
+            self.dismiss(animated: false)
+        }
     }
 
     @objc func textChange() {

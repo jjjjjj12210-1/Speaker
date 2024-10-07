@@ -25,7 +25,6 @@ extension SettingRouter: SettingRouterInterface {
         service.controller = baseViewController
         service.sendEmailToSupport()
     }
-    
 
     func showBluetoothConnect() {
         guard let baseViewController = controller else { return }

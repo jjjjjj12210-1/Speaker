@@ -21,6 +21,7 @@ final class StreamViewController: SpeakerViewController, WKNavigationDelegate {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: makeLayout())
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isScrollEnabled = false
         collectionView.backgroundColor = .clear
         collectionView.contentInset.top = 18
         collectionView.delegate = self
@@ -45,8 +46,14 @@ final class StreamViewController: SpeakerViewController, WKNavigationDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hidePlayer(false)
         tabBar?.hideTabBar(false)
+
+        if !AppHubManager.shared.isPremium {
+            let controller = PayWallNewInit.createViewController(isFromStream: true)
+            controller.delegate = self
+            controller.modalPresentationStyle = .overFullScreen
+            self.navigationController?.present(controller, animated: true)
+        }
     }
 
     override func viewDidLoad() {
@@ -162,6 +169,7 @@ private extension StreamViewController {
 extension StreamViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        AudioManager.shared.pause()
         switch indexPath.row {
         case 0: setWebViewView(title: "Audiomack", url: "https://audiomack.com/")
         case 1: setWebViewView(title: "Mixcloud", url: "https://www.mixcloud.com/")
@@ -176,7 +184,6 @@ extension StreamViewController: UICollectionViewDelegate {
         }
     }
 }
-
 
 // MARK: - NavBar
 
@@ -209,5 +216,13 @@ private extension StreamViewController {
         currentWebView?.snp.removeConstraints()
         currentWebView?.removeFromSuperview()
         currentWebView = nil
+    }
+}
+
+// MARK: - PayWallCloseDelegate
+
+extension StreamViewController: PayWallCloseDelegate {
+    func closed() {
+        tabBar?.setMain()
     }
 }

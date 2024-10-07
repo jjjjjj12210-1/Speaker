@@ -28,7 +28,6 @@ final class WiFiConnectViewController: SpeakerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidePlayer(true)
 
         let tap = UITapGestureRecognizer()
         tap.cancelsTouchesInView = false

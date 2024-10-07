@@ -5,7 +5,7 @@ import StoreKit
 final class MailService: NSObject {
 
     weak var controller: UIViewController?
-    private let supportMail = "bigden_07@bk.ru"
+    private let supportMail = "Anna_chvertkova_1991@icloud.com"
 
     init(controller: UIViewController? = nil) {
         self.controller = controller

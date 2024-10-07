@@ -1,6 +1,6 @@
 import Foundation
 
-class StreamSection: Section<StreamCellModel> {}
+final class StreamSection: Section<StreamCellModel> {}
 
 extension StreamSection {
 

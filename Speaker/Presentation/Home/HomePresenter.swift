@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import StoreKit
 
 protocol HomePresenterInterface {
     func viewDidLoad(withView view: HomePresenterOutputInterface)
     func selectWifi()
-    func selectBluetooth()
 
     func selectVolume()
     func selectBass()
     func selectTreble()
+    func openBluetoothSettings()
 }
 
 final class HomePresenter: NSObject {
@@ -27,10 +28,27 @@ final class HomePresenter: NSObject {
     }
 }
 
+private extension HomePresenter {
+    func rateApp() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: scene)
+        }
+    }
+}
 // MARK: - HomePresenterInterface
 
 extension HomePresenter: HomePresenterInterface {
-    
+
+    func openBluetoothSettings() {
+        if let url = URL(string: "App-Prefs:root=Bluetooth") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Не удалось открыть настройки Bluetooth.")
+            }
+        }
+    }
+
     func selectVolume() {
         router.showVolume()
     }
@@ -42,10 +60,7 @@ extension HomePresenter: HomePresenterInterface {
     func selectTreble() {
         router.showTreble()
     }
-    
-    func selectBluetooth() {
-        router.showBluetooth()
-    }
+
     
     func selectWifi() {
         router.showWiFi()
@@ -53,5 +68,15 @@ extension HomePresenter: HomePresenterInterface {
     
     func viewDidLoad(withView view: HomePresenterOutputInterface) {
         self.view = view
+
+        if UserSettings.countOfRate == 3 {
+            UserSettings.countOfRate = 0
+            rateApp()
+        }
+
+        if let count = UserSettings.countOfRate {
+            let newCount = count + 1
+            UserSettings.countOfRate = newCount
+        }
     }
 }

@@ -16,7 +16,7 @@ final class SettingPresenter: NSObject {
     private weak var view: SettingPresenterOutputInterface?
     private var router: SettingRouterInterface
 
-    private let appID = ""
+    private let appID = "6736561086"
 
     init(router: SettingRouterInterface) {
         self.router = router
@@ -58,7 +58,13 @@ extension SettingPresenter: SettingPresenterInterface {
     }
     
     func selectDevice() {
-        router.showBluetoothConnect()
+        if let url = URL(string: "App-Prefs:root=Bluetooth") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Не удалось открыть настройки Bluetooth.")
+            }
+        }
     }
     
     func viewDidLoad(withView view: SettingPresenterOutputInterface) {

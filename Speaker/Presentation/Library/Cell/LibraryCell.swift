@@ -43,7 +43,6 @@ final class LibraryCell: SpeakerTableCell {
         label.numberOfLines = 1
         label.textAlignment = .natural
         label.textColor = .white
-//        label.text = "Different world ..."
         return label
     }()
 
@@ -53,8 +52,6 @@ final class LibraryCell: SpeakerTableCell {
         label.numberOfLines = 1
         label.textAlignment = .natural
         label.textColor = .textGrayLight
-//        label.text = "Alan Walker, K-391 & Sofia"
-        label.adjustsFontSizeToFitWidth = true
         return label
     }()
 
@@ -64,7 +61,6 @@ final class LibraryCell: SpeakerTableCell {
         label.numberOfLines = 1
         label.textAlignment = .right
         label.textColor = .white
-//        label.text = "4:22"
         label.adjustsFontSizeToFitWidth = true
         return label
     }()

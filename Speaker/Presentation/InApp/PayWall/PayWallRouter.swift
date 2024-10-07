@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PayWallRouterInterface: AnyObject {
-
+    func close()
 }
 
 class PayWallRouter: NSObject {
@@ -18,5 +18,8 @@ class PayWallRouter: NSObject {
 // MARK: - PayWallRouterInterface
 
 extension PayWallRouter: PayWallRouterInterface {
-
+    func close() {
+        let appCoordinator = AppCoordinator()
+        appCoordinator.showMain()
+    }
 }

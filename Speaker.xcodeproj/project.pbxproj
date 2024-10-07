@@ -14,6 +14,7 @@
 		921F3B0B2CA01D2600F99470 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B0A2CA01D2600F99470 /* Store.swift */; };
 		921F3B0D2CA01D3200F99470 /* AudioMODataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B0C2CA01D3200F99470 /* AudioMODataSource.swift */; };
 		921F3B0F2CA01D3800F99470 /* NSManagedObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B0E2CA01D3800F99470 /* NSManagedObject+Extension.swift */; };
+		921F3B262CA9CDA700F99470 /* AudioSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F3B252CA9CDA700F99470 /* AudioSessionManager.swift */; };
 		9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466462C7E55A90093786B /* PayWallRouter.swift */; };
 		9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466472C7E55A90093786B /* PayWallViewController.swift */; };
 		9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924466482C7E55A90093786B /* PayWallPresenter.swift */; };
@@ -44,6 +45,19 @@
 		928705552C8A350000AEA3CD /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705512C8A350000AEA3CD /* PlayerViewController.swift */; };
 		928705562C8A350000AEA3CD /* PlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705522C8A350000AEA3CD /* PlayerPresenter.swift */; };
 		928705572C8A350000AEA3CD /* PlayerInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928705532C8A350000AEA3CD /* PlayerInit.swift */; };
+		929125C72CADD21F00CF0F69 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929125C62CADD21F00CF0F69 /* UserSetting.swift */; };
+		929126202CB19A5800CF0F69 /* HomeBigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291261F2CB19A5800CF0F69 /* HomeBigButton.swift */; };
+		929126222CB1C18300CF0F69 /* WiFiButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126212CB1C18300CF0F69 /* WiFiButtonView.swift */; };
+		9291262B2CB1D65700CF0F69 /* PayWallNewInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126272CB1D65700CF0F69 /* PayWallNewInit.swift */; };
+		9291262C2CB1D65700CF0F69 /* PayWallNewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126292CB1D65700CF0F69 /* PayWallNewRouter.swift */; };
+		9291262D2CB1D65700CF0F69 /* PayWallNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291262A2CB1D65700CF0F69 /* PayWallNewViewController.swift */; };
+		9291262E2CB1D65700CF0F69 /* PayWallNewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126282CB1D65700CF0F69 /* PayWallNewPresenter.swift */; };
+		929126312CB1DB4400CF0F69 /* PayWallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126302CB1DB4400CF0F69 /* PayWallCell.swift */; };
+		929126332CB2817400CF0F69 /* PayWallCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126322CB2817400CF0F69 /* PayWallCellModel.swift */; };
+		929126352CB281AE00CF0F69 /* PayWallSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126342CB281AE00CF0F69 /* PayWallSection.swift */; };
+		929126382CB29A2100CF0F69 /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 929126372CB29A2100CF0F69 /* ApphudSDK */; };
+		9291263A2CB2A3A600CF0F69 /* AppHubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929126392CB2A3A500CF0F69 /* AppHubManager.swift */; };
+		929288722CB3107500EEE1FC /* SKProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929288712CB3107500EEE1FC /* SKProduct.swift */; };
 		929376712C83970D00E595EF /* WiFiConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376702C83970D00E595EF /* WiFiConnectViewController.swift */; };
 		929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376752C839A9F00E595EF /* BluetoothConnectViewController.swift */; };
 		929376782C839AC000E595EF /* BluetoothConnectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376772C839AC000E595EF /* BluetoothConnectCell.swift */; };
@@ -75,6 +89,8 @@
 		929376BF2C8783FC00E595EF /* AddMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376BE2C8783FC00E595EF /* AddMusicModel.swift */; };
 		929376C22C87892600E595EF /* TextInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376C12C87892600E595EF /* TextInfoViewController.swift */; };
 		929376DA2C889C0600E595EF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376D92C889C0600E595EF /* SearchViewController.swift */; };
+		92AEE42D2CB432F7008A1570 /* TestStoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 92AEE42C2CB432F7008A1570 /* TestStoreKit.storekit */; };
+		92AEE42F2CB4572B008A1570 /* PayWallLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEE42E2CB4572B008A1570 /* PayWallLoaderView.swift */; };
 		92F934E22C7CE82900DFE5BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E12C7CE82900DFE5BF /* AppDelegate.swift */; };
 		92F934E62C7CE82900DFE5BF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */; };
 		92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */; };
@@ -104,6 +120,7 @@
 		921F3B0A2CA01D2600F99470 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		921F3B0C2CA01D3200F99470 /* AudioMODataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMODataSource.swift; sourceTree = "<group>"; };
 		921F3B0E2CA01D3800F99470 /* NSManagedObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extension.swift"; sourceTree = "<group>"; };
+		921F3B252CA9CDA700F99470 /* AudioSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSessionManager.swift; sourceTree = "<group>"; };
 		924466462C7E55A90093786B /* PayWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallRouter.swift; sourceTree = "<group>"; };
 		924466472C7E55A90093786B /* PayWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallViewController.swift; sourceTree = "<group>"; };
 		924466482C7E55A90093786B /* PayWallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallPresenter.swift; sourceTree = "<group>"; };
@@ -134,6 +151,18 @@
 		928705512C8A350000AEA3CD /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		928705522C8A350000AEA3CD /* PlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPresenter.swift; sourceTree = "<group>"; };
 		928705532C8A350000AEA3CD /* PlayerInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInit.swift; sourceTree = "<group>"; };
+		929125C62CADD21F00CF0F69 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		9291261F2CB19A5800CF0F69 /* HomeBigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBigButton.swift; sourceTree = "<group>"; };
+		929126212CB1C18300CF0F69 /* WiFiButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiButtonView.swift; sourceTree = "<group>"; };
+		929126272CB1D65700CF0F69 /* PayWallNewInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallNewInit.swift; sourceTree = "<group>"; };
+		929126282CB1D65700CF0F69 /* PayWallNewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallNewPresenter.swift; sourceTree = "<group>"; };
+		929126292CB1D65700CF0F69 /* PayWallNewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallNewRouter.swift; sourceTree = "<group>"; };
+		9291262A2CB1D65700CF0F69 /* PayWallNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallNewViewController.swift; sourceTree = "<group>"; };
+		929126302CB1DB4400CF0F69 /* PayWallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallCell.swift; sourceTree = "<group>"; };
+		929126322CB2817400CF0F69 /* PayWallCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallCellModel.swift; sourceTree = "<group>"; };
+		929126342CB281AE00CF0F69 /* PayWallSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallSection.swift; sourceTree = "<group>"; };
+		929126392CB2A3A500CF0F69 /* AppHubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHubManager.swift; sourceTree = "<group>"; };
+		929288712CB3107500EEE1FC /* SKProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKProduct.swift; sourceTree = "<group>"; };
 		929376702C83970D00E595EF /* WiFiConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiConnectViewController.swift; sourceTree = "<group>"; };
 		929376752C839A9F00E595EF /* BluetoothConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectViewController.swift; sourceTree = "<group>"; };
 		929376772C839AC000E595EF /* BluetoothConnectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothConnectCell.swift; sourceTree = "<group>"; };
@@ -165,6 +194,8 @@
 		929376BE2C8783FC00E595EF /* AddMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicModel.swift; sourceTree = "<group>"; };
 		929376C12C87892600E595EF /* TextInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInfoViewController.swift; sourceTree = "<group>"; };
 		929376D92C889C0600E595EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		92AEE42C2CB432F7008A1570 /* TestStoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = TestStoreKit.storekit; path = Speaker/TestStoreKit.storekit; sourceTree = "<group>"; };
+		92AEE42E2CB4572B008A1570 /* PayWallLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallLoaderView.swift; sourceTree = "<group>"; };
 		92F934DE2C7CE82900DFE5BF /* Speaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F934E12C7CE82900DFE5BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4382BEF99367B52319F3DF0 /* Pods_Speaker.framework in Frameworks */,
+				929126382CB29A2100CF0F69 /* ApphudSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +356,8 @@
 				924466C72C810FF20093786B /* HomeButtonView.swift */,
 				924466C92C81161E0093786B /* HomeConnectionHelpView.swift */,
 				924466CB2C8117E90093786B /* HomePlayerView.swift */,
+				9291261F2CB19A5800CF0F69 /* HomeBigButton.swift */,
+				929126212CB1C18300CF0F69 /* WiFiButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,6 +371,38 @@
 				928705532C8A350000AEA3CD /* PlayerInit.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		929126252CB1D62300CF0F69 /* InApp */ = {
+			isa = PBXGroup;
+			children = (
+				92AEE42E2CB4572B008A1570 /* PayWallLoaderView.swift */,
+				929126262CB1D62A00CF0F69 /* PayWallNew */,
+				924466452C7E558F0093786B /* PayWall */,
+			);
+			path = InApp;
+			sourceTree = "<group>";
+		};
+		929126262CB1D62A00CF0F69 /* PayWallNew */ = {
+			isa = PBXGroup;
+			children = (
+				9291262F2CB1DB3400CF0F69 /* Collection */,
+				929126272CB1D65700CF0F69 /* PayWallNewInit.swift */,
+				929126282CB1D65700CF0F69 /* PayWallNewPresenter.swift */,
+				929126292CB1D65700CF0F69 /* PayWallNewRouter.swift */,
+				9291262A2CB1D65700CF0F69 /* PayWallNewViewController.swift */,
+			);
+			path = PayWallNew;
+			sourceTree = "<group>";
+		};
+		9291262F2CB1DB3400CF0F69 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				929126302CB1DB4400CF0F69 /* PayWallCell.swift */,
+				929126322CB2817400CF0F69 /* PayWallCellModel.swift */,
+				929126342CB281AE00CF0F69 /* PayWallSection.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		9293766F2C8396F600E595EF /* WiFiConnect */ = {
@@ -485,7 +551,10 @@
 		92C3D24E2C8F791600C24C3B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				929126392CB2A3A500CF0F69 /* AppHubManager.swift */,
 				920D21262C8F7E6500CF1B4E /* AudioManager.swift */,
+				921F3B252CA9CDA700F99470 /* AudioSessionManager.swift */,
+				929125C62CADD21F00CF0F69 /* UserSetting.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -493,6 +562,7 @@
 		92F934D52C7CE82900DFE5BF = {
 			isa = PBXGroup;
 			children = (
+				92AEE42C2CB432F7008A1570 /* TestStoreKit.storekit */,
 				92F934E02C7CE82900DFE5BF /* Speaker */,
 				92F934DF2C7CE82900DFE5BF /* Products */,
 				2E48E84AA09AB1032C45A43A /* Pods */,
@@ -536,13 +606,13 @@
 		92F934F82C7CF1E400DFE5BF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				929126252CB1D62300CF0F69 /* InApp */,
 				9287054F2C8A34E700AEA3CD /* Player */,
 				924466712C7FB1480093786B /* Setting */,
 				924466682C7FB1240093786B /* Stream */,
 				9244665F2C7FB0EB0093786B /* Library */,
 				924466562C7FB0C60093786B /* Home */,
 				924466512C7FA7A90093786B /* Base */,
-				924466452C7E558F0093786B /* PayWall */,
 				92F934FA2C7CF3BB00DFE5BF /* Welcome */,
 			);
 			path = Presentation;
@@ -604,6 +674,7 @@
 			isa = PBXGroup;
 			children = (
 				92F9351F2C7CF79200DFE5BF /* UIFont.swift */,
+				929288712CB3107500EEE1FC /* SKProduct.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -662,6 +733,9 @@
 				Base,
 			);
 			mainGroup = 92F934D52C7CE82900DFE5BF;
+			packageReferences = (
+				929126362CB29A2100CF0F69 /* XCRemoteSwiftPackageReference "ApphudSDK" */,
+			);
 			productRefGroup = 92F934DF2C7CE82900DFE5BF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -685,6 +759,7 @@
 				92F934EE2C7CE82A00DFE5BF /* Base in Resources */,
 				92F9351B2C7CF69400DFE5BF /* Poppins-Regular.ttf in Resources */,
 				92F935152C7CF69400DFE5BF /* Poppins-Black.ttf in Resources */,
+				92AEE42D2CB432F7008A1570 /* TestStoreKit.storekit in Resources */,
 				92F935172C7CF69400DFE5BF /* Poppins-ExtraBold.ttf in Resources */,
 				92F935162C7CF69400DFE5BF /* Poppins-Bold.ttf in Resources */,
 				92F934FE2C7CF47200DFE5BF /* animation_speaker_control.json in Resources */,
@@ -743,6 +818,8 @@
 				929376942C84927500E595EF /* Section.swift in Sources */,
 				929376B32C86419F00E595EF /* LibraryCell.swift in Sources */,
 				924466CC2C8117E90093786B /* HomePlayerView.swift in Sources */,
+				929126222CB1C18300CF0F69 /* WiFiButtonView.swift in Sources */,
+				929126202CB19A5800CF0F69 /* HomeBigButton.swift in Sources */,
 				924466CA2C81161E0093786B /* HomeConnectionHelpView.swift in Sources */,
 				9293768E2C84662500E595EF /* SliderViewController.swift in Sources */,
 				92F935202C7CF79200DFE5BF /* UIFont.swift in Sources */,
@@ -758,7 +835,9 @@
 				924466C52C80EC8D0093786B /* SpeakerViewController.swift in Sources */,
 				924466C82C810FF20093786B /* HomeButtonView.swift in Sources */,
 				9293769A2C84940F00E595EF /* StreamSection.swift in Sources */,
+				929125C72CADD21F00CF0F69 /* UserSetting.swift in Sources */,
 				9293767A2C839AE700E595EF /* SpeakerTableCell.swift in Sources */,
+				921F3B262CA9CDA700F99470 /* AudioSessionManager.swift in Sources */,
 				929376A62C862B7300E595EF /* SettingCell.swift in Sources */,
 				924466772C7FB1580093786B /* SettingViewController.swift in Sources */,
 				924466782C7FB1580093786B /* SettingPresenter.swift in Sources */,
@@ -767,21 +846,30 @@
 				924466652C7FB1120093786B /* LibraryViewController.swift in Sources */,
 				924466662C7FB1120093786B /* LibraryPresenter.swift in Sources */,
 				929376802C839D3F00E595EF /* BluetoothMenuRouter.swift in Sources */,
+				9291263A2CB2A3A600CF0F69 /* AppHubManager.swift in Sources */,
 				921F3B0D2CA01D3200F99470 /* AudioMODataSource.swift in Sources */,
 				929376812C839D3F00E595EF /* BluetoothMenuViewController.swift in Sources */,
 				929376822C839D3F00E595EF /* BluetoothMenuPresenter.swift in Sources */,
 				929376832C839D3F00E595EF /* BluetoothMenuInit.swift in Sources */,
 				921F3B0B2CA01D2600F99470 /* Store.swift in Sources */,
+				929126312CB1DB4400CF0F69 /* PayWallCell.swift in Sources */,
 				924466672C7FB1120093786B /* LibraryInit.swift in Sources */,
 				921F3B0F2CA01D3800F99470 /* NSManagedObject+Extension.swift in Sources */,
+				9291262B2CB1D65700CF0F69 /* PayWallNewInit.swift in Sources */,
+				9291262C2CB1D65700CF0F69 /* PayWallNewRouter.swift in Sources */,
+				9291262D2CB1D65700CF0F69 /* PayWallNewViewController.swift in Sources */,
+				9291262E2CB1D65700CF0F69 /* PayWallNewPresenter.swift in Sources */,
 				9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */,
+				92AEE42F2CB4572B008A1570 /* PayWallLoaderView.swift in Sources */,
 				929376712C83970D00E595EF /* WiFiConnectViewController.swift in Sources */,
 				924466542C7FA9110093786B /* SpeakerTabBar.swift in Sources */,
 				929376BA2C877FFA00E595EF /* AddMusicSection.swift in Sources */,
+				929288722CB3107500EEE1FC /* SKProduct.swift in Sources */,
 				929376C22C87892600E595EF /* TextInfoViewController.swift in Sources */,
 				921F3B012CA0123800F99470 /* SpeakerCD.xcdatamodeld in Sources */,
 				9244664B2C7E55A90093786B /* PayWallViewController.swift in Sources */,
 				929376BD2C87802500E595EF /* AddMusicCell.swift in Sources */,
+				929126332CB2817400CF0F69 /* PayWallCellModel.swift in Sources */,
 				929376DA2C889C0600E595EF /* SearchViewController.swift in Sources */,
 				9244665B2C7FB0D60093786B /* HomeRouter.swift in Sources */,
 				928705542C8A350000AEA3CD /* PlayerRouter.swift in Sources */,
@@ -799,6 +887,7 @@
 				9244665D2C7FB0D60093786B /* HomePresenter.swift in Sources */,
 				9244665E2C7FB0D60093786B /* HomeInit.swift in Sources */,
 				921F3B082CA01A2400F99470 /* AudioMO+CoreDataProperties.swift in Sources */,
+				929126352CB281AE00CF0F69 /* PayWallSection.swift in Sources */,
 				921F3B092CA01A2400F99470 /* AudioMO+CoreDataClass.swift in Sources */,
 				9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */,
 				929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */,
@@ -955,6 +1044,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FALWNHMM4Z;
@@ -963,6 +1053,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"Need bloooooo\"";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Need wi-fi";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -973,8 +1064,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.Speaker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buds1.chvertkova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -991,6 +1083,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FALWNHMM4Z;
@@ -999,6 +1092,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"Need bloooooo\"";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Need wi-fi";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1009,8 +1103,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.Speaker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buds1.chvertkova;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1043,6 +1138,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		929126362CB29A2100CF0F69 /* XCRemoteSwiftPackageReference "ApphudSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apphud/ApphudSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		929126372CB29A2100CF0F69 /* ApphudSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 929126362CB29A2100CF0F69 /* XCRemoteSwiftPackageReference "ApphudSDK" */;
+			productName = ApphudSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		921F3AFF2CA0123800F99470 /* SpeakerCD.xcdatamodeld */ = {

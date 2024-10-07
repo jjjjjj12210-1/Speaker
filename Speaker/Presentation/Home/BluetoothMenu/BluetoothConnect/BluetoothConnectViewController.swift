@@ -54,7 +54,6 @@ final class BluetoothConnectViewController: SpeakerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customInit()
-        hidePlayer(true)
     }
 
     // MARK: - Init

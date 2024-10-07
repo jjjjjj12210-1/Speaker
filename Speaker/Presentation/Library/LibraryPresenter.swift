@@ -57,7 +57,6 @@ extension LibraryPresenter: LibraryPresenterInterface {
             case .fail(let error): print("Error: ", error)
             case .success:
                 guard let audioMO = self.audioDataSource.getAudioList().first(where: {$0.id == id}) else {return}
-//                let audioMO = self.audioDataSource.getAudioList()[index]
                 print("delete track from CD - \(audioMO.url)")
                 Store.viewContext.deleteItem(object: audioMO) { result in
                     switch result {

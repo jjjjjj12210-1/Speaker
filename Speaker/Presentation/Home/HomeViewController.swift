@@ -17,19 +17,23 @@ final class HomeViewController: SpeakerViewController {
 
     private let leftRightInset: CGFloat = 22
 
-    private var isConnetceted = false
+    private var isConnected = false {
+        didSet {
+            setMode()
+        }
+    }
     // MARK: - UI
 
     private lazy var mainImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .clear
-        imageView.image = isConnetceted ? .homeSoundOn : .homeSoundOff
+        imageView.image = isConnected ? .homeSoundOn : .homeSoundOff
         return imageView
     }()
 
     private lazy var onStatusImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = isConnetceted ? .homeConnect : .homeDisconect
+        imageView.image = isConnected ? .homeConnect : .homeDisconect
         imageView.contentMode = .scaleToFill
         return imageView
     }()
@@ -39,14 +43,14 @@ final class HomeViewController: SpeakerViewController {
         label.textAlignment = .center
         label.textColor = .textGrayLight
         label.font = .poppins(.regular, size: 11)
-        label.text = isConnetceted ? connectText : disconectText
+        label.text = isConnected ? connectText : disconectText
         label.numberOfLines = 1
         return label
     }()
 
-    private lazy var bluetoothButton: HomeButtonView = {
-        let button = HomeButtonView()
-        if isConnetceted {
+    private lazy var bluetoothButton: HomeBigButton = {
+        let button = HomeBigButton()
+        if isConnected {
             button.configure(icon: .homeVolume, title: "Volume")
         } else {
             button.configure(icon: .homeBluetooth, title: "Bluetooth")
@@ -55,25 +59,36 @@ final class HomeViewController: SpeakerViewController {
         return button
     }()
 
-    private lazy var wifiButton: HomeButtonView = {
+    private lazy var volumeButton: HomeButtonView = {
         let button = HomeButtonView()
-        if isConnetceted {
-            button.configure(icon: .homeBass, title: "Bass")
-        } else {
-            button.configure(icon: .homeWifi, title: "WiFi")
-        }
+            button.configure(icon: .homeVolume, title: "Volume")
+        button.viewButton.addTarget(self, action: #selector(tapVolume), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var wifiButton: WiFiButtonView = {
+        let button = WiFiButtonView()
         button.viewButton.addTarget(self, action: #selector(tapWiFi), for: .touchUpInside)
         return button
     }()
 
-    private lazy var airPlayButton: HomeButtonView = {
+    private lazy var bassButton: HomeButtonView = {
         let button = HomeButtonView()
-        if isConnetceted {
-            button.configure(icon: .homeTreble, title: "Treble")
-        } else {
-            button.configure(icon: .homeAirplay, title: "AirPlay")
-        }
-        button.viewButton.addTarget(self, action: #selector(tapAirPlay), for: .touchUpInside)
+        button.configure(icon: .homeBass, title: "Bass")
+        button.viewButton.addTarget(self, action: #selector(tapBass), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var airPlayButton: HomeBigButton = {
+        let button = HomeBigButton()
+        button.configure(icon: .homeAirplay, title: "AirPlay")
+        return button
+    }()
+
+    private lazy var trebbleButton: HomeButtonView = {
+        let button = HomeButtonView()
+        button.configure(icon: .homeTreble, title: "Treble")
+        button.viewButton.addTarget(self, action: #selector(tapTrebble), for: .touchUpInside)
         return button
     }()
 
@@ -85,20 +100,30 @@ final class HomeViewController: SpeakerViewController {
         return routePickerView
     }()
 
+    private lazy var stackUnConnectView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [bluetoothButton, airPlayButton])
+        stack.axis = .horizontal
+        stack.spacing = 20
+        stack.distribution = .equalSpacing
+        return stack
+    }()
+
     private lazy var stackButtonsView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [bluetoothButton, wifiButton, airPlayButton])
+        let stack = UIStackView(arrangedSubviews: [volumeButton, bassButton, trebbleButton])
         stack.axis = .horizontal
         stack.spacing = 15
         stack.distribution = .equalSpacing
+        stack.isHidden = true
         return stack
     }()
 
     private lazy var connectionGuideButton: HomeConnectionHelpView = {
         let button =  HomeConnectionHelpView()
-        if isConnetceted {
-            button.configure(isConnetceted, nameDevice: "Kolonka 360")
+        if isConnected {
+            button.configure(true,
+                             nameDevice: AudioSessionManager.shared.currentDevice)
         } else {
-            button.configure(isConnetceted)
+            button.configure(false)
         }
         button.viewButton.addTarget(self, action: #selector(tapGuide), for: .touchUpInside)
         return button
@@ -120,17 +145,18 @@ final class HomeViewController: SpeakerViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hidePlayer(false)
         tabBar?.hideTabBar(false)
+
+        if isConnected != AudioSessionManager.shared.isConnected {
+            isConnected = AudioSessionManager.shared.isConnected
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         customInit()
         presenter?.viewDidLoad(withView: self)
-        
-//        guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
-//        AudioManager.shared.loadStartTrack(url)
+        AudioSessionManager.shared.delgate = self
     }
 }
 
@@ -145,68 +171,33 @@ extension HomeViewController: HomePresenterOutputInterface {
 private extension HomeViewController {
 
     @objc func tapBluetooth() {
-        if isConnetceted {
-            presenter?.selectVolume()
-        } else {
-            //            scanBLEDevices()
-            //            presenter?.selectBluetooth()
-            DispatchQueue.main.async {
-                let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
-                mediaPicker.showsCloudItems = true
-                mediaPicker.showsItemsWithProtectedAssets = true
-                mediaPicker.delegate = self
-                mediaPicker.allowsPickingMultipleItems = false
-//                mediaPicker.popoverPresentationController?.sourceView = self.bluetoothButton
-               self.present(mediaPicker, animated: true, completion: nil)
+        presenter?.openBluetoothSettings()
+    }
 
-//                MPMediaLibrary.requestAuthorization({(newPermissionStatus: MPMediaLibraryAuthorizationStatus) in
-//                    // This code will be called after the user allows or denies your app permission.
-//                    switch (newPermissionStatus) {
-//                    case MPMediaLibraryAuthorizationStatus.authorized:
-//                        print("permission status is authorized")
-//                        let mediaPicker = MPMediaPickerController(mediaTypes: .anyAudio)
-//                        mediaPicker.showsCloudItems = false
-//                        mediaPicker.showsItemsWithProtectedAssets = false
-//                        mediaPicker.delegate = self
-//                        mediaPicker.allowsPickingMultipleItems = false
-//                        
-//                        self.present(mediaPicker, animated: true, completion: nil)
-//                    case MPMediaLibraryAuthorizationStatus.notDetermined:
-//                        print("permission status is not determined")
-//                    case MPMediaLibraryAuthorizationStatus.denied:
-//                        print("permission status is denied")
-//                    case MPMediaLibraryAuthorizationStatus.restricted:
-//                        print("permission status is restricted")
-//                    @unknown default: print("123")
-//                    }
-//                })
-            }
-        }
+    @objc func tapVolume() {
+        presenter?.selectVolume()
     }
 
     @objc func tapWiFi() {
-        if isConnetceted {
-            presenter?.selectBass()
-        } else {
-            presenter?.selectWifi()
-        }
+        presenter?.selectWifi()
     }
 
-    @objc func tapAirPlay() {
-        if isConnetceted {
-            presenter?.selectTreble()
-        }
+    @objc func tapBass() {
+        presenter?.selectBass()
+    }
+
+    @objc func tapTrebble() {
+        presenter?.selectTreble()
     }
 
     @objc func tapGuide() {
-        isConnetceted = true
-        routePickerView.removeFromSuperview()
-        mainImage.image = isConnetceted ? .homeSoundOn : .homeSoundOff
-        onStatusImage.image = isConnetceted ? .homeConnect : .homeDisconect
-        onStatusLabel.text = isConnetceted ? connectText : disconectText
-        bluetoothButton.configure(icon: .homeVolume, title: "Volume")
-        wifiButton.configure(icon: .homeBass, title: "Bass")
-        airPlayButton.configure(icon: .homeTreble, title: "Treble")
+        if isConnected {
+            if AudioSessionManager.shared.isAirPlay {
+                print("air play do")
+            } else {
+                presenter?.openBluetoothSettings()
+            }
+        }
     }
 }
 
@@ -219,28 +210,36 @@ private extension HomeViewController {
         view.addSubview(mainImage)
         view.addSubview(onStatusLabel)
         view.addSubview(onStatusImage)
+        view.addSubview(volumeButton)
+        view.addSubview(bassButton)
+        view.addSubview(trebbleButton)
         view.addSubview(bluetoothButton)
         view.addSubview(wifiButton)
         view.addSubview(airPlayButton)
         view.addSubview(stackButtonsView)
+        view.addSubview(stackUnConnectView)
         view.addSubview(connectionGuideButton)
 
-        //TODO: - Сделать констрейты по новой
         connectionGuideButton.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview().inset(leftRightInset)
-//            $0.bottom.equalTo(homePlayerView.snp.top).offset(-16)
             $0.height.equalTo(72)
-            $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 146 : 176)
+            $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 60 : 90)
+        })
+
+        wifiButton.snp.makeConstraints({
+            $0.leading.trailing.equalToSuperview().inset(leftRightInset)
+            $0.height.equalTo(72)
+            $0.bottom.equalTo(connectionGuideButton.snp.top).offset(-10)
         })
 
         let widthButton = (deviceWidth - (leftRightInset * 2) - 30)/3
-        bluetoothButton.snp.makeConstraints({
+        volumeButton.snp.makeConstraints({
             $0.width.equalTo(widthButton)
         })
-        wifiButton.snp.makeConstraints({
+        bassButton.snp.makeConstraints({
             $0.width.equalTo(widthButton)
         })
-        airPlayButton.snp.makeConstraints({
+        trebbleButton.snp.makeConstraints({
             $0.width.equalTo(widthButton)
         })
 
@@ -250,9 +249,26 @@ private extension HomeViewController {
             $0.height.equalTo(85)
         })
 
+        let widthBigButton = (deviceWidth - (leftRightInset * 2) - 20)/2
+
+        bluetoothButton.snp.makeConstraints({
+            $0.width.equalTo(widthBigButton)
+        })
+
+        airPlayButton.snp.makeConstraints({
+            $0.width.equalTo(widthBigButton)
+        })
+
+        stackUnConnectView.snp.makeConstraints({
+            $0.bottom.equalTo(wifiButton.snp.top).offset(-16)
+            $0.leading.trailing.equalToSuperview().inset(leftRightInset)
+            $0.height.equalTo(85)
+        })
+
         onStatusLabel.snp.makeConstraints({
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(stackButtonsView.snp.top).offset(-16)
+            $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 320 : 360)
+//            $0.bottom.equalTo(stackButtonsView.snp.top).offset(-16)
         })
 
         onStatusImage.snp.makeConstraints({
@@ -276,9 +292,56 @@ private extension HomeViewController {
             })
         }
 
-        if !isConnetceted {
-            self.view.addSubview(routePickerView)
-            routePickerView.snp.makeConstraints({
+        self.view.addSubview(routePickerView)
+        routePickerView.snp.makeConstraints({
+            $0.edges.equalTo(airPlayButton.snp.edges)
+        })
+
+        setMode()
+    }
+
+    func setMode() {
+        mainImage.image = isConnected ? .homeSoundOn : .homeSoundOff
+        onStatusImage.image = isConnected ? .homeConnect : .homeDisconect
+        onStatusLabel.text = isConnected ? connectText : disconectText
+        if isConnected {
+            routePickerView.isHidden = true
+            stackButtonsView.isHidden = false
+            stackUnConnectView.isHidden = true
+            wifiButton.isHidden = true
+            connectionGuideButton.snp.remakeConstraints({
+                $0.leading.trailing.equalToSuperview().inset(leftRightInset)
+                $0.height.equalTo(72)
+                $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 146 : 176)
+            })
+//            bluetoothButton.configure(icon: .homeVolume, title: "Volume")
+//            wifiButton.configure(icon: .homeBass, title: "Bass")
+//            airPlayButton.configure(icon: .homeTreble, title: "Treble")
+            connectionGuideButton.configure(true,
+                                 nameDevice: AudioSessionManager.shared.currentDevice)
+        } else {
+            routePickerView.isHidden = false
+            stackButtonsView.isHidden = true
+            stackUnConnectView.isHidden = false
+            wifiButton.isHidden = false
+            connectionGuideButton.snp.remakeConstraints({
+                $0.leading.trailing.equalToSuperview().inset(leftRightInset)
+                $0.height.equalTo(72)
+                $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 60 : 90)
+            })
+//            bluetoothButton.configure(icon: .homeBluetooth, title: "Bluetooth")
+//            wifiButton.configure(icon: .homeWifi, title: "WiFi")
+//            airPlayButton.configure(icon: .homeAirplay, title: "AirPlay")
+            connectionGuideButton.configure(false)
+        }
+
+        if isConnected && AudioSessionManager.shared.isAirPlay {
+            routePickerView.isHidden = false
+            routePickerView.snp.remakeConstraints({
+                $0.edges.equalTo(connectionGuideButton.snp.edges)
+            })
+        } else {
+            routePickerView.snp.remakeConstraints({
                 $0.edges.equalTo(airPlayButton.snp.edges)
             })
         }
@@ -304,11 +367,8 @@ extension HomeViewController: AVRoutePickerViewDelegate {
     }
 }
 
-extension HomeViewController: MPMediaPickerControllerDelegate {
-
-    func mediaPicker(_ mediaPicker: MPMediaPickerController,
-                     didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        print(mediaItemCollection.mediaTypes)
-        print(mediaItemCollection)
+extension HomeViewController: AudioRouteDelegate {
+    func changeRoute(_ isConnected: Bool) {
+        self.isConnected = isConnected
     }
 }

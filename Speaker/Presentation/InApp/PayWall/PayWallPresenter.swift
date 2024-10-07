@@ -11,6 +11,7 @@ protocol PayWallPresenterInterface {
     func viewDidLoad(withView view: PayWallPresenterOutputInterface)
     func selectPP()
     func selectTerm()
+    func needClose()
 }
 
 final class PayWallPresenter: NSObject {
@@ -26,6 +27,12 @@ final class PayWallPresenter: NSObject {
 // MARK: - PayWallPresenterInterface
 
 extension PayWallPresenter: PayWallPresenterInterface {
+    func needClose() {
+        DispatchQueue.main.async {
+            self.router.close()
+        }
+    }
+    
     func viewDidLoad(withView view: PayWallPresenterOutputInterface) {
         self.view = view
     }

@@ -26,6 +26,7 @@ final class AddMusicViewController: SpeakerViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.contentInset.top = 18
+        collectionView.isScrollEnabled = false
         collectionView.delegate = self
         AddMusicCell.register(collectionView)
         return collectionView
@@ -35,7 +36,6 @@ final class AddMusicViewController: SpeakerViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hidePlayer(false)
     }
 
     override func viewDidLoad() {
@@ -140,10 +140,12 @@ private extension AddMusicViewController {
 private extension AddMusicViewController {
 
     func saveTrackInCoreData(_ track: AudioTrack) {
-        Store.viewContext.addAudio(item: track) { result in
-            switch result {
-            case .fail(let error): print("Error: ", error)
-            case .success: print("Succes add \(track.filePath)")
+        DispatchQueue.global(qos: .utility).async {
+            Store.viewContext.addAudio(item: track) { result in
+                switch result {
+                case .fail(let error): print("Error: ", error)
+                case .success: print("Succes add \(track.filePath)")
+                }
             }
         }
     }
@@ -167,8 +169,18 @@ extension AddMusicViewController: UICollectionViewDelegate {
                 documentPicker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: UIDocumentPickerMode.import)
             }
             documentPicker.delegate = self
-            self.present(documentPicker, animated: true, completion: nil)
-        case 2: setMediaPicker()
+
+            DispatchQueue.main.async {
+                self.present(documentPicker, animated: true, completion: nil)
+            }
+        case 2:
+            if AppHubManager.shared.isPremium {
+                setMediaPicker()
+            } else {
+                let controller = PayWallNewInit.createViewController(isFromStream: false)
+                controller.modalPresentationStyle = .overFullScreen
+                self.navigationController?.present(controller, animated: true)
+            }
         case 3,4,5:
             let controller = TextInfoViewController(type: .dropBox)
             navigationController?.present(controller, animated: true)

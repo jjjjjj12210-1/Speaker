@@ -73,7 +73,6 @@ final class TextInfoViewController: SpeakerViewController {
 private extension TextInfoViewController {
 
     func customInit() {
-        hidePlayer(true)
         view.addSubview(topView)
         view.addSubview(closeButton)
         view.addSubview(titleLabel)

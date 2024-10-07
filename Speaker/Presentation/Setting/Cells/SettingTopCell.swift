@@ -35,7 +35,7 @@ final class SettingTopCell: SpeakerTableCell {
         label.numberOfLines = 2
         label.textAlignment = .right
         label.textColor = .white
-        label.text = "Station mini"
+        label.text = "No devices"
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -54,10 +54,9 @@ final class SettingTopCell: SpeakerTableCell {
         configureConstraints()
     }
 
-//    func configure(_ data: BluetoothListModel) {
-//        title.text = data.title
-//        statusLabel.text = data.isConnect ? "CONNECTED" : "NOT CONNECTED"
-//    }
+    func configure(_ device: String) {
+        deviceLabel.text = device
+    }
 }
 
 extension SettingTopCell {

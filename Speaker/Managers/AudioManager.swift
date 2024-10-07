@@ -23,6 +23,7 @@ protocol AudioProtocol: AnyObject {
 protocol BottomPlayerProtocol: AnyObject {
     func setNextAudioInfo()
     func setPlayNoPlay(_ isPlay: Bool)
+    func showPlayer(_ isNeedShow: Bool)
 }
 
 //MARK: - LibraryProtocol
@@ -32,7 +33,7 @@ protocol LibraryProtocol: AnyObject {
 
 final class AudioManager {
 
-    static let shared = AudioManager()
+    static var shared = AudioManager()
 
     weak var audioDelegate: AudioProtocol?
     weak var homePlayerDelegate: BottomPlayerProtocol?
@@ -61,6 +62,7 @@ final class AudioManager {
     var fullDuration: Double = 0
     var currentTime: Double = 0
     var remainingTime: Double = 0
+    private var isPauseFromReconect = false
     var isPlayNow = false {
         didSet {
             homePlayerDelegate?.setPlayNoPlay(isPlayNow)
@@ -69,6 +71,10 @@ final class AudioManager {
     
     var isRepeateMode = false
     var isMixMode = false
+
+    private var currentBuss: Float = 0
+    private var currentTreble: Float = 0
+    private var currentVolume: Float = 10
 
     //MARK: - init
     init() {
@@ -83,6 +89,38 @@ final class AudioManager {
 
 //MARK: - Public Methods
 extension AudioManager {
+
+    func reinit() {
+        let isPlaying = isPlayNow
+        isPauseFromReconect = true
+        pause()
+        audioEngine = AVAudioEngine()
+        player = AVAudioPlayerNode()
+        eq = AVAudioUnitEQ(numberOfBands: 2)
+        setupEQ()
+        setupAudioEngine()
+
+        player?.volume = currentVolume
+        eq?.bands[0].gain = currentBuss
+        eq?.bands[1].gain = currentTreble
+
+        guard let audioEngine = audioEngine,
+              let player = player else {return}
+
+        audioEngine.prepare()
+        if let file = track?.audioFile {
+            player.scheduleFile(file, at: nil)
+        }
+
+        isLoadTrack = true
+
+        if isPlaying {
+            isPlayNow = true
+            
+            playAudio(from: TimeInterval(currentTime))
+            libraryDelegate?.needUpdateTable(currentIndex, id: track?.id ?? UUID())
+        }
+    }
 
     func loadStartTrack() {
         guard let audioEngine = audioEngine,
@@ -100,6 +138,10 @@ extension AudioManager {
             homePlayerDelegate?.setNextAudioInfo()
             isPlayNow = false
             isLoadTrack = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.checkNeedShowPlayer()
+            }
         }
     }
 
@@ -119,8 +161,10 @@ extension AudioManager {
             isLoadTrack = true
             libraryDelegate?.needUpdateTable(currentIndex, id: track?.id ?? UUID())
 
-            player.scheduleFile(audioFile, at: nil, completionHandler: nil)
-            player.play()
+            DispatchQueue.global(qos: .userInitiated).async {
+                player.scheduleFile(audioFile, at: nil, completionHandler: nil)
+                player.play()
+            }
         } catch {
             print("Ошибка при воспроизведении аудиофайла: \(error)")
         }
@@ -129,9 +173,15 @@ extension AudioManager {
     func play() {
         isPlayNow = true
         libraryDelegate?.needUpdateTable(currentIndex, id: track?.id ?? UUID())
-        player?.play()
-        startTime = Date().timeIntervalSince1970 - currentTime
-        startTimer()
+        if isPauseFromReconect {
+            playAudio(from: TimeInterval(currentTime))
+        } else {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.player?.play()
+            }
+            startTime = Date().timeIntervalSince1970 - currentTime
+            startTimer()
+        }
     }
 
     func pause() {
@@ -150,14 +200,17 @@ extension AudioManager {
 
     func setVolume(_ volume: Float) {
         player?.volume = volume
+        currentVolume = volume
     }
 
     func setBassLevel(_ level: Float) {
         eq?.bands[0].gain = level
+        currentBuss = level
     }
 
     func setTrebleLevel(_ level: Float) {
         eq?.bands[1].gain = level
+        currentTreble = level
     }
 
     func getBassGain() -> Float {
@@ -214,6 +267,7 @@ extension AudioManager {
         }
 
         allTracks.remove(at: index)
+        checkNeedShowPlayer()
 
         if currentIndex == index && !allTracks.isEmpty {
             loadStartTrack()
@@ -252,14 +306,14 @@ private extension AudioManager {
         let bassBand = eq?.bands[0]
         bassBand?.filterType = .lowShelf
         bassBand?.frequency = 80.0 // Частота басов
-        bassBand?.gain = 0.0 // Уровень басов (от -24 до 24 дБ)
+        bassBand?.gain = currentBuss // Уровень басов (от -24 до 24 дБ)
         bassBand?.bypass = false
 
         // Настроим вторую полосу эквалайзера для высоких частот
         let trebleBand = eq?.bands[1]
         trebleBand?.filterType = .highShelf
         trebleBand?.frequency = 5000.0 // Частота высоких частот
-        trebleBand?.gain = 0.0 // Уровень высоких частот (от -24 до 24 дБ)
+        trebleBand?.gain = currentTreble // Уровень высоких частот (от -24 до 24 дБ)
         trebleBand?.bypass = false
     }
 
@@ -329,18 +383,22 @@ private extension AudioManager {
             if isMixMode {
                 currentIndex = allIndexis[currentIndex]
             }
-//            else {
-//                currentIndex += 1
-//                if currentIndex >= allTracks.count {
-//                    currentIndex = 0
-//                }
-//            }
+
             guard let url = allTracks[currentIndex].filePath else { return }
             track = allTracks[currentIndex]
             audioDelegate?.setNextTrackInfo()
             homePlayerDelegate?.setNextAudioInfo()
             libraryDelegate?.needUpdateTable(currentIndex, id: track?.id ?? UUID())
             playAudioFile(url)
+        }
+    }
+
+    func checkNeedShowPlayer() {
+        if allTracks.isEmpty {
+            homePlayerDelegate?.showPlayer(false)
+        } else {
+            print("Need show player")
+            homePlayerDelegate?.showPlayer(true)
         }
     }
 }
@@ -380,7 +438,6 @@ extension AudioManager {
                                 print("Ошибка при формирования файла из Папки: \(error)")
                             }
                         }
-
                     } else {
                         if let url = URL(string: $0.url) {
                             var imageFromCD: UIImage = .playerNoImg

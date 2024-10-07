@@ -1,4 +1,5 @@
 import UIKit
+import StoreKit
 import Lottie
 
 struct WelcomeStruct {
@@ -132,13 +133,11 @@ private extension WelcomeViewController {
             circle.snp.makeConstraints({
                 $0.centerY.equalTo(view.snp.top).inset(-6)
                 $0.leading.trailing.equalToSuperview().inset(12)
-//                $0.height.equalTo(deviceWidth - 40)
                 $0.height.equalTo(((deviceWidth - 20) * 0.54)*2)
             })
         })
 
         view.addSubview(topImage)
-//        view.addSubview(bottomImage)
         view.addSubview(titleLabel)
         view.addSubview(descLabel)
         view.addSubview(startAnimation)
@@ -152,12 +151,6 @@ private extension WelcomeViewController {
             $0.leading.trailing.equalToSuperview().inset(10)
             $0.height.equalTo(height)
         })
-
-//        bottomImage.snp.makeConstraints({
-//            $0.bottom.equalToSuperview()
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(300)
-//        })
 
         titleLabel.snp.makeConstraints({
             $0.bottom.equalToSuperview().inset(isSmallDevice ? 140 : 178)
@@ -173,7 +166,6 @@ private extension WelcomeViewController {
         descLabel.snp.makeConstraints({
             $0.centerX.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom).offset(isSmallDevice ? 14 : 34)
-//            $0.bottom.equalToSuperview().inset(isSmallDevice ? 160 : 180)
         })
 
         gradientView.snp.makeConstraints({
@@ -198,7 +190,6 @@ private extension WelcomeViewController {
         for _ in 0...100 {
             let circle = UIView()
             circle.backgroundColor = .baseBlack
-//            circle.layer.cornerRadius = (deviceWidth - 20)/2
             circle.layer.cornerRadius = (deviceWidth - 20) * 0.5
             circle.alpha = 0
             circle.layer.borderWidth = 1
@@ -225,8 +216,15 @@ private extension WelcomeViewController {
         if currentWelcomeIndex < 4 {
             setContent()
         } else {
+            UserSettings.isUsualLaunch = true
             let appCoordinator = AppCoordinator()
             appCoordinator.showPayWAll()
+        }
+    }
+
+    func rateApp() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: scene)
         }
     }
 
@@ -249,6 +247,7 @@ private extension WelcomeViewController {
             }
 
         case 1:
+            rateApp()
             circleArray.forEach({
                 $0.removeFromSuperview()
             })

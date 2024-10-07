@@ -5,8 +5,12 @@ final class AppCoordinator {
     private var window: UIWindow?
 
     func start() {
-//        welcomeScene()
-        showMain()
+        if UserSettings.isUsualLaunch ?? false {
+            showMain()
+        } else {
+            welcomeScene()
+            UserSettings.countOfRate = 0
+        }
     }
 
     func showPayWAll() {
@@ -46,6 +50,7 @@ final class AppCoordinator {
 extension AppCoordinator {
     private func configureTabBarController() -> UITabBarController {
         let tabBarController = SpeakerTabBar()
+        tabBarController.hidePlayer(true)
         tabBarController.viewControllers = [createVC(HomeInit.createViewController(),
                                                      icon: nil,
                                                      selctedImage: nil),

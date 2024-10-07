@@ -82,7 +82,6 @@ final class BluetoothMenuViewController: SpeakerViewController {
     // MARK: - Lifecicle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hidePlayer(true)
         tabBar?.hideTabBar(true)
     }
 

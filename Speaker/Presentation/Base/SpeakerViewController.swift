@@ -12,18 +12,8 @@ class SpeakerViewController: UIViewController {
     var tabBar: SpeakerTabBar? {
         return self.tabBarController as? SpeakerTabBar
     }
-
-//    lazy var homePlayerView: HomePlayerView = {
-//        let button = HomePlayerView()
-//        return button
-//    }()
-//
-//    private lazy var playerButton: UIButton = {
-//        let button = UIButton()
-//        button.backgroundColor = .clear
-//        button.addTarget(self, action: #selector(openPlayer), for: .touchUpInside)
-//        return button
-//    }()
+    
+    private var activityView: UIView?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,7 +25,6 @@ class SpeakerViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .baseBlack
         view.isAccessibilityElement = false
-        setViews()
     }
 
 }
@@ -43,34 +32,36 @@ class SpeakerViewController: UIViewController {
 extension SpeakerViewController {
     func hidePlayer(_ isHide: Bool) {
         tabBar?.hidePlayer(isHide)
-//        homePlayerView.isHidden = isHide
-//        playerButton.isHidden = isHide
-    }
-}
-
-private extension SpeakerViewController {
-
-//    @objc func openPlayer() {
-//        let controller = PlayerInit.createViewController()
-//        self.navigationController?.present(controller, animated: true)
-//    }
-
-    func setViews() {
-//        view.addSubview(homePlayerView)
-//        view.addSubview(playerButton)
-//
-//        homePlayerView.snp.makeConstraints({
-//            $0.leading.trailing.equalToSuperview()
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(50)
-//            $0.height.equalTo(120)
-//        })
-//
-//        playerButton.snp.makeConstraints({
-//            $0.leading.equalToSuperview()
-//            $0.trailing.equalToSuperview().inset(120)
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(50)
-//            $0.height.equalTo(120)
-//        })
     }
 
+    func showSpinner() {
+        activityView = UIView(frame: self.view.bounds)
+        activityView?.backgroundColor = .black.withAlphaComponent(0.2)
+
+        guard let activityView = activityView else {return}
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.center = activityView.center
+        activityIndicator.startAnimating()
+        activityView.addSubview(activityIndicator)
+        self.view.addSubview(activityView)
+    }
+
+    func hideSpinner() {
+        DispatchQueue.main.async {
+            self.activityView?.removeFromSuperview()
+            self.activityView = nil
+        }
+    }
+
+    func showErrorAlert(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
 }

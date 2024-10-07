@@ -33,6 +33,17 @@ final class LibraryViewController: SpeakerViewController {
         return view
     }()
 
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Nothing found"
+        label.font = .poppins(.bold, size: 30)
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.textColor = .white
+        label.isHidden = true
+        return label
+    }()
+
     private lazy var mainTable: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = .baseBlack
@@ -62,7 +73,6 @@ final class LibraryViewController: SpeakerViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hidePlayer(false)
         tabBar?.hideTabBar(false)
 
         if !isSearchResultMode {
@@ -132,7 +142,6 @@ private extension LibraryViewController {
     }
 }
 
-
 // MARK: - UISetup
 
 private extension LibraryViewController {
@@ -141,6 +150,7 @@ private extension LibraryViewController {
 
         view.addSubview(emptyView)
         view.addSubview(mainTable)
+        view.addSubview(emptyLabel)
 
         emptyView.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview()
@@ -152,6 +162,10 @@ private extension LibraryViewController {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.bottom.equalTo(view.snp.bottom).inset(isSmallDevice ? 146 : 176)
+        })
+
+        emptyLabel.snp.makeConstraints({
+            $0.center.equalToSuperview()
         })
     }
 }
@@ -313,10 +327,17 @@ private extension LibraryViewController {
     }
 
     @objc func tapBack() {
+        emptyLabel.isHidden = true
         isSearchResultMode = false
         addAddButton()
         searchArray = [AudioTrack]()
         mainTable.reloadData()
+
+        if AudioManager.shared.allTracks.isEmpty {
+            emptyView.isHidden = false
+        } else {
+            emptyView.isHidden = true
+        }
     }
 
     func showSheetAlert() {
@@ -335,6 +356,8 @@ private extension LibraryViewController {
             } else {
                 self.presenter?.selectDelete(self.choosenIndex, id: self.choosenID)
             }
+
+            self.lastCount = AudioManager.shared.allTracks.count
 
             if AudioManager.shared.allTracks.isEmpty {
                 self.emptyView.isHidden = false
@@ -366,14 +389,18 @@ extension LibraryViewController: SearchDelegate {
         let text = query.lowercased()
         isSearchResultMode = true
 
-        AudioManager.shared.allTracks.forEach({
-            if $0.artist?.lowercased().contains(text) ?? false || $0.titleTrack?.lowercased().contains(text) ?? false {
-                searchArray.append($0)
-            }
-        })
+        DispatchQueue.main.async { [self] in
+            AudioManager.shared.allTracks.forEach({
+                if $0.artist?.lowercased().contains(text) ?? false || $0.titleTrack?.lowercased().contains(text) ?? false {
+                    self.searchArray.append($0)
+                }
+            })
 
-        mainTable.reloadData()
-        setBackButton()
+            mainTable.reloadData()
+            setBackButton()
+            emptyLabel.isHidden = searchArray.isEmpty ? false : true
+            emptyView.isHidden = true
+        }
     }
 }
 

@@ -6,6 +6,14 @@ final class SpeakerTabBar: UITabBarController {
 
     var currentController: UIViewController?
     private let audioManager = AudioManager.shared
+    private let audioSessionManager = AudioSessionManager.shared
+
+    private var isNeedShowPlayer = false
+    private var isLoadStart = false
+
+    var isConnect: Bool { AudioSessionManager.shared.isConnected }
+
+    private var currnetIndex = 0
 
     // MARK: - UI
 
@@ -22,6 +30,7 @@ final class SpeakerTabBar: UITabBarController {
 
     lazy var homePlayerView: HomePlayerView = {
         let button = HomePlayerView()
+        button.alpha = 0
         return button
     }()
 
@@ -41,6 +50,7 @@ final class SpeakerTabBar: UITabBarController {
         addCustomTabBarView()
         setButtonsButton()
         audioManager.homePlayerDelegate = self
+        audioSessionManager.playerDelgate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -50,16 +60,46 @@ final class SpeakerTabBar: UITabBarController {
     func hideTabBar(_ isHidden: Bool) {
         tabBar.isHidden = isHidden
         topView.isHidden = isHidden
+        hidePlayer(isHidden)
     }
 
     func hidePlayer(_ isHide: Bool) {
-        homePlayerView.isHidden = isHide
-        playerButton.isHidden = isHide
+        guard currnetIndex != 0 && isConnect else {
+            homePlayerView.isHidden = true
+            playerButton.isHidden = true
+            return
+        }
+        
+        if isHide == false && isNeedShowPlayer {
+            homePlayerView.isHidden = false
+            playerButton.isHidden = false
+            if isLoadStart == false {
+                isLoadStart = true
+                UIView.animate(withDuration: 1) {
+                    self.homePlayerView.alpha = 1
+                }
+            }
+        } else {
+            homePlayerView.isHidden = true
+            playerButton.isHidden = true
+        }
     }
 
     func updatePlayStatus() {
         homePlayerView.updatePlay()
         homePlayerView.setTrackInfo()
+    }
+
+    func setMain() {
+        selectedIndex = 0
+        currnetIndex = selectedIndex
+        for index in 0...3 {
+            if index == selectedIndex {
+                buttonsArray[index].image = UIImage(named: "tabBar.\(index).on")
+            } else {
+                buttonsArray[index].image = UIImage(named: "tabBar.\(index).off")
+            }
+        }
     }
 }
 
@@ -149,7 +189,6 @@ private extension SpeakerTabBar {
 
         homePlayerView.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview()
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(50)
             $0.bottom.equalToSuperview().inset(isSmallDevice ? 10 : 40)
             $0.height.equalTo(120)
         })
@@ -157,7 +196,6 @@ private extension SpeakerTabBar {
         playerButton.snp.makeConstraints({
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview().inset(120)
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(50)
             $0.bottom.equalToSuperview().inset(isSmallDevice ? 10 : 40)
             $0.height.equalTo(120)
         })
@@ -172,6 +210,7 @@ extension SpeakerTabBar: UITabBarControllerDelegate {
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let selectedIndex = self.tabBar.items?.firstIndex(of: item)
+        currnetIndex = selectedIndex ?? 0
         for index in 0...3 {
             if index == selectedIndex {
                 buttonsArray[index].image = UIImage(named: "tabBar.\(index).on")
@@ -191,6 +230,19 @@ extension SpeakerTabBar: BottomPlayerProtocol {
     
     func setNextAudioInfo() {
         homePlayerView.setTrackInfo()
+    }
+
+    func showPlayer(_ isNeedShow: Bool) {
+        isNeedShowPlayer = isNeedShow
+        hidePlayer(!isNeedShow)
+    }
+}
+
+// MARK: - PlayerHideDelegate
+
+extension SpeakerTabBar: PlayerHideDelegate {
+    func needHidePlayer(_ isHide: Bool) {
+        hidePlayer(isHide)
     }
 }
 

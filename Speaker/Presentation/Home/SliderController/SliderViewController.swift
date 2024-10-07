@@ -78,7 +78,6 @@ final class SliderViewController: SpeakerViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hidePlayer(true)
         setTap()
         view.backgroundColor = .black.withAlphaComponent(0.85)
 

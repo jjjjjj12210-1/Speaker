@@ -20,6 +20,8 @@ final class PayWallViewController: SpeakerViewController {
     private let heightButton: CGFloat = 78
     private let bottomButtonHeight: CGFloat = 20
 
+    private let appHubManager = AppHubManager.shared
+
     // MARK: - UI
 
     private lazy var closeButton: UIButton = {
@@ -66,7 +68,6 @@ final class PayWallViewController: SpeakerViewController {
         label.textAlignment = .center
         label.textColor = .white
         label.font = .poppins(.regular, size: isSmallDevice ? 13 : 15)
-        label.text = "Then 9,99$ per month"
         label.numberOfLines = 1
         return label
     }()
@@ -151,6 +152,12 @@ final class PayWallViewController: SpeakerViewController {
         return button
     }()
 
+    private let loader: PayWallLoaderView = {
+        let view = PayWallLoaderView()
+        view.isHidden = true
+        return view
+    }()
+
     // MARK: - init
     init(presenter: PayWallPresenterInterface, router: PayWallRouterInterface) {
         self.presenter = presenter
@@ -168,6 +175,17 @@ final class PayWallViewController: SpeakerViewController {
         customInit()
         presenter?.viewDidLoad(withView: self)
         hidePlayer(true)
+
+        appHubManager.delegate = self
+
+        if !appHubManager.subscriptionsOnboard.isEmpty {
+            priceLabel.text = "Then \(appHubManager.getPrice(.trialWeek)) per week"
+        } else {
+            DispatchQueue.main.async {
+                self.setLoader()
+            }
+            appHubManager.getOnboardingInfo()
+        }
     }
 }
 
@@ -179,18 +197,20 @@ extension PayWallViewController: PayWallPresenterOutputInterface {
 
 // MARK: - Private
 private extension PayWallViewController {
-    //TODO: - Buy
-    @objc func tapContinue() {
 
+    @objc func tapContinue() {
+        guard let appHubModel = appHubManager.weekTrialSubscription() else { return }
+        showSpinner()
+        appHubManager.startPurchase(appHubModel)
     }
 
     @objc func tapPP() {
         presenter?.selectPP()
     }
 
-    //TODO: - Restor
     @objc func tapRestore() {
-
+        showSpinner()
+        appHubManager.restore()
     }
 
     @objc func tapTerm() {
@@ -198,8 +218,26 @@ private extension PayWallViewController {
     }
 
     @objc func tapClose() {
-        let appCoordinator = AppCoordinator()
-        appCoordinator.showMain()
+        presenter?.needClose()
+    }
+
+    func setLoader() {
+        priceLabel.isHidden = true
+        descLabel.isHidden = true
+        continueButton.isHidden = true
+
+        loader.isHidden = false
+        loader.showSpinner()
+    }
+
+    func removeLoader() {
+        priceLabel.isHidden = false
+        descLabel.isHidden = false
+        continueButton.isHidden = false
+
+        loader.isHidden = true
+        priceLabel.text = "Then \(appHubManager.getPrice(.trialWeek)) per week"
+        loader.hideSpinner()
     }
 }
 
@@ -220,6 +258,7 @@ private extension PayWallViewController {
         view.addSubview(termButton)
 
         view.addSubview(continueButton)
+        view.addSubview(loader)
 
         closeButton.snp.makeConstraints({
             $0.size.equalTo(30)
@@ -257,7 +296,13 @@ private extension PayWallViewController {
         continueButton.snp.makeConstraints({
             $0.height.equalTo(heightButton)
             $0.leading.trailing.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(isSmallDevice ? 40 : 84)
+            $0.bottom.equalToSuperview().inset(isSmallDevice ? 50 : 84)
+        })
+
+        loader.snp.makeConstraints({
+            $0.top.equalTo(daysLabel.snp.bottom).offset(4)
+            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(isSmallDevice ? 50 : 84)
         })
 
         let bottomButtonWidth = (deviceWidth - 100)/3
@@ -265,22 +310,39 @@ private extension PayWallViewController {
             $0.leading.equalToSuperview().offset(20)
             $0.height.equalTo(bottomButtonHeight)
             $0.width.equalTo(bottomButtonWidth - 10)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(isSmallDevice ? -20 : -10)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(isSmallDevice ? -16 : -10)
         })
 
         termButton.snp.makeConstraints({
             $0.centerX.equalToSuperview()
             $0.height.equalTo(bottomButtonHeight)
             $0.width.equalTo(bottomButtonWidth + 10)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(isSmallDevice ? -20 : -10)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(isSmallDevice ? -16 : -10)
         })
 
         restoreButton.snp.makeConstraints({
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(bottomButtonHeight)
             $0.width.equalTo(bottomButtonWidth - 10)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(isSmallDevice ? -20 : -10)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(isSmallDevice ? -16 : -10)
         })
+    }
+}
 
+// MARK: - AppHubManagerDelegate
+
+extension PayWallViewController: AppHubManagerDelegate {
+    func finishLoadPaywall() {
+        DispatchQueue.main.async {
+            self.removeLoader()
+        }
+    }
+    
+    func purchasesWasEnded(success: Bool?, messageError: String) {
+        hideSpinner()
+        guard let success = success else {
+            return
+        }
+        success ? presenter?.needClose() : showErrorAlert(title: "Sorry", message: messageError)
     }
 }

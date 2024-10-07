@@ -16,6 +16,8 @@ final class SettingViewController: SpeakerViewController {
     private var presenter: SettingPresenterInterface?
     private var router: SettingRouterInterface?
 
+    private let appHubManager = AppHubManager.shared
+
     private let settingArray = [SettingModel(title: "Share the app", icon: .settingsIcon0),
                                 SettingModel(title: "Rate this app", icon: .settingsIcon1),
                                 SettingModel(title: "Support", icon: .settingsIcon2),
@@ -54,8 +56,11 @@ final class SettingViewController: SpeakerViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hidePlayer(true)
         tabBar?.hideTabBar(false)
+        hidePlayer(true)
+        mainTable.reloadData()
+
+        appHubManager.delegate = self
     }
 
     override func viewDidLoad() {
@@ -100,6 +105,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: 
             let cell = SettingTopCell.getCell(tableView, for: indexPath)
+            if AudioSessionManager.shared.isConnected {
+                cell.configure(AudioSessionManager.shared.currentDevice)
+            } else {
+                cell.configure("No devices")
+            }
+
             return cell
         case 1:
             let cell = NotificationCell.getCell(tableView, for: indexPath)
@@ -128,6 +139,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 4: presenter?.selectSupport()
         case 5: presenter?.selectPP()
         case 6: presenter?.selectTerm()
+        case 7:
+            showSpinner()
+            appHubManager.restore()
         default: return
         }
     }
@@ -143,5 +157,21 @@ private extension SettingViewController {
         label.textColor = .white
         
         navigationItem.titleView = label
+    }
+}
+
+// MARK: - AppHubManagerDelegate
+
+extension SettingViewController: AppHubManagerDelegate {
+    func finishLoadPaywall() { }
+
+    func purchasesWasEnded(success: Bool?, messageError: String) {
+        hideSpinner()
+        guard let success = success else {
+            return
+        }
+        if !success {
+            showErrorAlert(title: "Sorry", message: messageError)
+        }
     }
 }

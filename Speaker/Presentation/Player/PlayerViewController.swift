@@ -19,7 +19,6 @@ final class PlayerViewController: SpeakerViewController {
 
     private var audioManager = AudioManager.shared
 
-    //TODO: - перенести isLoad
     private var isLoadTrack = false
     private var isPlayNow = false
     private var isDragSlider = false
@@ -84,7 +83,6 @@ final class PlayerViewController: SpeakerViewController {
         label.textAlignment = .center
         label.textColor = .white
         label.font = .poppins(.bold, size: 35)
-//        label.text = "Arcade"
         label.numberOfLines = 1
         return label
     }()
@@ -94,7 +92,6 @@ final class PlayerViewController: SpeakerViewController {
         label.textAlignment = .center
         label.textColor = .white.withAlphaComponent(0.5)
         label.font = .poppins(.bold, size: 22)
-//        label.text = "Duncan Laurence"
         label.numberOfLines = 1
         return label
     }()
@@ -102,12 +99,9 @@ final class PlayerViewController: SpeakerViewController {
     private lazy var sliderView: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0
-//        slider.maximumValue = 100
-//        slider.value = 20
         slider.setThumbImage(.sliderThumb, for: .normal)
         slider.minimumTrackTintColor = .playerGrayLight
         slider.maximumTrackTintColor = .playerGrayDark.withAlphaComponent(0.35)
-//        slider.addTarget(self, action: #selector(valueChange), for: .valueChanged)
         slider.addTarget(self, action: #selector(onSliderValChanged(slider:event:)), for: .valueChanged)
         return slider
     }()
@@ -117,8 +111,6 @@ final class PlayerViewController: SpeakerViewController {
         label.textAlignment = .left
         label.textColor = .white
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .bold)
-//        label.font = .poppins(.bold, size: 15)
-//        label.text = "1:08"
         label.numberOfLines = 1
         return label
     }()
@@ -128,8 +120,6 @@ final class PlayerViewController: SpeakerViewController {
         label.textAlignment = .right
         label.textColor = .white
         label.font = UIFont.monospacedDigitSystemFont(ofSize: 15, weight: .bold)
-//        label.font = .poppins(.bold, size: 15)
-//        label.text = "3:04"
         label.numberOfLines = 1
         return label
     }()
@@ -276,13 +266,6 @@ private extension PlayerViewController {
             if isLoadTrack {
                 audioManager.play()
             }
-            //TODO: - Проверить. Это вроде лишнее с тестов
-//            else {
-//                guard let url = Bundle.main.url(forResource: "asti", withExtension: "mp3") else { return }
-//                audioManager.playAudioFile(url)
-//                isLoadTrack = true
-//                setTrackInfo()
-//            }
         case false:
             playPauseButton.setImage(.playerPlay, for: .normal)
             playPauseButton.setImage(.playerPlay, for: .highlighted)
@@ -353,29 +336,28 @@ private extension PlayerViewController {
 // MARK: - MetaData
 extension PlayerViewController {
 
-    func getTrackInfo(from asset: AVAsset) -> (trackName: String?, artistName: String?) {
-        var trackName: String?
-        var artistName: String?
-
-        // Извлекаем метаданные из AVAsset
-        let metadata = asset.metadata
-
-        for item in metadata {
-            if let key = item.commonKey?.rawValue {
-                switch key {
-                case AVMetadataKey.commonKeyTitle.rawValue:
-                    trackName = item.stringValue
-                case AVMetadataKey.commonKeyArtist.rawValue:
-                    artistName = item.stringValue
-                default:
-                    continue
-                }
-            }
-        }
-
-        return (trackName, artistName)
-    }
-
+//    func getTrackInfo(from asset: AVAsset) -> (trackName: String?, artistName: String?) {
+//        var trackName: String?
+//        var artistName: String?
+//
+//        // Извлекаем метаданные из AVAsset
+//        let metadata = asset.metadata
+//
+//        for item in metadata {
+//            if let key = item.commonKey?.rawValue {
+//                switch key {
+//                case AVMetadataKey.commonKeyTitle.rawValue:
+//                    trackName = item.stringValue
+//                case AVMetadataKey.commonKeyArtist.rawValue:
+//                    artistName = item.stringValue
+//                default:
+//                    continue
+//                }
+//            }
+//        }
+//
+//        return (trackName, artistName)
+//    }
 
     func fetchAudioMetadata(from url: URL) async throws -> (title: String?, artist: String?, artwork: UIImage?) {
         let asset = AVAsset(url: url)
@@ -410,7 +392,6 @@ extension PlayerViewController {
 // MARK: - AudioProtocol
 extension PlayerViewController: AudioProtocol {
     func setNextTrackInfo() {
-//        sliderView.value = 0
         setTrackInfo()
     }
     
