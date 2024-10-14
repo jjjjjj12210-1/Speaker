@@ -280,10 +280,14 @@ private extension WelcomeViewController {
                 self.view.layoutIfNeeded()
             }
         case 3:
-            let height = isSmallDevice ? 320 : deviceWidth - 24
+            let height = switch phoneSize {
+            case .small: 320
+            case .medium: 424
+            case .big: 460
+            }
             topImage.snp.remakeConstraints({
-                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(18)
-                $0.leading.trailing.equalToSuperview().inset(isSmallDevice ? 20 : 12)
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(isSmallDevice ? 4 : 16)
+                $0.leading.trailing.equalToSuperview()
                 $0.height.equalTo(height)
             })
             topImage.image = .welcomeTop3

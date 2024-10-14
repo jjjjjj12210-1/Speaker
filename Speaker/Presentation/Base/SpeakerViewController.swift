@@ -19,6 +19,7 @@ class SpeakerViewController: UIViewController {
         super.viewWillAppear(animated)
         tabBar?.currentController = self
         tabBar?.updatePlayStatus()
+        self.navigationController?.hideHairline()
     }
 
     override func viewDidLoad() {

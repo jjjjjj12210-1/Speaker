@@ -29,19 +29,10 @@ final class TextInfoViewController: SpeakerViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.font = .poppins(.semibold, size: 18)
+        label.font = .custom(.semibold, size: 18, fontFamily: .lato)
         label.numberOfLines = 2
         return label
     }()
-
-//    private lazy var textLabel: UILabel = {
-//        let label = UILabel()
-//        label.textAlignment = .natural
-//        label.textColor = .white
-//        label.font = .poppins(.regular, size: 14)
-//        label.numberOfLines = 0
-//        return label
-//    }()
 
     // MARK: - Init
     init(type: TextType) {
@@ -102,9 +93,9 @@ private extension TextInfoViewController {
     }
 
     func setIPadText() {
-        let attrs1 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
+        let attrs1 = [NSAttributedString.Key.font : UIFont.custom(.regular, size: 14, fontFamily: .lato),
                       NSAttributedString.Key.foregroundColor : UIColor.white]
-        let attrs2 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
+        let attrs2 = [NSAttributedString.Key.font : UIFont.custom(.regular, size: 14, fontFamily: .lato),
                       NSAttributedString.Key.foregroundColor : UIColor.white,
                       NSAttributedString.Key.underlineColor : UIColor.white,
                       NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue] as [NSAttributedString.Key : Any]
@@ -141,9 +132,9 @@ private extension TextInfoViewController {
     }
 
     func setDropBoxText() {
-        let attrs1 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
+        let attrs1 = [NSAttributedString.Key.font : UIFont.custom(.regular, size: 14, fontFamily: .lato),
                       NSAttributedString.Key.foregroundColor : UIColor.white]
-        let attrs2 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
+        let attrs2 = [NSAttributedString.Key.font : UIFont.custom(.regular, size: 14, fontFamily: .lato),
                       NSAttributedString.Key.foregroundColor : UIColor.white,
                       NSAttributedString.Key.underlineColor : UIColor.white,
                       NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue] as [NSAttributedString.Key : Any]

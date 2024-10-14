@@ -16,6 +16,8 @@ protocol HomePresenterInterface {
     func selectBass()
     func selectTreble()
     func openBluetoothSettings()
+
+    func selectHowConnect()
 }
 
 final class HomePresenter: NSObject {
@@ -38,14 +40,19 @@ private extension HomePresenter {
 // MARK: - HomePresenterInterface
 
 extension HomePresenter: HomePresenterInterface {
+    func selectHowConnect() {
+        router.showHowConnect()
+    }
 
     func openBluetoothSettings() {
-        if let url = URL(string: "App-Prefs:root=Bluetooth") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                print("Не удалось открыть настройки Bluetooth.")
-            }
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)")
+            })
         }
     }
 

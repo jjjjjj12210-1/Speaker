@@ -43,6 +43,18 @@ final class PayWallNewViewController: SpeakerViewController {
 
     private var priceArray: [String] = []
 
+    let bottomCollectionInset: Float = switch phoneSize {
+    case .small: 10
+    case .medium: 40
+    case .big: 60
+    }
+
+    let bottomCButtonInset: Float = switch phoneSize {
+    case .small: 46
+    case .medium: 100
+    case .big: 120
+    }
+
     // MARK: - UI
 
     private lazy var closeButton: UIButton = {
@@ -392,7 +404,7 @@ private extension PayWallNewViewController {
         continueButton.snp.makeConstraints({
             $0.height.equalTo(heightButton)
             $0.leading.trailing.equalToSuperview().inset(24)
-            $0.bottom.equalToSuperview().inset(isSmallDevice ? 46 : 84)
+            $0.bottom.equalToSuperview().inset(bottomCButtonInset)
         })
 
         let bottomButtonWidth = (deviceWidth - 100)/3
@@ -425,19 +437,29 @@ private extension PayWallNewViewController {
 
         collectionView.snp.makeConstraints({
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(continueButton.snp.top).inset(isSmallDevice ? -10 : -26)
+            $0.bottom.equalTo(continueButton.snp.top).inset(-bottomCollectionInset)
             $0.height.equalTo(phoneSize == .big ? 164 : 126)
         })
 
-        titleLabel.snp.updateConstraints({
-            $0.bottom.equalTo(collectionView.snp.top).inset(isSmallDevice ? -16 : -36)
+        unlimLabel.snp.makeConstraints({
+            $0.top.equalTo(topImage.snp.bottom).offset(16)
             $0.centerX.equalToSuperview()
         })
 
-        unlimLabel.snp.updateConstraints({
-            $0.bottom.equalTo(titleLabel.snp.top).inset(isSmallDevice ? -6 : -12)
+        titleLabel.snp.makeConstraints({
             $0.centerX.equalToSuperview()
+            $0.top.equalTo(unlimLabel.snp.bottom).offset(16)
         })
+
+//        titleLabel.snp.updateConstraints({
+//            $0.bottom.equalTo(collectionView.snp.top).inset(isSmallDevice ? -16 : -36)
+//            $0.centerX.equalToSuperview()
+//        })
+//
+//        unlimLabel.snp.updateConstraints({
+//            $0.bottom.equalTo(titleLabel.snp.top).inset(isSmallDevice ? -6 : -12)
+//            $0.centerX.equalToSuperview()
+//        })
     }
 }
 

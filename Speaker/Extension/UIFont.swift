@@ -3,11 +3,14 @@ import UIKit
 
 enum FontType {
     case poppins
+    case lato
 
     var name: String {
         switch self {
         case .poppins:
             return "Poppins-"
+        case .lato:
+            return "Lato-"
         }
     }
 }

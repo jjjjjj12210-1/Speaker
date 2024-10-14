@@ -146,6 +146,7 @@ final class HomeViewController: SpeakerViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBar?.hideTabBar(false)
+        navigationController?.navigationBar.isHidden = false
 
         if isConnected != AudioSessionManager.shared.isConnected {
             isConnected = AudioSessionManager.shared.isConnected
@@ -197,6 +198,8 @@ private extension HomeViewController {
             } else {
                 presenter?.openBluetoothSettings()
             }
+        } else {
+            presenter?.selectHowConnect()
         }
     }
 }

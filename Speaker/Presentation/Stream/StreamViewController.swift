@@ -179,7 +179,7 @@ extension StreamViewController: UICollectionViewDelegate {
         case 5: setWebViewView(title: "Amazon", url: "https://music.amazon.com/")
         case 6: setWebViewView(title: "Pandora", url: "https://www.pandora.com/")
         case 7: setWebViewView(title: "SiriusXM", url: "https://www.siriusxm.com/music")
-        case 8: setWebViewView(title: "Browser", url: "https://www.google.com")
+//        case 8: setWebViewView(title: "Browser", url: "https://www.google.com")
         default: return
         }
     }

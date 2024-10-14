@@ -14,7 +14,7 @@ extension StreamSection {
                                StreamCellModel(title: "Amazon", image: .streamAmazon),
                                StreamCellModel(title: "Pandora", image: .streamPandora),
                                StreamCellModel(title: "SiriusXM", image: .streamSirius),
-                               StreamCellModel(title: "Browser", image: .streamBroweser),
+//                               StreamCellModel(title: "Browser", image: .streamBroweser),
                                ])
         ]
     }

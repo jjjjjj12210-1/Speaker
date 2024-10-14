@@ -98,7 +98,7 @@ private extension SettingViewController {
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        9
+        8
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,17 +112,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             return cell
-        case 1:
-            let cell = NotificationCell.getCell(tableView, for: indexPath)
-            cell.didChangeSwitch = { isOn in
-                print(isOn)
-            }
-            return cell
-        case 2...7:
+//        case 1:
+//            let cell = NotificationCell.getCell(tableView, for: indexPath)
+//            cell.didChangeSwitch = { isOn in
+//                print(isOn)
+//            }
+//            return cell
+        case 1...6:
             let cell = SettingCell.getCell(tableView, for: indexPath)
-            cell.configure(settingArray[indexPath.row - 2])
+            cell.configure(settingArray[indexPath.row - 1])
             return cell
-        case 8:
+        case 7:
             let cell = VersionCell.getCell(tableView, for: indexPath)
             return cell
         default:
@@ -134,12 +134,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0: presenter?.selectDevice()
-        case 2: presenter?.shareApp()
-        case 3: presenter?.rateApp()
-        case 4: presenter?.selectSupport()
-        case 5: presenter?.selectPP()
-        case 6: presenter?.selectTerm()
-        case 7:
+        case 1: presenter?.shareApp()
+        case 2: presenter?.rateApp()
+        case 3: presenter?.selectSupport()
+        case 4: presenter?.selectPP()
+        case 5: presenter?.selectTerm()
+        case 6:
             showSpinner()
             appHubManager.restore()
         default: return

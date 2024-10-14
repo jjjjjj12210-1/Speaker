@@ -121,11 +121,11 @@ extension AppHubManager {
 
     func restore() {
         Task {
-            let result = await Apphud.restorePurchases()
-            if let error = result?.localizedDescription {
-                delegate?.purchasesWasEnded(success: false, messageError: error)
-            } else {
+            await Apphud.restorePurchases()
+            if Apphud.hasActiveSubscription(){
                 delegate?.purchasesWasEnded(success: true, messageError: "")
+            } else {
+                delegate?.purchasesWasEnded(success: false, messageError: "No active subscription found")
             }
         }
     }

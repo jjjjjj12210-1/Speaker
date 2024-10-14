@@ -16,6 +16,7 @@ protocol HomeRouterInterface: AnyObject {
     func showVolume()
     func showBass()
     func showTreble()
+    func showHowConnect()
 }
 
 class HomeRouter: NSObject {
@@ -25,6 +26,12 @@ class HomeRouter: NSObject {
 // MARK: - HomeRouterInterface
 
 extension HomeRouter: HomeRouterInterface {
+    func showHowConnect() {
+        guard let baseViewController = controller else { return }
+        let vc = HowConnectController()
+        let controller = UINavigationController(rootViewController: vc)
+        baseViewController.navigationController?.present(controller, animated: true)
+    }
     
     func showVolume() {
         guard let baseViewController = controller else { return }
@@ -55,8 +62,10 @@ extension HomeRouter: HomeRouterInterface {
     
     func showWiFi() {
         guard let baseViewController = controller else { return }
-        let controller = WiFiConnectViewController()
-        controller.modalPresentationStyle = .overFullScreen
-        baseViewController.navigationController?.present(controller, animated: false)
+        let controller = WiFiInfoController()
+        baseViewController.navigationController?.present(controller, animated: true)
+//        let controller = WiFiConnectViewController()
+//        controller.modalPresentationStyle = .overFullScreen
+//        baseViewController.navigationController?.present(controller, animated: false)
     }
 }

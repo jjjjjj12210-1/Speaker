@@ -91,6 +91,13 @@
 		929376DA2C889C0600E595EF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929376D92C889C0600E595EF /* SearchViewController.swift */; };
 		92AEE42D2CB432F7008A1570 /* TestStoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 92AEE42C2CB432F7008A1570 /* TestStoreKit.storekit */; };
 		92AEE42F2CB4572B008A1570 /* PayWallLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEE42E2CB4572B008A1570 /* PayWallLoaderView.swift */; };
+		92AEE4612CB82746008A1570 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEE4602CB82746008A1570 /* UINavigationBar.swift */; };
+		92AEE46C2CBAD51B008A1570 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92AEE4692CBAD51B008A1570 /* Lato-Regular.ttf */; };
+		92AEE46D2CBAD51B008A1570 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92AEE46A2CBAD51B008A1570 /* Lato-Semibold.ttf */; };
+		92AEE46E2CBAD51B008A1570 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92AEE4682CBAD51B008A1570 /* Lato-Bold.ttf */; };
+		92AEE4712CBAD831008A1570 /* WiFiInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEE4702CBAD831008A1570 /* WiFiInfoController.swift */; };
+		92AEE4742CBADEC0008A1570 /* HowConnectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEE4732CBADEC0008A1570 /* HowConnectController.swift */; };
+		92AEE4762CBADFD2008A1570 /* SupportButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AEE4752CBADFD2008A1570 /* SupportButtonView.swift */; };
 		92F934E22C7CE82900DFE5BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E12C7CE82900DFE5BF /* AppDelegate.swift */; };
 		92F934E62C7CE82900DFE5BF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */; };
 		92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92F934EA2C7CE82A00DFE5BF /* Assets.xcassets */; };
@@ -196,6 +203,13 @@
 		929376D92C889C0600E595EF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		92AEE42C2CB432F7008A1570 /* TestStoreKit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = TestStoreKit.storekit; path = Speaker/TestStoreKit.storekit; sourceTree = "<group>"; };
 		92AEE42E2CB4572B008A1570 /* PayWallLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallLoaderView.swift; sourceTree = "<group>"; };
+		92AEE4602CB82746008A1570 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
+		92AEE4682CBAD51B008A1570 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		92AEE4692CBAD51B008A1570 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		92AEE46A2CBAD51B008A1570 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
+		92AEE4702CBAD831008A1570 /* WiFiInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiInfoController.swift; sourceTree = "<group>"; };
+		92AEE4732CBADEC0008A1570 /* HowConnectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowConnectController.swift; sourceTree = "<group>"; };
+		92AEE4752CBADFD2008A1570 /* SupportButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportButtonView.swift; sourceTree = "<group>"; };
 		92F934DE2C7CE82900DFE5BF /* Speaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F934E12C7CE82900DFE5BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92F934E52C7CE82900DFE5BF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +311,8 @@
 		924466562C7FB0C60093786B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				92AEE4722CBADDF1008A1570 /* HowConnectController */,
+				92AEE46F2CBAD813008A1570 /* WiFiInfoController */,
 				9293768C2C84657100E595EF /* SliderController */,
 				929376892C84615600E595EF /* DeviceConnected */,
 				929376722C839A7000E595EF /* BluetoothMenu */,
@@ -548,6 +564,33 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		92AEE46B2CBAD51B008A1570 /* Lato */ = {
+			isa = PBXGroup;
+			children = (
+				92AEE4682CBAD51B008A1570 /* Lato-Bold.ttf */,
+				92AEE4692CBAD51B008A1570 /* Lato-Regular.ttf */,
+				92AEE46A2CBAD51B008A1570 /* Lato-Semibold.ttf */,
+			);
+			path = Lato;
+			sourceTree = "<group>";
+		};
+		92AEE46F2CBAD813008A1570 /* WiFiInfoController */ = {
+			isa = PBXGroup;
+			children = (
+				92AEE4702CBAD831008A1570 /* WiFiInfoController.swift */,
+			);
+			path = WiFiInfoController;
+			sourceTree = "<group>";
+		};
+		92AEE4722CBADDF1008A1570 /* HowConnectController */ = {
+			isa = PBXGroup;
+			children = (
+				92AEE4732CBADEC0008A1570 /* HowConnectController.swift */,
+				92AEE4752CBADFD2008A1570 /* SupportButtonView.swift */,
+			);
+			path = HowConnectController;
+			sourceTree = "<group>";
+		};
 		92C3D24E2C8F791600C24C3B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,6 +708,7 @@
 		92F9350F2C7CF69400DFE5BF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				92AEE46B2CBAD51B008A1570 /* Lato */,
 				92F9350E2C7CF69400DFE5BF /* Poppins */,
 			);
 			path = Fonts;
@@ -675,6 +719,7 @@
 			children = (
 				92F9351F2C7CF79200DFE5BF /* UIFont.swift */,
 				929288712CB3107500EEE1FC /* SKProduct.swift */,
+				92AEE4602CB82746008A1570 /* UINavigationBar.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -753,6 +798,9 @@
 				92F935182C7CF69400DFE5BF /* Poppins-ExtraLight.ttf in Resources */,
 				92F9351A2C7CF69400DFE5BF /* Poppins-Medium.ttf in Resources */,
 				92F935192C7CF69400DFE5BF /* Poppins-Light.ttf in Resources */,
+				92AEE46C2CBAD51B008A1570 /* Lato-Regular.ttf in Resources */,
+				92AEE46D2CBAD51B008A1570 /* Lato-Semibold.ttf in Resources */,
+				92AEE46E2CBAD51B008A1570 /* Lato-Bold.ttf in Resources */,
 				92F9351D2C7CF69400DFE5BF /* Poppins-Thin.ttf in Resources */,
 				92F934EB2C7CE82A00DFE5BF /* Assets.xcassets in Resources */,
 				92F9351C2C7CF69400DFE5BF /* Poppins-SemiBold.ttf in Resources */,
@@ -843,6 +891,7 @@
 				924466782C7FB1580093786B /* SettingPresenter.swift in Sources */,
 				924466792C7FB1580093786B /* SettingInit.swift in Sources */,
 				924466642C7FB1120093786B /* LibraryRouter.swift in Sources */,
+				92AEE4762CBADFD2008A1570 /* SupportButtonView.swift in Sources */,
 				924466652C7FB1120093786B /* LibraryViewController.swift in Sources */,
 				924466662C7FB1120093786B /* LibraryPresenter.swift in Sources */,
 				929376802C839D3F00E595EF /* BluetoothMenuRouter.swift in Sources */,
@@ -862,6 +911,7 @@
 				9244664A2C7E55A90093786B /* PayWallRouter.swift in Sources */,
 				92AEE42F2CB4572B008A1570 /* PayWallLoaderView.swift in Sources */,
 				929376712C83970D00E595EF /* WiFiConnectViewController.swift in Sources */,
+				92AEE4712CBAD831008A1570 /* WiFiInfoController.swift in Sources */,
 				924466542C7FA9110093786B /* SpeakerTabBar.swift in Sources */,
 				929376BA2C877FFA00E595EF /* AddMusicSection.swift in Sources */,
 				929288722CB3107500EEE1FC /* SKProduct.swift in Sources */,
@@ -890,12 +940,14 @@
 				929126352CB281AE00CF0F69 /* PayWallSection.swift in Sources */,
 				921F3B092CA01A2400F99470 /* AudioMO+CoreDataClass.swift in Sources */,
 				9244664C2C7E55A90093786B /* PayWallPresenter.swift in Sources */,
+				92AEE4612CB82746008A1570 /* UINavigationBar.swift in Sources */,
 				929376762C839A9F00E595EF /* BluetoothConnectViewController.swift in Sources */,
 				9244664D2C7E55A90093786B /* PayWallInit.swift in Sources */,
 				920D21272C8F7E6500CF1B4E /* AudioManager.swift in Sources */,
 				929376AF2C863DEB00E595EF /* EmptyLibView.swift in Sources */,
 				9293768B2C8461AF00E595EF /* DeviceConnectedViewController.swift in Sources */,
 				92F935232C7CFA6500DFE5BF /* Support.swift in Sources */,
+				92AEE4742CBADEC0008A1570 /* HowConnectController.swift in Sources */,
 				92F934F72C7CEA2700DFE5BF /* AppCoordinator.swift in Sources */,
 				929376852C83AE0800E595EF /* SpeakerButton.swift in Sources */,
 				92F934E62C7CE82900DFE5BF /* WelcomeViewController.swift in Sources */,
@@ -1064,7 +1116,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.buds1.chvertkova;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buds1.chvertkova1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1103,7 +1155,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.buds1.chvertkova;
+				PRODUCT_BUNDLE_IDENTIFIER = com.buds1.chvertkova1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

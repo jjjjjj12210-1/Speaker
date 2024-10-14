@@ -28,7 +28,7 @@ final class LibraryViewController: SpeakerViewController {
     
     private lazy var emptyView: EmptyLibView = {
         let view = EmptyLibView()
-        view.viewButton.addTarget(self, action: #selector(tapEmptyInfo), for: .touchUpInside)
+//        view.viewButton.addTarget(self, action: #selector(tapEmptyInfo), for: .touchUpInside)
         view.isHidden = true
         return view
     }()

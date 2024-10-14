@@ -21,29 +21,32 @@ final class EmptyLibView: UIView {
     private lazy var bottomLabel: UILabel = {
        let label = UILabel()
 
-        let attrs1 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
-                      NSAttributedString.Key.foregroundColor : UIColor.textGrayLight]
-        let attrs2 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
-                      NSAttributedString.Key.foregroundColor : UIColor.white,
-                      NSAttributedString.Key.underlineColor : UIColor.white,
-                      NSAttributedString.Key.underlineStyle :  NSUnderlineStyle.single.rawValue]
-
-
-        let attString1 = NSMutableAttributedString(string:"Import music files and listen offline\nDon’t know how? ",
-                                                          attributes: attrs1)
-        let attString2 = NSMutableAttributedString(string:"Read this", attributes: attrs2)
-        attString1.append(attString2)
-        label.attributedText = attString1
+//        let attrs1 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
+//                      NSAttributedString.Key.foregroundColor : UIColor.textGrayLight]
+//        let attrs2 = [NSAttributedString.Key.font : UIFont.poppins(.regular, size: 14),
+//                      NSAttributedString.Key.foregroundColor : UIColor.white,
+//                      NSAttributedString.Key.underlineColor : UIColor.white,
+//                      NSAttributedString.Key.underlineStyle :  NSUnderlineStyle.single.rawValue]
+//
+//
+//        let attString1 = NSMutableAttributedString(string:"Import music files and listen offline\nDon’t know how? ",
+//                                                          attributes: attrs1)
+//        let attString2 = NSMutableAttributedString(string:"Read this", attributes: attrs2)
+//        attString1.append(attString2)
+//        label.attributedText = attString1
+        label.text = "Import music files and listen offline"
+        label.font = .poppins(.regular, size: 14)
+        label.textColor = .textGrayLight
         label.numberOfLines = 2
         label.textAlignment = .center
         return label
     }()
 
-    lazy var viewButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        return button
-    }()
+//    lazy var viewButton: UIButton = {
+//        let button = UIButton()
+//        button.backgroundColor = .clear
+//        return button
+//    }()
 
 
     //MARK: - Init
@@ -72,7 +75,7 @@ private extension EmptyLibView {
 
         addSubview(titleLabel)
         addSubview(bottomLabel)
-        addSubview(viewButton)
+//        addSubview(viewButton)
 
         titleLabel.snp.makeConstraints({
             $0.centerX.equalToSuperview()
@@ -84,8 +87,8 @@ private extension EmptyLibView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(16)
         })
 
-        viewButton.snp.makeConstraints({
-            $0.edges.equalTo(bottomLabel.snp.edges)
-        })
+//        viewButton.snp.makeConstraints({
+//            $0.edges.equalTo(bottomLabel.snp.edges)
+//        })
     }
 }

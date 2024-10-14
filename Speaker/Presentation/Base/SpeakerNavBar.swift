@@ -6,13 +6,10 @@ final class SpeakerNavBar: UINavigationController {
         super.viewDidLoad()
         let standardAppearance = navigationBar.standardAppearance
 
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().backgroundColor = .clear
-        UINavigationBar.appearance().isTranslucent = true
-
         let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.shadowImage = UIImage()
         navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundImage = UIImage()
         navigationBarAppearance.backgroundColor = UIColor.clear
         navigationBarAppearance.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor : UIColor.white,

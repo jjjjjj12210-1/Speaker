@@ -16,8 +16,6 @@ final class SettingPresenter: NSObject {
     private weak var view: SettingPresenterOutputInterface?
     private var router: SettingRouterInterface
 
-    private let appID = "6736561086"
-
     init(router: SettingRouterInterface) {
         self.router = router
     }
@@ -52,18 +50,18 @@ extension SettingPresenter: SettingPresenterInterface {
     }
     
     func shareApp() {
-        if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(appID)") {
-            UIApplication.shared.open(url)
-        }
+        router.showShare()
     }
     
     func selectDevice() {
-        if let url = URL(string: "App-Prefs:root=Bluetooth") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                print("Не удалось открыть настройки Bluetooth.")
-            }
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)")
+            })
         }
     }
     
