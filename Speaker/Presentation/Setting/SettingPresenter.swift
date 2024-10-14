@@ -54,14 +54,12 @@ extension SettingPresenter: SettingPresenterInterface {
     }
     
     func selectDevice() {
-        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-            return
-        }
-
-        if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                print("Settings opened: \(success)")
-            })
+        if let url = URL(string: "App-Prefs:Bluetooth") {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Не удалось открыть меню Bluetooth")
+            }
         }
     }
     
