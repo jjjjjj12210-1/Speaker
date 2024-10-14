@@ -31,14 +31,6 @@ final class WelcomeViewController: SpeakerViewController {
         return imageView
     }()
 
-//    private let bottomImage: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = .welcomeBottom2
-//        imageView.alpha = 0
-//        imageView.contentMode = .scaleToFill
-//        return imageView
-//    }()
-
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -222,12 +214,6 @@ private extension WelcomeViewController {
         }
     }
 
-    func rateApp() {
-        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-            SKStoreReviewController.requestReview(in: scene)
-        }
-    }
-
     func setContent() {
         titleLabel.text = titles[currentWelcomeIndex].title
         descLabel.text = titles[currentWelcomeIndex].desc
@@ -247,7 +233,6 @@ private extension WelcomeViewController {
             }
 
         case 1:
-            rateApp()
             circleArray.forEach({
                 $0.removeFromSuperview()
             })

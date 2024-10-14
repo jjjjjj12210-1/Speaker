@@ -37,18 +37,17 @@ extension PayWallPresenter: PayWallPresenterInterface {
         self.view = view
     }
 
-    //TODO: - Links
     func selectPP() {
-//        guard let url = AppData.policyURL else {
-//          return
-//        }
-//        UIApplication.shared.open(url)
+        guard let url = AppData.policyURL else {
+          return
+        }
+        UIApplication.shared.open(url)
     }
 
     func selectTerm() {
-//        guard let url = AppData.termsURL else {
-//          return
-//        }
-//        UIApplication.shared.open(url)
+        guard let url = AppData.termsURL else {
+          return
+        }
+        UIApplication.shared.open(url)
     }
 }

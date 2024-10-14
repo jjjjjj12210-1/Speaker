@@ -2,8 +2,8 @@ import Foundation
 
 final class AppData {
 
-    static let policyURL = URL(string: "")
-    static let termsURL = URL(string: "")
+    static let policyURL = URL(string: "https://sites.google.com/view/speakercontrollers1/privacy-policy")
+    static let termsURL = URL(string: "https://sites.google.com/view/speakercontrollers1/terms-of-use")
 
     static let appHubKey = "app_jg2fJMXzarnhm3m2vVhne9etWXEy3E"
     static let appID = "6736561086"
